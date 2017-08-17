@@ -1,4 +1,3 @@
-
 export const YesNoOptions = [
   {
     label: 'Yes',
@@ -8,4 +7,4 @@ export const YesNoOptions = [
     label: 'No',
     value: 'no',
   },
-]
+];

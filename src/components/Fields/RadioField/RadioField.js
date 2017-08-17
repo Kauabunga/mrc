@@ -14,31 +14,25 @@ const styles = theme => ({
 
 class RadioField extends Component {
   render() {
-    const {options, isHidden, input, label, name, meta: {touched, error}, children, ...custom} = this.props;
-    return isHidden ? null : (
-      <BaseField {...this.props}>
-        <RadioGroup
-          row
-          selectedValue={input.value}
-          onChange={(event, value) => {
-            console.log(event);
-            input.onChange(value)
-          }}
-          {...input}
-          {...custom}
-        >
-          {
-            options.map(option => (
-              <FormControlLabel key={option.value}
-                                value={option.value}
-                                control={<Radio/>}
-                                label={option.label}/>
-            ))
-          }
-
-        </RadioGroup>
-      </BaseField>
-    );
+    const { options, isHidden, input, label, name, meta: { touched, error }, children, ...custom } = this.props;
+    return isHidden
+      ? null
+      : <BaseField {...this.props}>
+          <RadioGroup
+            row
+            selectedValue={input.value}
+            onChange={(event, value) => {
+              console.log(event);
+              input.onChange(value);
+            }}
+            {...input}
+            {...custom}
+          >
+            {options.map(option =>
+              <FormControlLabel key={option.value} value={option.value} control={<Radio />} label={option.label} />,
+            )}
+          </RadioGroup>
+        </BaseField>;
   }
 }
 
@@ -46,6 +40,4 @@ RadioField.propTypes = {
   options: PropTypes.array.isRequired,
 };
 
-
 export default withStyles(styles)(RadioField);
-

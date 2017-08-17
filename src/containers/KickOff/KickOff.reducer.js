@@ -1,23 +1,18 @@
 import * as Immutable from 'seamless-immutable';
 
-import {
-  GET_API_DATA,
-  GET_API_DATA_LOADED,
-  GET_API_DATA_ERROR,
-} from './KickOff.constants';
+import { GET_API_DATA, GET_API_DATA_LOADED, GET_API_DATA_ERROR } from './KickOff.constants';
 
 const initialState = Immutable({
   employmentStatuses: getEmploymentStatuses(),
   professions: getProfessions(),
   partyTypes: getPartyTypes(),
+  products: getProducts(),
 });
 
 export const kickOffReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_API_DATA:
-      return state
-        .set('apiDataLoading', true)
-        .set('apiDataError', null);
+      return state.set('apiDataLoading', true).set('apiDataError', null);
     case GET_API_DATA_LOADED:
       return state
         .set('apiData', action.data)
@@ -25,16 +20,22 @@ export const kickOffReducer = (state = initialState, action) => {
         .set('apiDataLoaded', true)
         .set('apiDataError', null);
     case GET_API_DATA_ERROR:
-      return state
-        .set('apiDataLoading', false)
-        .set('apiDataLoaded', false)
-        .set('apiDataError', action.error);
+      return state.set('apiDataLoading', false).set('apiDataLoaded', false).set('apiDataError', action.error);
     default:
       return state;
   }
 };
 
-function getPartyTypes(){
+function getProducts() {
+  return [
+    {
+      label: 'Consumer loan',
+      value: 'consumerLoan',
+    },
+  ];
+}
+
+function getPartyTypes() {
   return [
     {
       label: 'Individual',
@@ -44,10 +45,10 @@ function getPartyTypes(){
       label: 'Company',
       value: 'company',
     },
-  ]
+  ];
 }
 
-function getEmploymentStatuses(){
+function getEmploymentStatuses() {
   return [
     {
       label: 'Employed',
@@ -65,10 +66,10 @@ function getEmploymentStatuses(){
       label: 'Unemployed',
       value: 'unemployed',
     },
-  ]
+  ];
 }
 
-function getProfessions(){
+function getProfessions() {
   return [
     {
       label: 'Professional Executive',
@@ -90,5 +91,5 @@ function getProfessions(){
       label: 'Other',
       value: 'other',
     },
-  ]
+  ];
 }

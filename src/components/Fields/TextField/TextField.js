@@ -5,19 +5,19 @@ import BaseField from '../BaseField';
 
 class TextField extends Component {
   render() {
-    const {isHidden, input, label, name, meta: {touched, error}, children, ...custom} = this.props;
+    const { isHidden, input, label, name, meta: { touched, error }, children, ...custom } = this.props;
 
-    return isHidden ? null : (
-      <BaseField {...this.props}>
-        <MaterialTextField
-          hintText={label}
-          floatingLabelText={label}
-          errorText={touched && error}
-          {...input}
-          {...custom}
-        />
-      </BaseField>
-    );
+    return isHidden
+      ? null
+      : <BaseField {...this.props}>
+          <MaterialTextField
+            hintText={label}
+            floatingLabelText={label}
+            errorText={touched && error}
+            {...input}
+            {...custom}
+          />
+        </BaseField>;
   }
 }
 

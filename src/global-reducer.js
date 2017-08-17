@@ -5,12 +5,10 @@ import { reducer as formReducer } from 'redux-form';
 import { kickOffReducer } from './containers/KickOff';
 
 const containersReducer = {
-  containers: combineReducers(
-    {
-      kickOffReducer,
-      // NOTE: put other App reducers here
-    },
-  ),
+  containers: combineReducers({
+    kickOffReducer,
+    // NOTE: put other App reducers here
+  }),
 };
 
 const createGlobalReducer = () =>
