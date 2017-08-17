@@ -1,13 +1,14 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form';
 
-// import appReducer from './containers/app/reducer';
+import { kickOffReducer } from './containers/KickOff';
 
 const containersReducer = {
   containers: combineReducers(
     {
-      // appReducer,
-      // NOTE: put other app reducers here
+      kickOffReducer,
+      // NOTE: put other App reducers here
     },
   ),
 };
@@ -16,6 +17,7 @@ const createGlobalReducer = () =>
   combineReducers({
     ...containersReducer,
     route: routerReducer,
+    form: formReducer,
   });
 
 export default createGlobalReducer;

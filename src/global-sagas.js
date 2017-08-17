@@ -1,10 +1,10 @@
 import { fork, all } from 'redux-saga/effects';
 
-// import appSagas from './containers/app/sagas';
+// import appSagas from './containers/App/sagas';
 
 const sagas = [
   // appSagas,
-  // NOTE: put other app sagas here
+  // NOTE: put other App sagas here
 ];
 
 function* globalSagas() {

@@ -4,12 +4,12 @@ import { ConnectedRouter } from 'react-router-redux';
 
 import { history } from './store';
 
-import App from './containers/app/App';
+import KickOff from './containers/KickOff';
 
 const routes = (
   <ConnectedRouter history={history}>
     <Switch>
-      <Route exact path="/" component={App} />
+      <Route exact path="/" component={KickOff} />
       {/* NOTE: put other app routes here */}
     </Switch>
   </ConnectedRouter>
