@@ -4,39 +4,67 @@ import { Field, reduxForm } from 'redux-form';
 import './PreliminaryInformationForm.css';
 import Button from '../../UI/Button';
 import SelectField from '../../Fields/SelectField';
-import TextField from '../../Fields/TextField';
+import RadioField, { YesNoOptions } from '../../Fields/RadioField';
+import { formValueSelector } from 'redux-form';
+import { connect } from 'react-redux';
+import { FORM_NAME } from './PreliminaryInformationForm.constants';
+
 
 class PreliminaryInformationForm extends Component {
+
+  isProfessionHidden(formValues) {
+    return !formValues.employment;
+  }
+
+  isPartyTypeHidden(formValues) {
+    return this.isProfessionHidden(formValues) || !formValues.profession;
+  }
+
+  isBusinessUseHidden(formValues) {
+    return this.isPartyTypeHidden(formValues) || formValues.partyType !== 'company';
+  }
+
   render() {
-    const {handleSubmit, employmentStatuses} = this.props;
-    console.log(employmentStatuses);
+    const {handleSubmit, partyTypes, employmentStatuses, professions, formValues} = this.props;
+
+    const isProfessionHidden = this.isProfessionHidden(formValues);
+    const isPartyTypeHidden = this.isPartyTypeHidden(formValues);
+    const isBusinessUseHidden = this.isBusinessUseHidden(formValues);
+
+    const isDeadEnd = 'TODO';
+
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="firstName">First Name</label>
-            <Field name="firstName" component="input" type="text"/>
-          </div>
 
-          <div>
-            <label htmlFor="lastName">Last Name</label>
-            <Field name="lastName" component="input" type="text"/>
-          </div>
-
-          <div>
-            <label htmlFor="email">Email</label>
-            <Field name="email" component="input" type="email"/>
-          </div>
-
-          <Field name="email" label="Email" type="email" component={TextField}/>
-
-          <Field name="employment" label="What is your current employment status?" component={SelectField}>
-            {
-              employmentStatuses.map(status => (
-                <option key={status.value} value={status.value}>{status.label}</option>
-              ))
-            }
+          <Field name="employment"
+                 label="What is your current employment status?"
+                 component={SelectField}
+                 options={employmentStatuses}>
           </Field>
+
+          <Field name="profession"
+                 isHidden={isProfessionHidden}
+                 label="What is your current profession?"
+                 component={SelectField}
+                 options={professions}>
+          </Field>
+
+          <Field name="partyType"
+                 isHidden={isPartyTypeHidden}
+                 label="Are you applying as an Individual or a Company?"
+                 component={RadioField}
+                 options={partyTypes}>
+          </Field>
+
+          <Field name="businessUse"
+                 isHidden={isBusinessUseHidden}
+                 label="Is the vehicle wholly or predominantly (more than 50%) for business use?"
+                 component={RadioField}
+                 options={YesNoOptions}>
+          </Field>
+
+          {/* Add dead end text */}
 
           <Button raised type="submit">
             Submit
@@ -49,13 +77,29 @@ class PreliminaryInformationForm extends Component {
 
 PreliminaryInformationForm.defaultProps = {
   employmentStatuses: [],
+  professions: [],
+  partyTypes: [],
 };
 
 PreliminaryInformationForm.propTypes = {
   employmentStatuses: PropTypes.array.isRequired,
+  professions: PropTypes.array.isRequired,
+  partyTypes: PropTypes.array.isRequired,
 };
 
+const selector = formValueSelector(FORM_NAME);
+
+let connectedComponent = connect(
+  state => ({
+    formValues: {
+      employment: selector(state, 'employment'),
+      profession: selector(state, 'profession'),
+      partyType: selector(state, 'partyType'),
+      businessUse: selector(state, 'businessUse'),
+    }
+  })
+)(PreliminaryInformationForm);
+
 export default reduxForm({
-  // a unique name for the form
-  form: 'PreliminaryInformation',
-})(PreliminaryInformationForm);
+  form: FORM_NAME,
+})(connectedComponent);

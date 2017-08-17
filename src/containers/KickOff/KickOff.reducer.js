@@ -4,10 +4,12 @@ import {
   GET_API_DATA,
   GET_API_DATA_LOADED,
   GET_API_DATA_ERROR,
-} from './KickOff.actions';
+} from './KickOff.constants';
 
 const initialState = Immutable({
   employmentStatuses: getEmploymentStatuses(),
+  professions: getProfessions(),
+  partyTypes: getPartyTypes(),
 });
 
 export const kickOffReducer = (state = initialState, action) => {
@@ -32,6 +34,19 @@ export const kickOffReducer = (state = initialState, action) => {
   }
 };
 
+function getPartyTypes(){
+  return [
+    {
+      label: 'Individual',
+      value: 'individual',
+    },
+    {
+      label: 'Company',
+      value: 'company',
+    },
+  ]
+}
+
 function getEmploymentStatuses(){
   return [
     {
@@ -49,6 +64,31 @@ function getEmploymentStatuses(){
     {
       label: 'Unemployed',
       value: 'unemployed',
+    },
+  ]
+}
+
+function getProfessions(){
+  return [
+    {
+      label: 'Professional Executive',
+      value: 'professionalExecutive',
+    },
+    {
+      label: 'Office Staff Clerical',
+      value: 'officeStaffClerical',
+    },
+    {
+      label: 'Trade',
+      value: 'trade',
+    },
+    {
+      label: 'Unskilled',
+      value: 'unskilled',
+    },
+    {
+      label: 'Other',
+      value: 'other',
     },
   ]
 }

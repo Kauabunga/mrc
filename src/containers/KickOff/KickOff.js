@@ -7,7 +7,7 @@ import PreliminaryInformationForm from '../../components/Forms/PreliminaryInform
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getAPIData } from './KickOff.actions';
-import { selectEmploymentStatuses } from './KickOff.selectors';
+import { selectEmploymentStatuses, selectProfessions, selectPartyTypes } from './KickOff.selectors';
 
 class KickOff extends Component {
 
@@ -17,7 +17,7 @@ class KickOff extends Component {
   }
 
   render() {
-    const {employmentStatuses} = this.props;
+    const {employmentStatuses, professions, partyTypes} = this.props;
     return (
       <div>
         <Helmet>
@@ -26,7 +26,9 @@ class KickOff extends Component {
 
         <KickOffIntroduction />
 
-        <PreliminaryInformationForm employmentStatuses={employmentStatuses}
+        <PreliminaryInformationForm professions={professions}
+                                    partyTypes={partyTypes}
+                                    employmentStatuses={employmentStatuses}
                                     onSubmit={this.handleSubmit}/>
 
       </div>
@@ -36,14 +38,20 @@ class KickOff extends Component {
 
 KickOff.defaultProps = {
   employmentStatuses: [],
+  professions: [],
+  partyTypes: [],
 };
 
 KickOff.propTypes = {
   employmentStatuses: PropTypes.array.isRequired,
+  professions: PropTypes.array.isRequired,
+  partyTypes: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   employmentStatuses: selectEmploymentStatuses(state),
+  professions: selectProfessions(state),
+  partyTypes: selectPartyTypes(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
