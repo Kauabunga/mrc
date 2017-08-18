@@ -43,7 +43,7 @@ const myTransform = createTransform(
 
 const persistConfig = {
   transforms: [myTransform],
-  blacklist: ['router'],
+  whitelist: [],
 };
 
 persistStore(store, persistConfig);
