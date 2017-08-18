@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { Link } from 'react-router-dom';
 import './PreliminaryInformationForm.css';
-import Button from '../../ui/Button';
-import SelectField from '../../fields/SelectField';
-import RadioField, { YesNoOptions, OneTwoOptions } from '../../fields/RadioField';
+import Button from '../../ui/Button/Button';
+import SelectField from '../../fields/SelectField/SelectField';
+import RadioField  from '../../fields/RadioField/RadioField';
 import { connect } from 'react-redux';
 import { FORM_NAME } from './PreliminaryInformationForm.constants';
+import { YesNoOptions } from '../../fields/RadioField/RadioField.YesNo';
+import { OneTwoOptions } from '../../fields/RadioField/RadioField.OneTwo';
 
 class PreliminaryInformationForm extends Component {
   isProfessionHidden(formValues) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // TODO create UI Text Input component
 import { default as MaterialTextField } from 'material-ui/TextField';
-import BaseField from '../BaseField';
+import BaseField from '../BaseField/BaseField';
 
 class TextField extends Component {
   render() {

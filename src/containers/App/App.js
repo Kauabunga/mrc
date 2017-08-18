@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Toolbar from '../../components/ui/Toolbar';
+import Toolbar from '../../components/ui/Toolbar/Toolbar';
 import { Link, withRouter } from 'react-router-dom';
 
 import './App.css';

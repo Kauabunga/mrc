@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormControlLabel } from 'material-ui/Form';
 import Radio, { RadioGroup } from 'material-ui/Radio';
-import BaseField from '../BaseField';
+import BaseField from '../BaseField/BaseField';
 import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BaseField from '../BaseField';
+import BaseField from '../BaseField/BaseField';
 
 // TODO create UI Select Input component
 // TODO create UI Label component
