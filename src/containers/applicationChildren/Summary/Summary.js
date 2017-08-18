@@ -3,16 +3,23 @@ import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { selectApplication } from '../../../global/application/application.selectors';
+import Button from '../../../components/ui/Button/Button';
 
 export class Summary extends Component {
   render() {
+    const { application } = this.props;
     return (
       <div>
         <Helmet>
           <title>Summary</title>
         </Helmet>
         <div className="Summary">
-          <h5>I am summary</h5>
+          <h1>Summary</h1>
+          <pre>
+            {JSON.stringify(application, null, 2)}
+          </pre>
+          <Button raised>Complete</Button>
         </div>
       </div>
     );
@@ -26,7 +33,7 @@ Summary.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  route: state.router,
+  application: selectApplication(state),
 });
 
 const mapDispatchToProps = dispatch => ({

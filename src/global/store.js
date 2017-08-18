@@ -40,7 +40,7 @@ const myTransform = createTransform(
   (outboundState, key) => Immutable(outboundState),
   // configuration options
   {
-    whitelist: ['containers', 'application'],
+    whitelist: ['application'],
   },
 );
 

@@ -12,7 +12,7 @@ export class Financial extends Component {
           <title>Financial</title>
         </Helmet>
         <div className="Financial">
-          <h5>I am financial</h5>
+          <h1>Financial form</h1>
         </div>
       </div>
     );

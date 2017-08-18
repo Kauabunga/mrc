@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import LoanForm from '../../../components/forms/LoanForm/LoanForm';
-import { selectKilometresTraveled } from './Loan.selectors';
+import { selectKilometresTraveledOptions } from './Loan.selectors';
 import { updateLoanData } from '../../../global/application/application.actions';
 import { initialize } from 'redux-form';
 import { FORM_NAME } from '../../../components/forms/LoanForm/LoanForm.constants';
@@ -21,7 +21,7 @@ export class Loan extends Component {
   }
 
   render() {
-    const { kilometresTraveled } = this.props;
+    const { kilometresTraveledOptions } = this.props;
     return (
       <div>
         <Helmet>
@@ -30,7 +30,7 @@ export class Loan extends Component {
         <div className="Loan">
           <LoanForm
             onChange={this.handleChange.bind(this)}
-            kilometresTraveled={kilometresTraveled}
+            kilometresTraveledOptions={kilometresTraveledOptions}
           />
         </div>
       </div>
@@ -39,17 +39,16 @@ export class Loan extends Component {
 }
 
 Loan.defaultProps = {
-  kilometresTraveled: [],
+  kilometresTraveledOptions: [],
 };
 
 Loan.propTypes = {
-  kilometresTraveled: PropTypes.array.isRequired,
+  kilometresTraveledOptions: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
   initialValues: selectLoanData(state),
-  kilometresTraveled: selectKilometresTraveled(state),
-  route: state.router,
+  kilometresTraveledOptions: selectKilometresTraveledOptions(state),
 });
 
 const mapDispatchToProps = dispatch => ({

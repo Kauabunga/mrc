@@ -1,7 +1,7 @@
 import * as Immutable from 'seamless-immutable';
 
 const initialState = Immutable({
-  kilometresTraveled: getKilometresTraveled(),
+  kilometresTraveledOptions: getKilometresTraveledOptions(),
 });
 
 export const loanReducer = (state = initialState, action) => {
@@ -11,7 +11,7 @@ export const loanReducer = (state = initialState, action) => {
   }
 };
 
-function getKilometresTraveled() {
+function getKilometresTraveledOptions() {
   return [
     {
       label: '0-100km',

@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { initialize } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PersonalForm from '../../../components/forms/PersonalForm/PersonalForm';
+import { selectTitleOptions } from './Personal.selectors';
+import { selectPersonalData } from '../../../global/application/application.selectors';
+import { FORM_NAME } from '../../../components/forms/PersonalForm/PersonalForm.constants';
+import { updatePersonalData } from '../../../global/application/application.actions';
 
 export class Personal extends Component {
+  componentWillReceiveProps(nextProps) {
+    this.props.actions.initialize(FORM_NAME, nextProps.initialValues);
+  }
+
+  handleChange(values) {
+    this.props.actions.updatePersonalData(values);
+  }
+
   render() {
+    const { titleOptions } = this.props;
     return (
       <div>
         <Helmet>
           <title>Personal</title>
         </Helmet>
-        <div className="Personal">
-          <h5>I am personal</h5>
-        </div>
+
+        <PersonalForm onChange={this.handleChange.bind(this)} titleOptions={titleOptions} />
       </div>
     );
   }
@@ -26,11 +40,13 @@ Personal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  route: state.router,
+  initialValues: selectPersonalData(state),
+
+  titleOptions: selectTitleOptions(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({}, dispatch),
+  actions: bindActionCreators({ updatePersonalData, initialize }, dispatch),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Personal));

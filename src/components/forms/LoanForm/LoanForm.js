@@ -14,7 +14,7 @@ class LoanForm extends Component {
   }
 
   render() {
-    const { handleSubmit, kilometresTraveled, formValues } = this.props;
+    const { handleSubmit, kilometresTraveledOptions, formValues } = this.props;
 
     const isIncomplete = this.isIncomplete(formValues);
 
@@ -25,14 +25,14 @@ class LoanForm extends Component {
             name="kilometresTraveled"
             label="How many kilometres do you typically travel in a year?"
             component={SelectField}
-            options={kilometresTraveled}
+            options={kilometresTraveledOptions}
           />
 
           <Field
             name="loanTerm"
             label="Loan Term"
             component={SelectField}
-            options={kilometresTraveled}
+            options={kilometresTraveledOptions}
           />
 
           <Field name="amount" label="Finance amount" type="number" component={TextField} />
@@ -45,13 +45,13 @@ class LoanForm extends Component {
 }
 
 LoanForm.defaultProps = {
-  kilometresTraveled: [],
+  kilometresTraveledOptions: [],
 };
 
 LoanForm.propTypes = {
   onChange: PropTypes.func.isRequired,
 
-  kilometresTraveled: PropTypes.array.isRequired,
+  kilometresTraveledOptions: PropTypes.array.isRequired,
 };
 
 const selector = formValueSelector(FORM_NAME);

@@ -17,10 +17,7 @@ class SelectField extends Component {
           <Select
             clearable={false}
             value={input.value}
-            onChange={option => {
-              console.log('on change', option);
-              input.onChange((option && option.value) || null);
-            }}
+            onChange={option => input.onChange((option && option.value) || null)}
             options={options}
           />
         </BaseField>;
