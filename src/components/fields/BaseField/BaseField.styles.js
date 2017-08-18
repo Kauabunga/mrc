@@ -8,8 +8,8 @@ const styles = {
   '@media (min-width: 960px)': {
     container: {
       'margin-bottom': '0px !important',
-    }
-  }
+    },
+  },
 };
 
-export const {classes} = jss.createStyleSheet(styles).attach();
+export const { classes } = jss.createStyleSheet(styles).attach();

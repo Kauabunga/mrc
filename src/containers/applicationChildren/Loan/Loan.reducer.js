@@ -21,5 +21,5 @@ function getKilometresTraveled() {
       label: '101-1000km',
       value: '101-1000km',
     },
-  ]
+  ];
 }

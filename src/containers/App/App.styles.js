@@ -5,7 +5,7 @@ const styles = {
     'max-width': '800px',
     padding: '0 20px',
     margin: '0 auto',
-  }
+  },
 };
 
-export const {classes} = jss.createStyleSheet(styles).attach();
+export const { classes } = jss.createStyleSheet(styles).attach();

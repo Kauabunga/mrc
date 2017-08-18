@@ -9,14 +9,14 @@ import { selectKilometresTraveled } from './Loan.selectors';
 
 export class Loan extends Component {
   render() {
-    const {kilometresTraveled} = this.props;
+    const { kilometresTraveled } = this.props;
     return (
       <div>
         <Helmet>
           <title>Loan</title>
         </Helmet>
         <div className="Loan">
-          <LoanForm kilometresTraveled={kilometresTraveled}/>
+          <LoanForm kilometresTraveled={kilometresTraveled} />
         </div>
       </div>
     );

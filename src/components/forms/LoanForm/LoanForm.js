@@ -10,7 +10,7 @@ import { FORM_NAME } from './LoanForm.constants';
 
 class LoanForm extends Component {
   render() {
-    const {handleSubmit, kilometresTraveled, formValues} = this.props;
+    const { handleSubmit, kilometresTraveled, formValues } = this.props;
 
     return (
       <div>
@@ -19,7 +19,8 @@ class LoanForm extends Component {
             name="kilometresTraveled"
             label="What is your current employment status?"
             component={SelectField}
-            options={kilometresTraveled}/>
+            options={kilometresTraveled}
+          />
         </form>
       </div>
     );

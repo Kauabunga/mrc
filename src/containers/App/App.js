@@ -8,13 +8,13 @@ import { classes } from './App.styles';
 
 export class App extends Component {
   render() {
-    const {children} = this.props;
+    const { children } = this.props;
     return (
       <div>
         <Helmet>
           <title>App</title>
         </Helmet>
-        <Toolbar/>
+        <Toolbar />
         <div className={classes.container}>
           {children}
         </div>
