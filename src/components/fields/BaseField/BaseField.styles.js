@@ -3,7 +3,7 @@ import jss from 'jss';
 const styles = {
   container: {
     'min-height': '64px',
-    'margin-bottom': '36px !important',
+    'margin-bottom': '12px !important',
   },
   '@media (min-width: 960px)': {
     container: {

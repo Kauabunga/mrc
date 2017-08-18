@@ -6,22 +6,24 @@ import { classes } from './BaseField.styles';
 
 class BaseField extends Component {
   render() {
-    const { isHidden, label, name, children } = this.props;
+    const {isHidden, label, name, children} = this.props;
 
     // TODO why is this maxWidth set for responsive mobile?
 
     return isHidden
       ? null
       : <Grid container align="center" className={classes.container}>
-          <Grid item xs={12} sm={12} md={5} style={{ maxWidth: '100%' }}>
-            <FormLabel htmlFor={name}>
-              {label}
-            </FormLabel>
-          </Grid>
-          <Grid item xs={12} sm={12} md={5}>
-            {children}
-          </Grid>
-        </Grid>;
+        <Grid item md={1}>
+        </Grid>
+        <Grid item xs={12} sm={12} md={5} style={{maxWidth: '100%'}}>
+          <FormLabel htmlFor={name}>
+            {label}
+          </FormLabel>
+        </Grid>
+        <Grid item xs={12} sm={12} md={4}>
+          {children}
+        </Grid>
+      </Grid>;
   }
 }
 

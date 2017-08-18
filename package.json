@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && npm run snapshot",
-    "prettier": "prettier --single-quote --print-width 120 --trailing-comma all \"src/**/*.js\"",
+    "prettier": "prettier --single-quote --print-width 100 --trailing-comma all \"src/**/*.js\"",
     "prettier:ci": "npm run prettier -- --list-different",
     "prettier:fix": "npm run prettier -- --write",
     "snapshot": "react-snapshot",

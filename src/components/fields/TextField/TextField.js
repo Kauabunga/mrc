@@ -11,7 +11,7 @@ class TextField extends Component {
       ? null
       : <BaseField {...this.props}>
           <MaterialTextField
-            style={{ width: '100%' }}
+            fullWidth={true}
             hintText={label}
             floatingLabelText={label}
             errorText={touched && error}

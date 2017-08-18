@@ -30,7 +30,7 @@ class LoanForm extends Component {
 
           <Field name="loanTerm" label="Loan Term" component={SelectField} options={kilometresTraveled} />
 
-          <Field name="amount" label="Finance amount" component={TextField} />
+          <Field name="amount" label="Finance amount" type="number" component={TextField} />
 
           {isIncomplete ? null : <h3>Complete</h3>}
         </form>
