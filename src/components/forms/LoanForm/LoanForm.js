@@ -24,6 +24,7 @@ class LoanForm extends Component {
           <Field
             name="kilometresTraveled"
             label="How many kilometres do you typically travel in a year?"
+            info="kkhjklhkldjfhasdf"
             component={SelectField}
             options={kilometresTraveledOptions}
           />

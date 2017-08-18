@@ -10,6 +10,9 @@ const styles = {
       'margin-bottom': '0px !important',
     },
   },
+  infoContainer: {
+    display: 'inline-block',
+  }
 };
 
 export const { classes } = jss.createStyleSheet(styles).attach();
