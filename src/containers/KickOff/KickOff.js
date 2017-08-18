@@ -8,8 +8,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { selectEmploymentStatuses, selectProfessions, selectPartyTypes, selectProducts } from './KickOff.selectors';
 import { updateKickOffData } from '../../global/application/application.actions';
+import { FORM_NAME } from '../../components/forms/PreliminaryInformationForm/PreliminaryInformationForm.constants';
+import { selectKickOffData } from '../../global/application/application.selectors';
+import { initialize } from 'redux-form';
 
 class KickOff extends Component {
+
+  componentWillReceiveProps(nextProps){
+    this.props.actions.initialize(FORM_NAME, nextProps.initialValues);
+  }
+
+
   handleSubmit(values) {
     console.log('KickOff handleSubmit', values);
   }
@@ -56,6 +65,8 @@ KickOff.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  initialValues: selectKickOffData(state),
+
   employmentStatuses: selectEmploymentStatuses(state),
   professions: selectProfessions(state),
   partyTypes: selectPartyTypes(state),
@@ -63,7 +74,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ updateKickOffData }, dispatch),
+  actions: bindActionCreators({ updateKickOffData, initialize }, dispatch),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(KickOff));

@@ -253,6 +253,5 @@ export default connect(state => ({
 }))(
   reduxForm({
     form: FORM_NAME,
-    enableReinitialize: true,
   })(PreliminaryInformationForm),
 );

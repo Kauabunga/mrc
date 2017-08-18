@@ -5,11 +5,9 @@ import SelectField from '../../fields/SelectField/SelectField';
 import { connect } from 'react-redux';
 import { FORM_NAME } from './LoanForm.constants';
 import { selectLoanData } from '../../../global/application/application.selectors';
+import TextField from '../../fields/TextField/TextField';
 
 class LoanForm extends Component {
-  componentWillReceiveProps(nextProps) {
-    this.props.onChange(nextProps.formValues);
-  }
 
   isIncomplete(formValues) {
     // TODO implement
@@ -24,11 +22,25 @@ class LoanForm extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit}>
+
           <Field
             name="kilometresTraveled"
-            label="What is your current employment status?"
+            label="How many kilometres do you typically travel in a year?"
             component={SelectField}
             options={kilometresTraveled}
+          />
+
+          <Field
+            name="loanTerm"
+            label="Loan Term"
+            component={SelectField}
+            options={kilometresTraveled}
+          />
+
+          <Field
+            name="amount"
+            label="Finance amount"
+            component={TextField}
           />
 
           {isIncomplete ? null : <h3>Complete</h3>}
@@ -58,6 +70,5 @@ export default connect(state => ({
 }))(
   reduxForm({
     form: FORM_NAME,
-    enableReinitialize: true,
   })(LoanForm),
 );
