@@ -16,7 +16,6 @@ class ApplicationProgress extends Component {
   }
 
   getTabLabels(width) {
-    console.log(width);
     return width > 500 ? ['Loan', 'Personal', 'Financial', 'Summary'] : ['1', '2', '3', '4'];
   }
 

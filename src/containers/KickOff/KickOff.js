@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import KickOffIntroduction from '../../components/app/KickOffIntroduction/KickOffIntroduction';
@@ -15,7 +15,6 @@ class KickOff extends Component {
   }
 
   handleChange(values) {
-    console.log('KickOff handleChange', values);
     this.props.actions.updateKickOffData(values);
   }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Toolbar from '../../components/ui/Toolbar/Toolbar';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

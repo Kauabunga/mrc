@@ -14,7 +14,7 @@ const styles = theme => ({
 
 class RadioField extends Component {
   render() {
-    const { options, isHidden, input, label, name, meta: { touched, error }, children, ...custom } = this.props;
+    const { options, isHidden, input } = this.props;
     return isHidden
       ? null
       : <BaseField {...this.props}>
@@ -26,7 +26,6 @@ class RadioField extends Component {
               input.onChange(value);
             }}
             {...input}
-            {...custom}
           >
             {options.map(option =>
               <FormControlLabel key={option.value} value={option.value} control={<Radio />} label={option.label} />,

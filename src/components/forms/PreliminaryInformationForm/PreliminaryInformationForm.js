@@ -10,6 +10,7 @@ import { FORM_NAME } from './PreliminaryInformationForm.constants';
 import { YesNoOptions } from '../../fields/RadioField/RadioField.YesNo';
 import { OneTwoOptions } from '../../fields/RadioField/RadioField.OneTwo';
 import { classes } from './PreliminaryInformationForm.styles';
+import { selectKickOffData } from '../../../global/application/application.selectors';
 
 class PreliminaryInformationForm extends Component {
   isProfessionHidden(formValues) {
@@ -85,7 +86,6 @@ class PreliminaryInformationForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('PreliminaryInformationForm componentWillReceiveProps', nextProps.initialValues);
     this.props.onChange(nextProps.formValues);
   }
 
@@ -236,8 +236,7 @@ PreliminaryInformationForm.propTypes = {
 const selector = formValueSelector(FORM_NAME);
 
 export default connect(state => ({
-  // TODO add selector for kick off form
-  initialValues: state.application.kickOff.asMutable(),
+  initialValues: selectKickOffData(state),
   formValues: {
     employment: selector(state, 'employment'),
     profession: selector(state, 'profession'),
