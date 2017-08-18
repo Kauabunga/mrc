@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './KickOffIntroduction.css';
 
 class KickOffIntroduction extends Component {
   render() {

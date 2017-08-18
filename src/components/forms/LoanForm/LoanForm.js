@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { Link } from 'react-router-dom';
-import './LoanForm.css';
 import Button from '../../ui/Button/Button';
 import SelectField from '../../fields/SelectField/SelectField';
 import RadioField from '../../fields/RadioField/RadioField';

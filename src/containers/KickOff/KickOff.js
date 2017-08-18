@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './KickOff.css';
 import { Helmet } from 'react-helmet';
 import KickOffIntroduction from '../../components/app/KickOffIntroduction/KickOffIntroduction';
 import PreliminaryInformationForm from '../../components/forms/PreliminaryInformationForm/PreliminaryInformationForm';

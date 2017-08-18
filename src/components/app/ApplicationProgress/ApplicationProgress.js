@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './ApplicationProgress.css';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import { routerActions } from 'react-router-redux';
 import { connect } from 'react-redux';

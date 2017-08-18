@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import './Application.css';
 import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ApplicationProgress from '../../components/app/ApplicationProgress/ApplicationProgress';
+import { classes } from './Application.styles';
 
 export class Application extends Component {
   render() {
@@ -17,7 +17,7 @@ export class Application extends Component {
 
         <ApplicationProgress />
 
-        <div className="Application">
+        <div className={classes.container}>
           {children}
         </div>
       </div>

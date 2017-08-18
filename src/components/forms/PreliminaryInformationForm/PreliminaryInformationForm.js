@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { Link } from 'react-router-dom';
-import './PreliminaryInformationForm.css';
 import Button from '../../ui/Button/Button';
 import SelectField from '../../fields/SelectField/SelectField';
 import RadioField from '../../fields/RadioField/RadioField';
@@ -10,6 +9,7 @@ import { connect } from 'react-redux';
 import { FORM_NAME } from './PreliminaryInformationForm.constants';
 import { YesNoOptions } from '../../fields/RadioField/RadioField.YesNo';
 import { OneTwoOptions } from '../../fields/RadioField/RadioField.OneTwo';
+import { classes } from './PreliminaryInformationForm.styles';
 
 class PreliminaryInformationForm extends Component {
   isProfessionHidden(formValues) {
@@ -108,7 +108,7 @@ class PreliminaryInformationForm extends Component {
     const deadEndMessage = this.getDeadEndMessage(formValues);
 
     return (
-      <div className="PreliminaryInformationForm">
+      <div className={classes.container}>
         <form onSubmit={handleSubmit}>
           <Field
             name="employment"
