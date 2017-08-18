@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class NotFound extends Component {
+export class NotFound extends Component {
   render() {
     return (
       <div>
@@ -14,7 +14,7 @@ class NotFound extends Component {
         </Helmet>
 
         <h5>Not found</h5>
-        <Link to="/">Go home</Link>
+
       </div>
     );
   }

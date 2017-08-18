@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class Loan extends Component {
+export class Loan extends Component {
   render() {
     return (
       <div>
@@ -14,7 +14,6 @@ class Loan extends Component {
         </Helmet>
         <div className="Loan">
           <h5>I am loan</h5>
-          <Link to="/">home</Link>
         </div>
       </div>
     );

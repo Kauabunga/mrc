@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class App extends Component {
+export class App extends Component {
   render() {
     const { children } = this.props;
     return (

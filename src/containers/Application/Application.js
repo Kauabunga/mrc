@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class Application extends Component {
+export class Application extends Component {
   render() {
     const { children } = this.props;
     return (
@@ -13,8 +13,9 @@ class Application extends Component {
         <Helmet>
           <title>Application</title>
         </Helmet>
+
         <h5>I am application</h5>
-        <Link to="/">home</Link>
+
         <div className="Application">
           {children}
         </div>
