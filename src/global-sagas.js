@@ -1,6 +1,6 @@
 import { fork, all } from 'redux-saga/effects';
 
-// import appSagas from './containers/App/sagas';
+// import appSagas from './containers/App';
 
 const sagas = [
   // appSagas,

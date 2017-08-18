@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './KickOff.css';
 import { Helmet } from 'react-helmet';
@@ -16,12 +17,13 @@ class KickOff extends Component {
   }
 
   render() {
-    const { employmentStatuses, professions, products, partyTypes } = this.props;
+    const {employmentStatuses, professions, products, partyTypes} = this.props;
     return (
       <div>
         <Helmet>
           <title>Kick off</title>
         </Helmet>
+        <Link to="/application">loan</Link>
 
         <KickOffIntroduction />
 
@@ -59,7 +61,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getAPIData }, dispatch),
+  actions: bindActionCreators({getAPIData}, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(KickOff);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(KickOff));

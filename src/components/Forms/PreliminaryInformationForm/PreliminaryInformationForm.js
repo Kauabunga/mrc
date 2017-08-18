@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { Link } from 'react-router-dom';
 import './PreliminaryInformationForm.css';
 import Button from '../../UI/Button';
 import SelectField from '../../Fields/SelectField';
 import RadioField, { YesNoOptions, OneTwoOptions } from '../../Fields/RadioField';
-import { formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { FORM_NAME } from './PreliminaryInformationForm.constants';
 
@@ -24,8 +24,7 @@ class PreliminaryInformationForm extends Component {
 
   isProductHidden(formValues) {
     return (
-      this.isPartyTypeHidden(formValues) ||
-      !formValues.partyType ||
+      this.isPartyTypeHidden(formValues) || !formValues.partyType ||
       (formValues.partyType === 'company' && formValues.businessUse !== 'no')
     );
   }
@@ -51,8 +50,7 @@ class PreliminaryInformationForm extends Component {
   }
 
   isIsAustralianHidden(formValues) {
-    return this.isHadBankruptHidden(formValues) ||
-      !formValues.hasBankrupt ||
+    return this.isHadBankruptHidden(formValues) || !formValues.hasBankrupt ||
       (formValues.hasBankrupt === 'yes' && formValues.hasBankruptDischarged !== 'yes');
   }
 
@@ -63,13 +61,13 @@ class PreliminaryInformationForm extends Component {
   getDeadEndMessage(form) {
     if (form.employment === 'unemployed') {
       return `To gain an online approval you must currently be employed, however alternatives options to gain Finance approval are available, please contact us on 1300 730 200 or this link.`;
-    } else if (form.partyType === 'company' && form.businessUse === 'yes') {
+    } else if (!this.isBusinessUseHidden(form) && form.partyType === 'company' && form.businessUse === 'yes') {
       return `This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer.`;
-    } else if (form.ofAge === 'no') {
+    } else if (!this.isOfAgeHidden(form) && form.ofAge === 'no') {
       return `Applicant must be over 18 years of age`;
-    } else if (form.hasDefaulted === 'yes') {
+    } else if (!this.isHadDefaultedHidden(form) && form.hasDefaulted === 'yes') {
       return `Applicant can not have defaulted a loan in the last 3 years`;
-    } else if (form.hasBankrupt === 'yes' && form.hasBankruptDischarged === 'no') {
+    } else if (!this.isHadBankruptDischargedHidden(form) && form.hasBankrupt === 'yes' && form.hasBankruptDischarged === 'no') {
       return `Applicant can not have been charged for bankruptcy.`;
     } else {
       return null;
@@ -195,9 +193,11 @@ class PreliminaryInformationForm extends Component {
               <h3>
                 Ready to apply.
               </h3>
-              <Button raised type="submit">
-                Next
-              </Button>
+              <Link to="/loan">
+                <Button raised type="submit">
+                  Next
+                </Button>
+              </Link>
             </div>
           )}
 
