@@ -17,7 +17,7 @@ class KickOff extends Component {
   }
 
   render() {
-    const {employmentStatuses, professions, products, partyTypes} = this.props;
+    const { employmentStatuses, professions, products, partyTypes } = this.props;
     return (
       <div>
         <Helmet>
@@ -61,7 +61,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({getAPIData}, dispatch),
+  actions: bindActionCreators({ getAPIData }, dispatch),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(KickOff));

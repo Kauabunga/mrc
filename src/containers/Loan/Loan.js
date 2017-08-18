@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 class Loan extends Component {
-
   render() {
     return (
       <div>
@@ -29,7 +28,7 @@ Loan.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  route: state.router
+  route: state.router,
 });
 
 const mapDispatchToProps = dispatch => ({

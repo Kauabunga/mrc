@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
-import {default as MaterialToolbar} from 'material-ui/Toolbar';
+import { default as MaterialToolbar } from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
 class Toolbar extends Component {

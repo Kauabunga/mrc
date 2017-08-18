@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 class NotFound extends Component {
-
   render() {
     return (
       <div>

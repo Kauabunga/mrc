@@ -11,9 +11,8 @@ import KickOff from '../KickOff';
 import Loan from '../Loan';
 
 class App extends Component {
-
   render() {
-    const {children} = this.props;
+    const { children } = this.props;
     return (
       <div>
         <Helmet>
@@ -35,7 +34,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  route: state.router
+  route: state.router,
 });
 
 const mapDispatchToProps = dispatch => ({

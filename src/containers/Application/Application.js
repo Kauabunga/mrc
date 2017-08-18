@@ -6,9 +6,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 class Application extends Component {
-
   render() {
-    const {children} = this.props;
+    const { children } = this.props;
     return (
       <div>
         <Helmet>

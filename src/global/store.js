@@ -11,9 +11,7 @@ export const history = createHistory();
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = createGlobalReducer();
-const enhancers = [
-  autoRehydrate(),
-];
+const enhancers = [autoRehydrate()];
 const middlewares = [
   // Middleware for intercepting and dispatching navigation actions
   routerMiddleware(history),
@@ -28,16 +26,9 @@ if (process.env.NODE_ENV === 'development') {
   }
 }
 
-const composedEnhancers = compose(
-  applyMiddleware(...middlewares),
-  ...enhancers
-);
+const composedEnhancers = compose(applyMiddleware(...middlewares), ...enhancers);
 
-const store = createStore(
-  rootReducer,
-  undefined,
-  composedEnhancers,
-);
+const store = createStore(rootReducer, undefined, composedEnhancers);
 
 sagaMiddleware.run(globalSagas);
 
@@ -47,7 +38,7 @@ const myTransform = createTransform(
   // transform state coming from storage, on its way to be rehydrated into redux
   (outboundState, key) => Immutable(outboundState),
   // configuration options
-  {whitelist: ['containers']}
+  { whitelist: ['containers'] },
 );
 
 const persistConfig = {
@@ -58,4 +49,3 @@ const persistConfig = {
 persistStore(store, persistConfig);
 
 export default store;
-

@@ -24,7 +24,8 @@ class PreliminaryInformationForm extends Component {
 
   isProductHidden(formValues) {
     return (
-      this.isPartyTypeHidden(formValues) || !formValues.partyType ||
+      this.isPartyTypeHidden(formValues) ||
+      !formValues.partyType ||
       (formValues.partyType === 'company' && formValues.businessUse !== 'no')
     );
   }
@@ -50,8 +51,11 @@ class PreliminaryInformationForm extends Component {
   }
 
   isIsAustralianHidden(formValues) {
-    return this.isHadBankruptHidden(formValues) || !formValues.hasBankrupt ||
-      (formValues.hasBankrupt === 'yes' && formValues.hasBankruptDischarged !== 'yes');
+    return (
+      this.isHadBankruptHidden(formValues) ||
+      !formValues.hasBankrupt ||
+      (formValues.hasBankrupt === 'yes' && formValues.hasBankruptDischarged !== 'yes')
+    );
   }
 
   isIncomplete(formValues) {
@@ -67,7 +71,11 @@ class PreliminaryInformationForm extends Component {
       return `Applicant must be over 18 years of age`;
     } else if (!this.isHadDefaultedHidden(form) && form.hasDefaulted === 'yes') {
       return `Applicant can not have defaulted a loan in the last 3 years`;
-    } else if (!this.isHadBankruptDischargedHidden(form) && form.hasBankrupt === 'yes' && form.hasBankruptDischarged === 'no') {
+    } else if (
+      !this.isHadBankruptDischargedHidden(form) &&
+      form.hasBankrupt === 'yes' &&
+      form.hasBankruptDischarged === 'no'
+    ) {
       return `Applicant can not have been charged for bankruptcy.`;
     } else {
       return null;
@@ -75,7 +83,7 @@ class PreliminaryInformationForm extends Component {
   }
 
   render() {
-    const {handleSubmit, products, partyTypes, employmentStatuses, professions, formValues} = this.props;
+    const { handleSubmit, products, partyTypes, employmentStatuses, professions, formValues } = this.props;
 
     const isProfessionHidden = this.isProfessionHidden(formValues);
     const isPartyTypeHidden = this.isPartyTypeHidden(formValues);
@@ -92,11 +100,9 @@ class PreliminaryInformationForm extends Component {
 
     const deadEndMessage = this.getDeadEndMessage(formValues);
 
-
     return (
       <div>
         <form onSubmit={handleSubmit}>
-
           <Field
             name="employment"
             label="What is your current employment status?"
@@ -188,19 +194,16 @@ class PreliminaryInformationForm extends Component {
             {deadEndMessage}
           </h3>
 
-          {isIncomplete ? null : (
-            <div>
-              <h3>
-                Ready to apply.
-              </h3>
-              <Link to="/loan">
-                <Button raised type="submit">
-                  Next
-                </Button>
-              </Link>
-            </div>
-          )}
-
+          {isIncomplete
+            ? null
+            : <div>
+                <h3>Ready to apply.</h3>
+                <Link to="/loan">
+                  <Button raised type="submit">
+                    Next
+                  </Button>
+                </Link>
+              </div>}
         </form>
       </div>
     );
