@@ -5,8 +5,8 @@ class KickOffIntroduction extends Component {
     return (
       <div>
         <p>
-          On average it takes 15 minutes of less to complete the Application.
-          You can expect a response on your application within one business day.
+          On average it takes 15 minutes of less to complete the Application. You can expect a
+          response on your application within one business day.
         </p>
         <p>Only allowing Finance Applications on Mercedes-Benz Vehicles.</p>
       </div>

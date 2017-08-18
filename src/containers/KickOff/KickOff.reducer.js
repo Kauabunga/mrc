@@ -20,7 +20,10 @@ export const kickOffReducer = (state = initialState, action) => {
         .set('apiDataLoaded', true)
         .set('apiDataError', null);
     case GET_API_DATA_ERROR:
-      return state.set('apiDataLoading', false).set('apiDataLoaded', false).set('apiDataError', action.error);
+      return state
+        .set('apiDataLoading', false)
+        .set('apiDataLoaded', false)
+        .set('apiDataError', action.error);
     default:
       return state;
   }

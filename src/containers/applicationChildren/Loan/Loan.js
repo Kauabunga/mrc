@@ -28,7 +28,10 @@ export class Loan extends Component {
           <title>Loan</title>
         </Helmet>
         <div className="Loan">
-          <LoanForm onChange={this.handleChange.bind(this)} kilometresTraveled={kilometresTraveled} />
+          <LoanForm
+            onChange={this.handleChange.bind(this)}
+            kilometresTraveled={kilometresTraveled}
+          />
         </div>
       </div>
     );

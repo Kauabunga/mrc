@@ -6,7 +6,12 @@ import KickOffIntroduction from '../../components/app/KickOffIntroduction/KickOf
 import PreliminaryInformationForm from '../../components/forms/PreliminaryInformationForm/PreliminaryInformationForm';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectEmploymentStatuses, selectProfessions, selectPartyTypes, selectProducts } from './KickOff.selectors';
+import {
+  selectEmploymentStatuses,
+  selectProfessions,
+  selectPartyTypes,
+  selectProducts,
+} from './KickOff.selectors';
 import { updateKickOffData } from '../../global/application/application.actions';
 import { FORM_NAME } from '../../components/forms/PreliminaryInformationForm/PreliminaryInformationForm.constants';
 import { selectKickOffData } from '../../global/application/application.selectors';

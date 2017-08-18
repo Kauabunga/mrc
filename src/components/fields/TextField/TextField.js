@@ -5,7 +5,15 @@ import BaseField from '../BaseField/BaseField';
 
 class TextField extends Component {
   render() {
-    const { isHidden, input, label, name, meta: { touched, error }, children, ...custom } = this.props;
+    const {
+      isHidden,
+      input,
+      label,
+      name,
+      meta: { touched, error },
+      children,
+      ...custom
+    } = this.props;
 
     return isHidden
       ? null

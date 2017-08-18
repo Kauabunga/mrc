@@ -68,7 +68,11 @@ class PreliminaryInformationForm extends Component {
   getDeadEndMessage(form) {
     if (form.employment === 'unemployed') {
       return `To gain an online approval you must currently be employed, however alternatives options to gain Finance approval are available, please contact us on 1300 730 200 or this link.`;
-    } else if (!this.isBusinessUseHidden(form) && form.partyType === 'company' && form.businessUse === 'yes') {
+    } else if (
+      !this.isBusinessUseHidden(form) &&
+      form.partyType === 'company' &&
+      form.businessUse === 'yes'
+    ) {
       return `This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer.`;
     } else if (!this.isOfAgeHidden(form) && form.ofAge === 'no') {
       return `Applicant must be over 18 years of age`;
@@ -90,7 +94,14 @@ class PreliminaryInformationForm extends Component {
   }
 
   render() {
-    const { handleSubmit, products, partyTypes, employmentStatuses, professions, formValues } = this.props;
+    const {
+      handleSubmit,
+      products,
+      partyTypes,
+      employmentStatuses,
+      professions,
+      formValues,
+    } = this.props;
 
     const isProfessionHidden = this.isProfessionHidden(formValues);
     const isPartyTypeHidden = this.isPartyTypeHidden(formValues);

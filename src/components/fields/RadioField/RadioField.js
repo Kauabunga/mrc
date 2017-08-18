@@ -28,7 +28,12 @@ class RadioField extends Component {
             {...input}
           >
             {options.map(option =>
-              <FormControlLabel key={option.value} value={option.value} control={<Radio />} label={option.label} />,
+              <FormControlLabel
+                key={option.value}
+                value={option.value}
+                control={<Radio />}
+                label={option.label}
+              />,
             )}
           </RadioGroup>
         </BaseField>;

@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 class ApplicationProgress extends Component {
-  applicationRoutes = ['/application/loan', '/application/personal', '/application/financial', '/application/summary'];
+  applicationRoutes = [
+    '/application/loan',
+    '/application/personal',
+    '/application/financial',
+    '/application/summary',
+  ];
 
   handleChange(event, value) {
     this.props.actions.push(this.applicationRoutes[value]);
