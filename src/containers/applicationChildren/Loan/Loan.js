@@ -7,14 +7,12 @@ import { connect } from 'react-redux';
 import LoanForm from '../../../components/forms/LoanForm/LoanForm';
 import { selectKilometresTraveled } from './Loan.selectors';
 import { updateLoanData } from '../../../global/application/application.actions';
-import { initialize } from 'redux-form'
+import { initialize } from 'redux-form';
 import { FORM_NAME } from '../../../components/forms/LoanForm/LoanForm.constants';
 import { selectLoanData } from '../../../global/application/application.selectors';
 
-
 export class Loan extends Component {
-
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     this.props.actions.initialize(FORM_NAME, nextProps.initialValues);
   }
 

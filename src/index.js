@@ -10,7 +10,7 @@ import routes from './global/routes';
 
 import registerServiceWorker from './registerServiceWorker';
 
-import 'typeface-roboto'
+import 'typeface-roboto';
 
 jss.setup(preset());
 

@@ -8,7 +8,6 @@ import { selectLoanData } from '../../../global/application/application.selector
 import TextField from '../../fields/TextField/TextField';
 
 class LoanForm extends Component {
-
   isIncomplete(formValues) {
     // TODO implement
     return !!formValues;
@@ -22,7 +21,6 @@ class LoanForm extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit}>
-
           <Field
             name="kilometresTraveled"
             label="How many kilometres do you typically travel in a year?"
@@ -30,18 +28,9 @@ class LoanForm extends Component {
             options={kilometresTraveled}
           />
 
-          <Field
-            name="loanTerm"
-            label="Loan Term"
-            component={SelectField}
-            options={kilometresTraveled}
-          />
+          <Field name="loanTerm" label="Loan Term" component={SelectField} options={kilometresTraveled} />
 
-          <Field
-            name="amount"
-            label="Finance amount"
-            component={TextField}
-          />
+          <Field name="amount" label="Finance amount" component={TextField} />
 
           {isIncomplete ? null : <h3>Complete</h3>}
         </form>
