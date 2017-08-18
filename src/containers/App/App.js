@@ -7,9 +7,6 @@ import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import KickOff from '../KickOff';
-import Loan from '../Loan';
-
 class App extends Component {
   render() {
     const { children } = this.props;
