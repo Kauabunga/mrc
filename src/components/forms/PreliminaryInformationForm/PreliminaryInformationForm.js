@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { Link } from 'react-router-dom';
 import './PreliminaryInformationForm.css';
-import Button from '../../UI/Button';
-import SelectField from '../../Fields/SelectField';
-import RadioField, { YesNoOptions, OneTwoOptions } from '../../Fields/RadioField';
+import Button from '../../ui/Button';
+import SelectField from '../../fields/SelectField';
+import RadioField, { YesNoOptions, OneTwoOptions } from '../../fields/RadioField';
 import { connect } from 'react-redux';
 import { FORM_NAME } from './PreliminaryInformationForm.constants';
 

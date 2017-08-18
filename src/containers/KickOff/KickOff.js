@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './KickOff.css';
 import { Helmet } from 'react-helmet';
 import KickOffIntroduction from '../../components/KickOffIntroduction';
-import PreliminaryInformationForm from '../../components/Forms/PreliminaryInformationForm';
+import PreliminaryInformationForm from '../../components/forms/PreliminaryInformationForm';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getAPIData } from './KickOff.actions';
