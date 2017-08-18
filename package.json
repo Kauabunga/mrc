@@ -21,7 +21,8 @@
     "redux-form": "^7.0.3",
     "redux-persist": "^4.8.3",
     "redux-saga": "^0.15.6",
-    "seamless-immutable": "^7.1.2"
+    "seamless-immutable": "^7.1.2",
+    "typeface-roboto": "^0.0.35"
   },
   "scripts": {
     "start": "react-scripts start",
