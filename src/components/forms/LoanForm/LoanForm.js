@@ -10,19 +10,13 @@ import { connect } from 'react-redux';
 import { FORM_NAME } from './LoanForm.constants';
 
 class LoanForm extends Component {
-
   render() {
     const { handleSubmit, formValues } = this.props;
 
     return (
       <div>
         <form onSubmit={handleSubmit}>
-          <Field
-            name="kilometresTraveled"
-            label="What is your current employment status?"
-            component={SelectField}
-          />
-
+          <Field name="kilometresTraveled" label="What is your current employment status?" component={SelectField} />
         </form>
       </div>
     );
@@ -39,12 +33,12 @@ LoanForm.propTypes = {
 
 const selector = formValueSelector(FORM_NAME);
 
-let connectedComponent = connect(state => ({
+export default connect(state => ({
   formValues: {
     kilometresTraveled: selector(state, 'kilometresTraveled'),
   },
-}))(LoanForm);
-
-export default reduxForm({
-  form: FORM_NAME,
-})(connectedComponent);
+}))(
+  reduxForm({
+    form: FORM_NAME,
+  })(LoanForm),
+);

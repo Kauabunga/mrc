@@ -4,6 +4,7 @@ import './Application.css';
 import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import ApplicationProgress from '../../components/app/ApplicationProgress/ApplicationProgress';
 
 export class Application extends Component {
   render() {
@@ -14,7 +15,7 @@ export class Application extends Component {
           <title>Application</title>
         </Helmet>
 
-        <h5>I am application</h5>
+        <ApplicationProgress />
 
         <div className="Application">
           {children}

@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, autoRehydrate, createTransform } from 'redux-persist';
+import { asyncSessionStorage } from 'redux-persist/storages';
 import { routerMiddleware } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
@@ -38,12 +39,15 @@ const myTransform = createTransform(
   // transform state coming from storage, on its way to be rehydrated into redux
   (outboundState, key) => Immutable(outboundState),
   // configuration options
-  { whitelist: ['containers'] },
+  {
+    whitelist: ['containers', 'application'],
+  },
 );
 
 const persistConfig = {
   transforms: [myTransform],
-  whitelist: [],
+  storage: asyncSessionStorage,
+  whitelist: ['application'],
 };
 
 persistStore(store, persistConfig);

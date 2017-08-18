@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import './Loan.css';
+import './Summary.css';
 import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-export class Loan extends Component {
+export class Summary extends Component {
   render() {
     return (
       <div>
         <Helmet>
-          <title>Loan</title>
+          <title>Summary</title>
         </Helmet>
-        <div className="Loan">
-          <h5>I am loan</h5>
+        <div className="Summary">
+          <h5>I am summary</h5>
         </div>
       </div>
     );
   }
 }
 
-Loan.defaultProps = {};
+Summary.defaultProps = {};
 
-Loan.propTypes = {
+Summary.propTypes = {
   // children: PropTypes.insta
 };
 
@@ -34,4 +34,4 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({}, dispatch),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Loan));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Summary));

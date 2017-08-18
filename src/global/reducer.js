@@ -1,16 +1,13 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
-import { appReducer } from '../containers/App/App.reducer';
 import { kickOffReducer } from '../containers/KickOff/KickOff.reducer';
-import { applicationReducer } from '../containers/Application/Application.reducer';
-import { loanReducer } from '../containers/Loan/Loan.reducer';
+import { loanReducer } from '../containers/applicationChildren/Loan/Loan.reducer';
+import { applicationReducer } from './application/application.reducer';
 
 const containersReducer = {
   containers: combineReducers({
-    appReducer,
     kickOffReducer,
-    applicationReducer,
     loanReducer,
     // NOTE: put other App reducers here
   }),
@@ -19,6 +16,7 @@ const containersReducer = {
 const createGlobalReducer = () =>
   combineReducers({
     ...containersReducer,
+    application: applicationReducer,
     router: routerReducer,
     form: formReducer,
   });

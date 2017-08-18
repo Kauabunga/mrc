@@ -1,1 +1,1 @@
-export const selectLoanContainer = state => state.containers.loanReducer;
+export const selectSummaryContainer = state => state.containers.loanReducer;

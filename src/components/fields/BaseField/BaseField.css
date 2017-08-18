@@ -1,4 +1,11 @@
 
 .base-container {
-    min-height: 50px;
+    min-height: 64px;
+    margin-bottom: 36px !important;
+}
+
+@media (min-width: 960px) {
+    .base-container {
+        margin-bottom: 0 !important;
+    }
 }

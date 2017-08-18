@@ -3,17 +3,21 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './KickOff.css';
 import { Helmet } from 'react-helmet';
-import KickOffIntroduction from '../../components/KickOffIntroduction/KickOffIntroduction';
+import KickOffIntroduction from '../../components/app/KickOffIntroduction/KickOffIntroduction';
 import PreliminaryInformationForm from '../../components/forms/PreliminaryInformationForm/PreliminaryInformationForm';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getAPIData } from './KickOff.actions';
 import { selectEmploymentStatuses, selectProfessions, selectPartyTypes, selectProducts } from './KickOff.selectors';
+import { updateKickOffData } from '../../global/application/application.actions';
 
 class KickOff extends Component {
   handleSubmit(values) {
-    // print the form values to the console
-    console.log(values);
+    console.log('KickOff handleSubmit', values);
+  }
+
+  handleChange(values) {
+    console.log('KickOff handleChange', values);
+    this.props.actions.updateKickOffData(values);
   }
 
   render() {
@@ -23,11 +27,11 @@ class KickOff extends Component {
         <Helmet>
           <title>Kick off</title>
         </Helmet>
-        <Link to="/application">loan</Link>
 
         <KickOffIntroduction />
 
         <PreliminaryInformationForm
+          onChange={this.handleChange.bind(this)}
           professions={professions}
           products={products}
           partyTypes={partyTypes}
@@ -61,7 +65,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ getAPIData }, dispatch),
+  actions: bindActionCreators({ updateKickOffData }, dispatch),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(KickOff));

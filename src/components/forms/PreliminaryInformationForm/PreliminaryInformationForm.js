@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './PreliminaryInformationForm.css';
 import Button from '../../ui/Button/Button';
 import SelectField from '../../fields/SelectField/SelectField';
-import RadioField  from '../../fields/RadioField/RadioField';
+import RadioField from '../../fields/RadioField/RadioField';
 import { connect } from 'react-redux';
 import { FORM_NAME } from './PreliminaryInformationForm.constants';
 import { YesNoOptions } from '../../fields/RadioField/RadioField.YesNo';
@@ -84,6 +84,11 @@ class PreliminaryInformationForm extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('PreliminaryInformationForm componentWillReceiveProps', nextProps.initialValues);
+    this.props.onChange(nextProps.formValues);
+  }
+
   render() {
     const { handleSubmit, products, partyTypes, employmentStatuses, professions, formValues } = this.props;
 
@@ -103,7 +108,7 @@ class PreliminaryInformationForm extends Component {
     const deadEndMessage = this.getDeadEndMessage(formValues);
 
     return (
-      <div>
+      <div className="PreliminaryInformationForm">
         <form onSubmit={handleSubmit}>
           <Field
             name="employment"
@@ -199,8 +204,8 @@ class PreliminaryInformationForm extends Component {
           {isIncomplete
             ? null
             : <div>
-                <h3>Ready to apply.</h3>
-                <Link to="/loan">
+                <h3>You are ready to apply.</h3>
+                <Link to="/application" style={{ textDecoration: 'none', color: 'inherit' }}>
                   <Button raised type="submit">
                     Next
                   </Button>
@@ -220,6 +225,8 @@ PreliminaryInformationForm.defaultProps = {
 };
 
 PreliminaryInformationForm.propTypes = {
+  onChange: PropTypes.func.isRequired,
+
   employmentStatuses: PropTypes.array.isRequired,
   professions: PropTypes.array.isRequired,
   partyTypes: PropTypes.array.isRequired,
@@ -228,7 +235,9 @@ PreliminaryInformationForm.propTypes = {
 
 const selector = formValueSelector(FORM_NAME);
 
-let connectedComponent = connect(state => ({
+export default connect(state => ({
+  // TODO add selector for kick off form
+  initialValues: state.application.kickOff.asMutable(),
   formValues: {
     employment: selector(state, 'employment'),
     profession: selector(state, 'profession'),
@@ -242,8 +251,9 @@ let connectedComponent = connect(state => ({
     hasBankruptDischarged: selector(state, 'hasBankruptDischarged'),
     isAustralian: selector(state, 'isAustralian'),
   },
-}))(PreliminaryInformationForm);
-
-export default reduxForm({
-  form: FORM_NAME,
-})(connectedComponent);
+}))(
+  reduxForm({
+    form: FORM_NAME,
+    enableReinitialize: true,
+  })(PreliminaryInformationForm),
+);

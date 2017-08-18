@@ -14,7 +14,6 @@ export class NotFound extends Component {
         </Helmet>
 
         <h5>Not found</h5>
-
       </div>
     );
   }
