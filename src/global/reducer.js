@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
-import { appReducer } from './containers/App';
-import { kickOffReducer } from './containers/KickOff';
-import { applicationReducer } from './containers/Application';
-import { loanReducer } from './containers/Loan';
+import { appReducer } from '../containers/App';
+import { kickOffReducer } from '../containers/KickOff';
+import { applicationReducer } from '../containers/Application';
+import { loanReducer } from '../containers/Loan';
 
 const containersReducer = {
   containers: combineReducers({

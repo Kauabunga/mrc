@@ -3,8 +3,8 @@ import { persistStore, autoRehydrate, createTransform } from 'redux-persist';
 import { routerMiddleware } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
-import createGlobalReducer from './global-reducer';
-import globalSagas from './global-sagas';
+import createGlobalReducer from './reducer';
+import globalSagas from './sagas';
 import * as Immutable from 'seamless-immutable';
 
 export const history = createHistory();

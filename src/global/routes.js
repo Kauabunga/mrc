@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { history } from './store';
-import App from './containers/App';
-import Application from './containers/Application';
-import Loan from './containers/Loan';
-import KickOff from './containers/KickOff';
-import NotFound from './containers/NotFound';
+import App from '../containers/App';
+import Application from '../containers/Application';
+import Loan from '../containers/Loan';
+import KickOff from '../containers/KickOff';
+import NotFound from '../containers/NotFound';
 
 const routes = (
   <ConnectedRouter history={history}>

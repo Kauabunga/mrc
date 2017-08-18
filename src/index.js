@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
 
-import store from './store';
-import routes from './routes';
+import store from './global/store';
+import routes from './global/routes';
 
 import registerServiceWorker from './registerServiceWorker';
 
