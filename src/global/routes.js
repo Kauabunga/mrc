@@ -12,6 +12,7 @@ import Personal from '../containers/applicationChildren/Personal/Personal';
 import Financial from '../containers/applicationChildren/Financial/Financial';
 import Summary from '../containers/applicationChildren/Summary/Summary';
 
+// Trigger GA events on page navigations
 history.listen((location, action) => {
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);

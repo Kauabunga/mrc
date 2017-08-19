@@ -14,7 +14,8 @@ class LoanForm extends Component {
   }
 
   render() {
-    const { handleSubmit, kilometresTraveledOptions, formValues } = this.props;
+    const {handleSubmit, formValues} = this.props;
+    const {kilometresTraveledOptions, loanTermOptions} = this.props;
 
     const isIncomplete = this.isIncomplete(formValues);
 
@@ -32,10 +33,10 @@ class LoanForm extends Component {
             name="loanTerm"
             label="Loan Term"
             component={SelectField}
-            options={kilometresTraveledOptions}
+            options={loanTermOptions}
           />
 
-          <Field name="amount" label="Finance amount" type="number" component={TextField} />
+          <Field name="amount" label="Finance amount" type="number" component={TextField}/>
 
           {isIncomplete ? null : <h3>Complete</h3>}
         </form>
@@ -46,12 +47,14 @@ class LoanForm extends Component {
 
 LoanForm.defaultProps = {
   kilometresTraveledOptions: [],
+  loanTermOptions: [],
 };
 
 LoanForm.propTypes = {
   onChange: PropTypes.func.isRequired,
 
   kilometresTraveledOptions: PropTypes.array.isRequired,
+  loanTermOptions: PropTypes.array.isRequired,
 };
 
 const selector = formValueSelector(FORM_NAME);
@@ -60,6 +63,7 @@ export default connect(state => ({
   initialValues: selectLoanData(state),
   formValues: {
     kilometresTraveled: selector(state, 'kilometresTraveled'),
+    loanTerm: selector(state, 'loanTerm'),
   },
 }))(
   reduxForm({
