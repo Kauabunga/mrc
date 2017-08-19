@@ -12,6 +12,7 @@ import { OneTwoOptions } from '../../fields/RadioField/RadioField.OneTwo';
 import { classes } from './PreliminaryInformationForm.styles';
 import { selectKickOffData } from '../../../global/application/application.selectors';
 import EmploymentInfo from './PreliminaryInformationForm.info.employment';
+import { TransitionMotion, spring, presets } from 'react-motion';
 
 class PreliminaryInformationForm extends Component {
   isProfessionHidden(formValues) {
@@ -42,15 +43,15 @@ class PreliminaryInformationForm extends Component {
     return this.isCustomerCountHidden(formValues) || !formValues.customerCount;
   }
 
-  isHadDefaultedHidden(formValues) {
+  isHasDefaultedHidden(formValues) {
     return this.isOfAgeHidden(formValues) || formValues.ofAge !== 'yes';
   }
 
   isHadBankruptHidden(formValues) {
-    return this.isHadDefaultedHidden(formValues) || formValues.hasDefaulted !== 'no';
+    return this.isHasDefaultedHidden(formValues) || formValues.hasDefaulted !== 'no';
   }
 
-  isHadBankruptDischargedHidden(formValues) {
+  isHasBankruptDischargedHidden(formValues) {
     return this.isHadBankruptHidden(formValues) || formValues.hasBankrupt !== 'yes';
   }
 
@@ -77,10 +78,10 @@ class PreliminaryInformationForm extends Component {
       return `This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer.`;
     } else if (!this.isOfAgeHidden(form) && form.ofAge === 'no') {
       return `Applicant must be over 18 years of age`;
-    } else if (!this.isHadDefaultedHidden(form) && form.hasDefaulted === 'yes') {
+    } else if (!this.isHasDefaultedHidden(form) && form.hasDefaulted === 'yes') {
       return `Applicant can not have defaulted a loan in the last 3 years`;
     } else if (
-      !this.isHadBankruptDischargedHidden(form) &&
+      !this.isHasBankruptDischargedHidden(form) &&
       form.hasBankrupt === 'yes' &&
       form.hasBankruptDischarged === 'no'
     ) {
@@ -94,6 +95,20 @@ class PreliminaryInformationForm extends Component {
     this.props.onChange(nextProps.formValues);
   }
 
+  willEnter() {
+    return {
+      height: 0,
+      opacity: 0,
+    };
+  };
+
+  willLeave() {
+    return {
+      height: spring(0),
+      opacity: spring(0),
+    };
+  };
+
   render() {
     const {
       handleSubmit,
@@ -104,16 +119,108 @@ class PreliminaryInformationForm extends Component {
       formValues,
     } = this.props;
 
-    const isProfessionHidden = this.isProfessionHidden(formValues);
-    const isPartyTypeHidden = this.isPartyTypeHidden(formValues);
-    const isBusinessUseHidden = this.isBusinessUseHidden(formValues);
-    const isProductHidden = this.isProductHidden(formValues);
-    const isCustomerCountHidden = this.isCustomerCountHidden(formValues);
-    const isOfAgeHidden = this.isOfAgeHidden(formValues);
-    const isHadDefaultedHidden = this.isHadDefaultedHidden(formValues);
-    const isHadBankruptHidden = this.isHadBankruptHidden(formValues);
-    const isHadBankruptDischargedHidden = this.isHadBankruptDischargedHidden(formValues);
-    const isIsAustralianHidden = this.isIsAustralianHidden(formValues);
+    const definition = [
+      {
+        name: 'employment',
+        label: "What is your current employment status?",
+        component: SelectField,
+        infoContent: EmploymentInfo,
+        options: employmentStatuses,
+      },
+      {
+        name: 'profession',
+        label: "What is your current profession?",
+        isHidden: this.isProfessionHidden(formValues),
+        component: SelectField,
+        info: 'Choose the option that best describes your profession. If none of the available choices apply, please select other.',
+        options: professions,
+      },
+      {
+        name: 'partyType',
+        label: "Are you applying as an Individual or a Company?",
+        isHidden: this.isPartyTypeHidden(formValues),
+        component: RadioField,
+        options: partyTypes,
+      },
+      {
+        name: "businessUse",
+        isHidden: this.isBusinessUseHidden(formValues),
+        label: "Is the vehicle wholly or predominantly (more than 50%) for business use?",
+        component: RadioField,
+        info: "This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer.",
+        options: YesNoOptions,
+      },
+      {
+        name: "product",
+        isHidden: this.isProductHidden(formValues),
+        label: "Finance Product",
+        component: SelectField,
+        options: products,
+      },
+      {
+        name: "customerCount",
+        isHidden: this.isCustomerCountHidden(formValues),
+        label: "How many people are applying for this loan?",
+        component: RadioField,
+        options: OneTwoOptions,
+      },
+      {
+        name: "ofAge",
+        isHidden: this.isOfAgeHidden(formValues),
+        label: "Are you over 18 years old?",
+        component: RadioField,
+        options: YesNoOptions,
+      },
+      {
+        name: "hasDefaulted",
+        isHidden: this.isHasDefaultedHidden(formValues),
+        label: "Have you defaulted on a loan in the last 3 years?",
+        component: RadioField,
+        options: YesNoOptions,
+      },
+      {
+        name: "hasBankrupt",
+        isHidden: this.isHadBankruptHidden(formValues),
+        label: "Have you declared bankruptcy in the last 7 years?",
+        component: RadioField,
+        options: YesNoOptions,
+      },
+      {
+        name: "hasBankruptDischarged",
+        isHidden: this.isHasBankruptDischargedHidden(formValues),
+        label: "Have you been discharged?",
+        component: RadioField,
+        options: YesNoOptions,
+      },
+      {
+        name: "isAustralian",
+        isHidden: this.isIsAustralianHidden(formValues),
+        label: "Are you an Australian resident or Citizen for tax purposes?",
+        component: RadioField,
+        options: YesNoOptions,
+      },
+    ];
+
+    const defaultStyles = definition.map((field, index) => ({
+      data: field,
+      key: field.name,
+      style: {
+        height: 0,
+        opacity: 0,
+      }
+    }));
+
+    const getStyles = definition.filter((field, index) => !field.isHidden)
+      .map((field, index) => ({
+          key: field.name,
+          data: field,
+          style: {
+            height: spring(72),
+            opacity: spring(1),
+          }
+        })
+      );
+
 
     const isIncomplete = this.isIncomplete(formValues);
 
@@ -122,95 +229,28 @@ class PreliminaryInformationForm extends Component {
     return (
       <div className={classes.container}>
         <form onSubmit={handleSubmit}>
-          <Field
-            name="employment"
-            label="What is your current employment status?"
-            component={SelectField}
-            infoContent={EmploymentInfo}
-            options={employmentStatuses}
-          />
 
-          <Field
-            name="profession"
-            isHidden={isProfessionHidden}
-            label="What is your current profession?"
-            component={SelectField}
-            info="Choose the option that best describes your profession. If none of the available choices apply, please select other."
-            options={professions}
-          />
-
-          <Field
-            name="partyType"
-            isHidden={isPartyTypeHidden}
-            label="Are you applying as an Individual or a Company?"
-            component={RadioField}
-            options={partyTypes}
-          />
-
-          <Field
-            name="businessUse"
-            isHidden={isBusinessUseHidden}
-            label="Is the vehicle wholly or predominantly (more than 50%) for business use?"
-            component={RadioField}
-            info="This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer."
-            options={YesNoOptions}
-          />
-
-          <Field
-            name="product"
-            isHidden={isProductHidden}
-            label="Finance Product"
-            component={SelectField}
-            options={products}
-          />
-
-          <Field
-            name="customerCount"
-            isHidden={isCustomerCountHidden}
-            label="How many people are applying for this loan?"
-            component={RadioField}
-            options={OneTwoOptions}
-          />
-
-          <Field
-            name="ofAge"
-            isHidden={isOfAgeHidden}
-            label="Are you over 18 years old?"
-            component={RadioField}
-            options={YesNoOptions}
-          />
-
-          <Field
-            name="hasDefaulted"
-            isHidden={isHadDefaultedHidden}
-            label="Have you defaulted on a loan in the last 3 years?"
-            component={RadioField}
-            options={YesNoOptions}
-          />
-
-          <Field
-            name="hasBankrupt"
-            isHidden={isHadBankruptHidden}
-            label="Have you declared bankruptcy in the last 7 years?"
-            component={RadioField}
-            options={YesNoOptions}
-          />
-
-          <Field
-            name="hasBankruptDischarged"
-            isHidden={isHadBankruptDischargedHidden}
-            label="Have you been discharged?"
-            component={RadioField}
-            options={YesNoOptions}
-          />
-
-          <Field
-            name="isAustralian"
-            isHidden={isIsAustralianHidden}
-            label="Are you an Australian resident or Citizen for tax purposes?"
-            component={RadioField}
-            options={YesNoOptions}
-          />
+          <TransitionMotion
+            defaultStyles={defaultStyles}
+            styles={getStyles}
+            willLeave={this.willLeave}
+            willEnter={this.willEnter}>
+            {styles =>
+              <div>
+                {styles.map(({key, style, data}) => {
+                    return (
+                      <div
+                        key={key}
+                        style={{...style, display: 'flex', background: 'white'}}
+                      >
+                        <Field  {...data} />
+                      </div>
+                    )
+                  }
+                )}
+              </div>
+            }
+          </TransitionMotion>
 
           <h3>
             {deadEndMessage}
@@ -219,17 +259,17 @@ class PreliminaryInformationForm extends Component {
           {isIncomplete
             ? null
             : <div>
-                <h3>You are ready to apply.</h3>
-                <Link
-                  to="/application"
-                  tabIndex="-1"
-                  style={{ textDecoration: 'none', color: 'inherit' }}
-                >
-                  <Button aria-label="Next" raised type="submit">
-                    Next
-                  </Button>
-                </Link>
-              </div>}
+              <h3>You are ready to apply.</h3>
+              <Link
+                to="/application"
+                tabIndex="-1"
+                style={{textDecoration: 'none', color: 'inherit'}}
+              >
+                <Button aria-label="Next" raised type="submit">
+                  Next
+                </Button>
+              </Link>
+            </div>}
         </form>
       </div>
     );

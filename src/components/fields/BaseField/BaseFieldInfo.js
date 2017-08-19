@@ -31,7 +31,7 @@ class BaseField extends Component {
     return !info && !infoContent
       ? null
       : <div className={classes.infoContainer}>
-          <IconButton
+        <IconButton
             id={this.iconUuid}
             aria-label="Info"
             tabIndex="-1"

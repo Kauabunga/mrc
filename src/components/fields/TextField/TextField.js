@@ -6,7 +6,6 @@ import BaseField from '../BaseField/BaseField';
 class TextField extends Component {
   render() {
     const {
-      isHidden,
       input,
       label,
       name,
@@ -15,11 +14,11 @@ class TextField extends Component {
       ...custom
     } = this.props;
 
-    return isHidden
-      ? null
-      : <BaseField {...this.props}>
-          <MaterialTextField fullWidth={true} {...input} {...custom} />
-        </BaseField>;
+    return (
+      <BaseField {...this.props}>
+        <MaterialTextField fullWidth={true} {...input} {...custom} />
+      </BaseField>
+    );
   }
 }
 

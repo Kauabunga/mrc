@@ -2,7 +2,8 @@ import jss from 'jss';
 
 const styles = {
   container: {
-    'min-height': '64px',
+    'height': '72px',
+    // overflow: 'hidden',
     'margin-bottom': '12px !important',
   },
   '@media (min-width: 960px)': {

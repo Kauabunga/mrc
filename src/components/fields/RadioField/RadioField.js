@@ -14,29 +14,29 @@ const styles = theme => ({
 
 class RadioField extends Component {
   render() {
-    const { options, isHidden, input } = this.props;
-    return isHidden
-      ? null
-      : <BaseField {...this.props}>
-          <RadioGroup
-            row
-            selectedValue={input.value}
-            onChange={(event, value) => {
-              console.log(event);
-              input.onChange(value);
-            }}
-            {...input}
-          >
-            {options.map(option =>
-              <FormControlLabel
-                key={option.value}
-                value={option.value}
-                control={<Radio />}
-                label={option.label}
-              />,
-            )}
-          </RadioGroup>
-        </BaseField>;
+    const { options, input } = this.props;
+    return (
+      <BaseField {...this.props}>
+        <RadioGroup
+          row
+          selectedValue={input.value}
+          onChange={(event, value) => {
+            console.log(event);
+            input.onChange(value);
+          }}
+          {...input}
+        >
+          {options.map(option =>
+            <FormControlLabel
+              key={option.value}
+              value={option.value}
+              control={<Radio />}
+              label={option.label}
+            />,
+          )}
+        </RadioGroup>
+      </BaseField>
+    );
   }
 }
 
