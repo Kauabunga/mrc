@@ -4,12 +4,7 @@ const EmploymentInfo = () => {
   return (
     <div>
       <p>
-        <strong>Full time employment</strong> requires a minimum of 38 hours per week.
-      </p>
-
-      <p>
-        <strong>Part time employees</strong> are defined as a permanent, regular or fixed term
-        employee who works less than the standard fixed term hours.
+        <strong>Employed</strong> requires a minimum of 38 hours per week.
       </p>
 
       <p>

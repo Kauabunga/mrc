@@ -44,6 +44,7 @@ class BaseField extends Component {
             <InfoIcon />
           </IconButton>
           <ToolTip
+            style={{style: {padding: 20, 'margin-right': 20},   arrowStyle: {}}}
             group={this.baseFieldInfoGroup}
             active={this.state.isTooltipActive}
             parent={`#${this.iconUuid}`}

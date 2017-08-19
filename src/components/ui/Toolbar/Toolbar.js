@@ -12,7 +12,7 @@ class Toolbar extends Component {
         <MaterialToolbar>
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Typography type="title" color="inherit">
-              Lending
+              DEMO Lending
             </Typography>
           </Link>
         </MaterialToolbar>
