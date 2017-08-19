@@ -19,7 +19,6 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "react-scripts": "1.0.11",
     "react-select": "^1.0.0-rc.5",
-    "react-snapshot": "^2.0.0-1",
     "redux": "^3.7.2",
     "redux-form": "^7.0.3",
     "redux-persist": "^4.8.3",
@@ -29,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run snapshot",
+    "build": "react-scripts build",
     "prettier": "prettier --single-quote --print-width 100 --trailing-comma all \"src/**/*.js\"",
     "prettier:ci": "npm run prettier -- --list-different",
     "prettier:fix": "npm run prettier -- --write",

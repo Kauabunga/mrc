@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-snapshot';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import jss from 'jss';
 import preset from 'jss-preset-default';
@@ -16,7 +16,7 @@ jss.setup(preset());
 
 ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_CODE, { debug: false });
 
-render(
+ReactDOM.render(
   <Provider store={store}>
     {routes}
   </Provider>,
