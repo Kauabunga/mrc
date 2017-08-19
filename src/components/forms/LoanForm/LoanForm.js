@@ -14,8 +14,8 @@ class LoanForm extends Component {
   }
 
   render() {
-    const {handleSubmit, formValues} = this.props;
-    const {kilometresTraveledOptions, loanTermOptions} = this.props;
+    const { handleSubmit, formValues } = this.props;
+    const { kilometresTraveledOptions, loanTermOptions } = this.props;
 
     const isIncomplete = this.isIncomplete(formValues);
 
@@ -36,7 +36,7 @@ class LoanForm extends Component {
             options={loanTermOptions}
           />
 
-          <Field name="amount" label="Finance amount" type="number" component={TextField}/>
+          <Field name="amount" label="Finance amount" type="number" component={TextField} />
 
           {isIncomplete ? null : <h3>Complete</h3>}
         </form>
