@@ -11,6 +11,7 @@ import { YesNoOptions } from '../../fields/RadioField/RadioField.YesNo';
 import { OneTwoOptions } from '../../fields/RadioField/RadioField.OneTwo';
 import { classes } from './PreliminaryInformationForm.styles';
 import { selectKickOffData } from '../../../global/application/application.selectors';
+import EmploymentInfo from './PreliminaryInformationForm.info.employment';
 
 class PreliminaryInformationForm extends Component {
   isProfessionHidden(formValues) {
@@ -125,6 +126,7 @@ class PreliminaryInformationForm extends Component {
             name="employment"
             label="What is your current employment status?"
             component={SelectField}
+            infoContent={EmploymentInfo}
             options={employmentStatuses}
           />
 
@@ -133,6 +135,7 @@ class PreliminaryInformationForm extends Component {
             isHidden={isProfessionHidden}
             label="What is your current profession?"
             component={SelectField}
+            info="Choose the option that best describes your profession. If none of the available choices apply, please select other."
             options={professions}
           />
 
@@ -149,6 +152,7 @@ class PreliminaryInformationForm extends Component {
             isHidden={isBusinessUseHidden}
             label="Is the vehicle wholly or predominantly (more than 50%) for business use?"
             component={RadioField}
+            info="This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer."
             options={YesNoOptions}
           />
 
@@ -216,8 +220,12 @@ class PreliminaryInformationForm extends Component {
             ? null
             : <div>
                 <h3>You are ready to apply.</h3>
-                <Link to="/application" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <Button raised type="submit">
+                <Link
+                  to="/application"
+                  tabIndex="-1"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <Button aria-label="Next" raised type="submit">
                     Next
                   </Button>
                 </Link>

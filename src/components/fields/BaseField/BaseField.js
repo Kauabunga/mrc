@@ -6,39 +6,41 @@ import { classes } from './BaseField.styles';
 import BaseFieldInfo from './BaseFieldInfo';
 import MediaQuery from 'react-responsive';
 
-
 class BaseField extends Component {
-
   render() {
-    const {isHidden, info, label, name, children} = this.props;
+    const { isHidden, info, infoContent, label, name, children } = this.props;
+
+    const baseField = <BaseFieldInfo info={info} infoContent={infoContent} />;
 
     // TODO why is this maxWidth set for responsive mobile?
     // TODO wrap queries into standard UI component
     return isHidden
       ? null
       : <Grid container align="center" className={classes.container}>
-        <Grid item xs={12} sm={12} md={5} style={{maxWidth: '100%'}}>
-          <FormLabel htmlFor={name}>
-            {label}
-          </FormLabel>
-          <MediaQuery query='(max-width: 959px)'>
-              <BaseFieldInfo info={info} />
-          </MediaQuery>
-        </Grid>
-        <Grid item xs={12} sm={12} md={4}>
-          {children}
-        </Grid>
-        <MediaQuery query='(min-width: 960px)'>
-          <Grid item md={1}>
-            <BaseFieldInfo info={info} />
+          <Grid item xs={12} sm={12} md={5} style={{ maxWidth: '100%' }}>
+            <FormLabel htmlFor={name}>
+              {label}
+            </FormLabel>
+            <MediaQuery query="(max-width: 959px)">
+              {baseField}
+            </MediaQuery>
           </Grid>
-        </MediaQuery>
-      </Grid>;
+          <Grid item xs={12} sm={12} md={4}>
+            {children}
+          </Grid>
+          <MediaQuery query="(min-width: 960px)">
+            <Grid item md={1}>
+              {baseField}
+            </Grid>
+          </MediaQuery>
+        </Grid>;
   }
 }
 
 BaseField.propTypes = {
   isHidden: PropTypes.bool,
+  info: PropTypes.string,
+  infoContent: PropTypes.any,
 };
 
 export default BaseField;

@@ -2,7 +2,7 @@ import jss from 'jss';
 
 const styles = {
   container: {
-    margin: '60px 0',
+    margin: '100px 0',
   },
 };
 

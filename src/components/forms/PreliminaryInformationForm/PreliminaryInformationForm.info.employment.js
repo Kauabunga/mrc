@@ -1,0 +1,32 @@
+import React, { Component } from 'react';
+
+const EmploymentInfo = () => {
+  return (
+    <div>
+      <p>
+        <strong>Full time employment</strong> requires a minimum of 38 hours per week.
+      </p>
+
+      <p>
+        <strong>Part time employees</strong> are defined as a permanent, regular or fixed term
+        employee who works less than the standard fixed term hours.
+      </p>
+
+      <p>
+        <strong>Self Employment</strong> is an individual funding their own income and is not PAYG.
+      </p>
+
+      <p>
+        <strong>Retired </strong>refers to&nbsp;a person&nbsp;who has concluded their working or
+        professional career.
+      </p>
+
+      <p>
+        <strong>Unemployed</strong>&nbsp;are those&nbsp;without paid employment but available to
+        work.
+      </p>
+    </div>
+  );
+};
+
+export default EmploymentInfo;

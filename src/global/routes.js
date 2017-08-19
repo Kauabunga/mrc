@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { history } from './store';
+import ReactGA from 'react-ga';
 import App from '../containers/App/App';
 import Application from '../containers/Application/Application';
 import KickOff from '../containers/KickOff/KickOff';
@@ -10,6 +11,11 @@ import Loan from '../containers/applicationChildren/Loan/Loan';
 import Personal from '../containers/applicationChildren/Personal/Personal';
 import Financial from '../containers/applicationChildren/Financial/Financial';
 import Summary from '../containers/applicationChildren/Summary/Summary';
+
+history.listen((location, action) => {
+  ReactGA.set({ page: location.pathname });
+  ReactGA.pageview(location.pathname);
+});
 
 const routes = (
   <ConnectedRouter history={history}>
@@ -35,4 +41,5 @@ const routes = (
     </App>
   </ConnectedRouter>
 );
+
 export default routes;

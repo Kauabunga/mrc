@@ -12,7 +12,7 @@ const styles = {
   },
   infoContainer: {
     display: 'inline-block',
-  }
+  },
 };
 
 export const { classes } = jss.createStyleSheet(styles).attach();

@@ -2,65 +2,66 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui-icons/Info';
-import ToolTip from 'react-portal-tooltip'
+import ToolTip from 'react-portal-tooltip';
 import { classes } from './BaseField.styles';
 
 let iconCount = 0;
 
 class BaseField extends Component {
-
   state = {
-    isTooltipActive: false
+    isTooltipActive: false,
   };
 
   showTooltip() {
-    this.setState({isTooltipActive: true})
-  };
+    this.setState({ isTooltipActive: true });
+  }
 
   hideTooltip() {
-    this.setState({isTooltipActive: false})
-  };
+    this.setState({ isTooltipActive: false });
+  }
 
   iconUuid = `info-icon-${iconCount++}`;
 
   baseFieldInfoGroup = 'baseFieldInfoGroup';
 
   render() {
-    const {info} = this.props;
+    const { info, infoContent } = this.props;
 
     // TODO why is this maxWidth set for responsive mobile?
-    console.log('rendering');
-
-    return !info ? null : (
-      <div className={classes.infoContainer}>
-        <IconButton
-          id={this.iconUuid}
-          group={this.baseFieldInfoGroup}
-          aria-label="Info"
-          onFocus={this.showTooltip.bind(this)}
-          onBlur={this.hideTooltip.bind(this)}
-          onMouseEnter={this.showTooltip.bind(this)}
-          onMouseLeave={this.hideTooltip.bind(this)}
-        >
-          <InfoIcon/>
-        </IconButton>
-        <ToolTip
-          active={this.state.isTooltipActive}
-          position="right"
-          arrow="center"
-          parent={`#${this.iconUuid}`}
-        >
-          <div>
-            <p>{info}</p>
-          </div>
-        </ToolTip>
-      </div>
-    )
+    return !info && !infoContent
+      ? null
+      : <div className={classes.infoContainer}>
+          <IconButton
+            id={this.iconUuid}
+            aria-label="Info"
+            tabIndex="-1"
+            onFocus={this.showTooltip.bind(this)}
+            onBlur={this.hideTooltip.bind(this)}
+            onMouseMove={this.showTooltip.bind(this)}
+            onMouseEnter={this.showTooltip.bind(this)}
+            onMouseLeave={this.hideTooltip.bind(this)}
+          >
+            <InfoIcon />
+          </IconButton>
+          <ToolTip
+            group={this.baseFieldInfoGroup}
+            active={this.state.isTooltipActive}
+            parent={`#${this.iconUuid}`}
+          >
+            <div>
+              {(infoContent && infoContent()) ||
+                <p>
+                  {info}
+                </p>}
+            </div>
+          </ToolTip>
+        </div>;
   }
 }
 
 BaseField.propTypes = {
-  isHidden: PropTypes.bool,
+  info: PropTypes.string,
+  infoContent: PropTypes.any,
 };
 
 export default BaseField;

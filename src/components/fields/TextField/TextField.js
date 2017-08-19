@@ -18,14 +18,7 @@ class TextField extends Component {
     return isHidden
       ? null
       : <BaseField {...this.props}>
-          <MaterialTextField
-            fullWidth={true}
-            hintText={label}
-            floatingLabelText={label}
-            errorText={touched && error}
-            {...input}
-            {...custom}
-          />
+          <MaterialTextField fullWidth={true} {...input} {...custom} />
         </BaseField>;
   }
 }
