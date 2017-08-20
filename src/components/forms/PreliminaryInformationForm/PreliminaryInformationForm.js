@@ -14,7 +14,6 @@ import { createForm } from '../BaseForm/BaseForm';
 const Form = createForm(FORM_NAME, selectKickOffData);
 
 export class PreliminaryInformationForm extends Component {
-
   isProfessionHidden(formValues) {
     return !formValues.employment || formValues.employment === 'unemployed';
   }
@@ -29,7 +28,8 @@ export class PreliminaryInformationForm extends Component {
 
   isProductHidden(formValues) {
     return (
-      this.isPartyTypeHidden(formValues) || !formValues.partyType ||
+      this.isPartyTypeHidden(formValues) ||
+      !formValues.partyType ||
       (formValues.partyType === 'company' && formValues.businessUse !== 'no')
     );
   }
@@ -56,7 +56,8 @@ export class PreliminaryInformationForm extends Component {
 
   isIsAustralianHidden(formValues) {
     return (
-      this.isHadBankruptHidden(formValues) || !formValues.hasBankrupt ||
+      this.isHadBankruptHidden(formValues) ||
+      !formValues.hasBankrupt ||
       (formValues.hasBankrupt === 'yes' && formValues.hasBankruptDischarged !== 'yes')
     );
   }
@@ -116,7 +117,8 @@ export class PreliminaryInformationForm extends Component {
         label: 'What is your current profession?',
         isHidden: this.isProfessionHidden(formValues),
         component: SelectField,
-        info: 'Choose the option that best describes your profession. If none of the available choices apply, please select other.',
+        info:
+          'Choose the option that best describes your profession. If none of the available choices apply, please select other.',
         options: professions,
       },
       {
@@ -131,7 +133,8 @@ export class PreliminaryInformationForm extends Component {
         isHidden: this.isBusinessUseHidden(formValues),
         label: 'Is the vehicle wholly or predominantly (more than 50%) for business use?',
         component: RadioField,
-        info: 'This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer.',
+        info:
+          'This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer.',
         options: YesNoOptions,
       },
       {
@@ -190,13 +193,12 @@ export class PreliminaryInformationForm extends Component {
     const deadEndMessage = this.getDeadEndMessage(formValues);
 
     return (
-
-        <Form
-          onSubmit={handleSubmit}
-          definition={definition}
-          isIncomplete={isIncomplete}
-          deadEndMessage={deadEndMessage}
-        />
+      <Form
+        onSubmit={handleSubmit}
+        definition={definition}
+        isIncomplete={isIncomplete}
+        deadEndMessage={deadEndMessage}
+      />
     );
   }
 }

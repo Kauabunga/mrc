@@ -16,7 +16,7 @@ export class Summary extends Component {
         </Helmet>
         <div className="Summary">
           <h1>Summary</h1>
-          <pre>
+          <pre style={{ whiteSpace: 'pre-wrap' }}>
             {JSON.stringify(application, null, 2)}
           </pre>
           <Button raised>Complete</Button>

@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 class CaptchaField extends Component {
-
   captchaRef = null;
 
   componentWillReceiveProps(nextProps) {
-    const {input, complete} = nextProps;
+    const { input, complete } = nextProps;
     if (!input.value && complete && this.captchaRef) {
       console.log('Executing captcha', nextProps);
       this.captchaRef.execute();
@@ -15,7 +14,7 @@ class CaptchaField extends Component {
   }
 
   handleChange(value) {
-    const {input} = this.props;
+    const { input } = this.props;
     console.log('Captcha response', value);
     return input.onChange(value);
   }
@@ -23,7 +22,7 @@ class CaptchaField extends Component {
   render() {
     return (
       <ReCAPTCHA
-        ref={(captchaRef) => this.captchaRef = captchaRef}
+        ref={captchaRef => (this.captchaRef = captchaRef)}
         size="invisible"
         sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
         onChange={this.handleChange.bind(this)}

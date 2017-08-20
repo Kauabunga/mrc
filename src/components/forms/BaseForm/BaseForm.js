@@ -9,7 +9,6 @@ import CaptchaField from '../../fields/CaptchaField/CaptchaField';
 import { connect } from 'react-redux';
 
 export class BaseForm extends Component {
-
   willEnter() {
     return {
       height: 0,
@@ -32,7 +31,7 @@ export class BaseForm extends Component {
     let width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
     let height = w.innerHeight || documentElement.clientHeight || body.clientHeight;
 
-    this.setState({width, height});
+    this.setState({ width, height });
   }
 
   componentWillMount() {
@@ -48,14 +47,9 @@ export class BaseForm extends Component {
   }
 
   render() {
-    const {
-      onSubmit,
-      definition,
-      deadEndMessage,
-      isIncomplete,
-    } = this.props;
+    const { onSubmit, definition, deadEndMessage, isIncomplete } = this.props;
 
-    const {width, height} = this.state;
+    const { width, height } = this.state;
 
     const defaultStyles = definition.map((field, index) => ({
       data: field,
@@ -66,6 +60,7 @@ export class BaseForm extends Component {
       },
     }));
 
+    // TODO pull 960 into global break point
     const maxHeight = width < 960 ? 132 : 72;
 
     const getStyles = definition.filter((field, index) => !field.isHidden).map((field, index) => ({
@@ -90,9 +85,9 @@ export class BaseForm extends Component {
           >
             {styles =>
               <div>
-                {styles.map(({key, style, data}) => {
+                {styles.map(({ key, style, data }) => {
                   return (
-                    <div key={key} style={{...style, display: 'flex', background: 'white'}}>
+                    <div key={key} style={{ ...style, display: 'flex', background: 'white' }}>
                       <Field {...data} />
                     </div>
                   );
@@ -100,7 +95,7 @@ export class BaseForm extends Component {
               </div>}
           </TransitionMotion>
 
-          <Field complete={!isIncomplete} name='__captcha__' component={CaptchaField}/>
+          <Field complete={!isIncomplete} name="__captcha__" component={CaptchaField} />
 
           <h3>
             {deadEndMessage}
@@ -109,17 +104,17 @@ export class BaseForm extends Component {
           {isIncomplete
             ? null
             : <div>
-            <h3>You are ready to apply.</h3>
-            <Link
-              to="/application"
-              tabIndex="-1"
-              style={{textDecoration: 'none', color: 'inherit'}}
-            >
-              <Button aria-label="Next" raised type="submit">
-                Next
-              </Button>
-            </Link>
-          </div>}
+                <h3>You are ready to apply.</h3>
+                <Link
+                  to="/application"
+                  tabIndex="-1"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <Button aria-label="Next" raised type="submit">
+                    Next
+                  </Button>
+                </Link>
+              </div>}
         </form>
       </div>
     );
@@ -134,9 +129,7 @@ BaseForm.propTypes = {
   definition: PropTypes.array.isRequired,
 };
 
-
 export function createForm(formName, selector) {
-
   return connect(state => ({
     initialValues: selector(state),
   }))(
@@ -144,5 +137,4 @@ export function createForm(formName, selector) {
       form: formName,
     })(BaseForm),
   );
-
 }

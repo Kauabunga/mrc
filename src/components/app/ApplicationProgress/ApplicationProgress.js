@@ -32,7 +32,7 @@ class ApplicationProgress extends Component {
     let width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
     let height = w.innerHeight || documentElement.clientHeight || body.clientHeight;
 
-    this.setState({width, height});
+    this.setState({ width, height });
   }
 
   componentWillMount() {
@@ -58,7 +58,7 @@ class ApplicationProgress extends Component {
         textColor="primary"
         centered
       >
-        {labels.map((label, index) => <Tab key={index} label={label}/>)}
+        {labels.map((label, index) => <Tab key={index} label={label} />)}
       </Tabs>
     );
   }
