@@ -13,8 +13,6 @@ it('renders without crashing', () => {
   const partyTypes = [];
   const products = [];
 
-
-
   renderer.render(
     <PreliminaryInformationForm
       onChange={handleChange}
@@ -23,6 +21,6 @@ it('renders without crashing', () => {
       professions={professions}
       partyTypes={partyTypes}
       products={products}
-    />
+    />,
   );
 });

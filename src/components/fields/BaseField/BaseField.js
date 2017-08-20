@@ -8,15 +8,15 @@ import MediaQuery from 'react-responsive';
 
 class BaseField extends Component {
   render() {
-    const {info, infoContent, label, name, children} = this.props;
+    const { info, infoContent, label, name, children } = this.props;
 
-    const baseField = <BaseFieldInfo info={info} infoContent={infoContent}/>;
+    const baseField = <BaseFieldInfo info={info} infoContent={infoContent} />;
 
     // TODO why is this maxWidth set for responsive mobile?
     // TODO wrap queries into standard UI component
     return (
       <Grid container align="center" className={classes.container}>
-        <Grid item xs={12} sm={12} md={5} style={{maxWidth: '100%'}}>
+        <Grid item xs={12} sm={12} md={5} style={{ maxWidth: '100%' }}>
           <FormLabel htmlFor={name}>
             {label}
           </FormLabel>

@@ -100,14 +100,14 @@ export class PreliminaryInformationForm extends Component {
       height: 0,
       opacity: 0,
     };
-  };
+  }
 
   willLeave() {
     return {
       height: spring(0),
       opacity: spring(0),
     };
-  };
+  }
 
   render() {
     const {
@@ -122,80 +122,82 @@ export class PreliminaryInformationForm extends Component {
     const definition = [
       {
         name: 'employment',
-        label: "What is your current employment status?",
+        label: 'What is your current employment status?',
         component: SelectField,
         infoContent: EmploymentInfo,
         options: employmentStatuses,
       },
       {
         name: 'profession',
-        label: "What is your current profession?",
+        label: 'What is your current profession?',
         isHidden: this.isProfessionHidden(formValues),
         component: SelectField,
-        info: 'Choose the option that best describes your profession. If none of the available choices apply, please select other.',
+        info:
+          'Choose the option that best describes your profession. If none of the available choices apply, please select other.',
         options: professions,
       },
       {
         name: 'partyType',
-        label: "Are you applying as an Individual or a Company?",
+        label: 'Are you applying as an Individual or a Company?',
         isHidden: this.isPartyTypeHidden(formValues),
         component: RadioField,
         options: partyTypes,
       },
       {
-        name: "businessUse",
+        name: 'businessUse',
         isHidden: this.isBusinessUseHidden(formValues),
-        label: "Is the vehicle wholly or predominantly (more than 50%) for business use?",
+        label: 'Is the vehicle wholly or predominantly (more than 50%) for business use?',
         component: RadioField,
-        info: "This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer.",
+        info:
+          'This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer.',
         options: YesNoOptions,
       },
       {
-        name: "product",
+        name: 'product',
         isHidden: this.isProductHidden(formValues),
-        label: "Finance Product",
+        label: 'Finance Product',
         component: SelectField,
         options: products,
       },
       {
-        name: "customerCount",
+        name: 'customerCount',
         isHidden: this.isCustomerCountHidden(formValues),
-        label: "How many people are applying for this loan?",
+        label: 'How many people are applying for this loan?',
         component: RadioField,
         options: OneTwoOptions,
       },
       {
-        name: "ofAge",
+        name: 'ofAge',
         isHidden: this.isOfAgeHidden(formValues),
-        label: "Are you over 18 years old?",
+        label: 'Are you over 18 years old?',
         component: RadioField,
         options: YesNoOptions,
       },
       {
-        name: "hasDefaulted",
+        name: 'hasDefaulted',
         isHidden: this.isHasDefaultedHidden(formValues),
-        label: "Have you defaulted on a loan in the last 3 years?",
+        label: 'Have you defaulted on a loan in the last 3 years?',
         component: RadioField,
         options: YesNoOptions,
       },
       {
-        name: "hasBankrupt",
+        name: 'hasBankrupt',
         isHidden: this.isHadBankruptHidden(formValues),
-        label: "Have you declared bankruptcy in the last 7 years?",
+        label: 'Have you declared bankruptcy in the last 7 years?',
         component: RadioField,
         options: YesNoOptions,
       },
       {
-        name: "hasBankruptDischarged",
+        name: 'hasBankruptDischarged',
         isHidden: this.isHasBankruptDischargedHidden(formValues),
-        label: "Have you been discharged?",
+        label: 'Have you been discharged?',
         component: RadioField,
         options: YesNoOptions,
       },
       {
-        name: "isAustralian",
+        name: 'isAustralian',
         isHidden: this.isIsAustralianHidden(formValues),
-        label: "Are you an Australian resident or Citizen for tax purposes?",
+        label: 'Are you an Australian resident or Citizen for tax purposes?',
         component: RadioField,
         options: YesNoOptions,
       },
@@ -207,20 +209,17 @@ export class PreliminaryInformationForm extends Component {
       style: {
         height: 0,
         opacity: 0,
-      }
+      },
     }));
 
-    const getStyles = definition.filter((field, index) => !field.isHidden)
-      .map((field, index) => ({
-          key: field.name,
-          data: field,
-          style: {
-            height: spring(72),
-            opacity: spring(1),
-          }
-        })
-      );
-
+    const getStyles = definition.filter((field, index) => !field.isHidden).map((field, index) => ({
+      key: field.name,
+      data: field,
+      style: {
+        height: spring(72),
+        opacity: spring(1),
+      },
+    }));
 
     const isIncomplete = this.isIncomplete(formValues);
 
@@ -229,27 +228,22 @@ export class PreliminaryInformationForm extends Component {
     return (
       <div className={classes.container}>
         <form onSubmit={handleSubmit}>
-
           <TransitionMotion
             defaultStyles={defaultStyles}
             styles={getStyles}
             willLeave={this.willLeave}
-            willEnter={this.willEnter}>
+            willEnter={this.willEnter}
+          >
             {styles =>
               <div>
-                {styles.map(({key, style, data}) => {
-                    return (
-                      <div
-                        key={key}
-                        style={{...style, display: 'flex', background: 'white'}}
-                      >
-                        <Field  {...data} />
-                      </div>
-                    )
-                  }
-                )}
-              </div>
-            }
+                {styles.map(({ key, style, data }) => {
+                  return (
+                    <div key={key} style={{ ...style, display: 'flex', background: 'white' }}>
+                      <Field {...data} />
+                    </div>
+                  );
+                })}
+              </div>}
           </TransitionMotion>
 
           <h3>
@@ -259,17 +253,17 @@ export class PreliminaryInformationForm extends Component {
           {isIncomplete
             ? null
             : <div>
-              <h3>You are ready to apply.</h3>
-              <Link
-                to="/application"
-                tabIndex="-1"
-                style={{textDecoration: 'none', color: 'inherit'}}
-              >
-                <Button aria-label="Next" raised type="submit">
-                  Next
-                </Button>
-              </Link>
-            </div>}
+                <h3>You are ready to apply.</h3>
+                <Link
+                  to="/application"
+                  tabIndex="-1"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <Button aria-label="Next" raised type="submit">
+                    Next
+                  </Button>
+                </Link>
+              </div>}
         </form>
       </div>
     );

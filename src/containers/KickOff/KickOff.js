@@ -18,7 +18,6 @@ import { selectKickOffData } from '../../global/application/application.selector
 import { initialize } from 'redux-form';
 
 export class KickOff extends Component {
-
   componentWillReceiveProps(nextProps) {
     this.props.actions.initialize(FORM_NAME, nextProps.initialValues);
   }

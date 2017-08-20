@@ -8,15 +8,13 @@ import routes from './global/routes';
 import registerServiceWorker from './registerServiceWorker';
 import ReactGA from 'react-ga';
 
-
 // Load all the roboto fonts - Also done on index.html for faster load
 import 'typeface-roboto';
 
 // TODO use react jss library
 jss.setup(preset());
 
-ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_CODE, {debug: false});
-
+ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_CODE, { debug: false });
 
 ReactDOM.render(
   <div>
@@ -24,7 +22,6 @@ ReactDOM.render(
       {routes}
     </Provider>
   </div>,
-
   document.getElementById('root'),
 );
 

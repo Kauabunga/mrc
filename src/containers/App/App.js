@@ -7,17 +7,16 @@ import { connect } from 'react-redux';
 import { classes } from './App.styles';
 import { HotKeys } from 'react-hotkeys';
 
-
 export class App extends Component {
   render() {
     const { children } = this.props;
 
     const handlers = {
-      'reset': (event) => window.sessionStorage.clear()
+      reset: event => window.sessionStorage.clear(),
     };
 
     const keyMap = {
-      'reset': ['shift+del', 'shift+backspace'],
+      reset: ['shift+del', 'shift+backspace'],
     };
 
     return (
@@ -25,12 +24,7 @@ export class App extends Component {
         <Helmet>
           <title>App</title>
         </Helmet>
-        <HotKeys
-          focused={true}
-          keyMap={keyMap}
-          attach={window}
-          handlers={handlers}
-        />
+        <HotKeys focused={true} keyMap={keyMap} attach={window} handlers={handlers} />
         <Toolbar />
         <div className={classes.container}>
           {children}
