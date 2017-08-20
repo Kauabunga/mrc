@@ -9,6 +9,11 @@ import CaptchaField from '../../fields/CaptchaField/CaptchaField';
 import { connect } from 'react-redux';
 
 export class BaseForm extends Component {
+
+  state = {
+    firstRender: true,
+  };
+
   willEnter() {
     return {
       height: 0,
@@ -21,6 +26,13 @@ export class BaseForm extends Component {
       height: spring(0),
       opacity: spring(0),
     };
+  }
+
+  componentWillReceiveProps(){
+    // TODO debounce or wait for initialise from persist
+    if(this.state.firstRender){
+      setTimeout(() => this.setState({firstRender: false}));
+    }
   }
 
   updateDimensions() {
@@ -47,9 +59,13 @@ export class BaseForm extends Component {
   }
 
   render() {
+
     const { onSubmit, definition, deadEndMessage, isIncomplete } = this.props;
 
-    const { width, height } = this.state;
+    const { width } = this.state;
+
+    // TODO pull 960 into global break point
+    const maxFieldHeight = width < 960 ? 132 : 72;
 
     const defaultStyles = definition.map((field, index) => ({
       data: field,
@@ -60,16 +76,12 @@ export class BaseForm extends Component {
       },
     }));
 
-    // TODO pull 960 into global break point
-    const maxHeight = width < 960 ? 132 : 72;
-
     const getStyles = definition.filter((field, index) => !field.isHidden).map((field, index) => ({
       key: field.name,
       data: field,
       style: {
-        // TODO responsive height
-        height: spring(maxHeight),
-        // height: spring(144),
+        // height: spring(maxFieldHeight),
+        height: this.state.firstRender ? maxFieldHeight : spring(maxFieldHeight),
         opacity: spring(1),
       },
     }));
