@@ -14,7 +14,7 @@ import { selectKickOffData } from '../../../global/application/application.selec
 import EmploymentInfo from './PreliminaryInformationForm.info.employment';
 import { TransitionMotion, spring, presets } from 'react-motion';
 
-class PreliminaryInformationForm extends Component {
+export class PreliminaryInformationForm extends Component {
   isProfessionHidden(formValues) {
     return !formValues.employment || formValues.employment === 'unemployed';
   }

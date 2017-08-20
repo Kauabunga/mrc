@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { FORM_NAME } from './PersonalForm.constants';
 import { selectPersonalData } from '../../../global/application/application.selectors';
 
-class PersonalForm extends Component {
+export class PersonalForm extends Component {
   isIncomplete(formValues) {
     // TODO implement
     return !!formValues;

@@ -9,7 +9,7 @@ class TextField extends Component {
       input,
       label,
       name,
-      meta: { touched, error },
+      meta,
       children,
       ...custom
     } = this.props;

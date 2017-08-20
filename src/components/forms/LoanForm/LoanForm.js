@@ -7,7 +7,7 @@ import { FORM_NAME } from './LoanForm.constants';
 import { selectLoanData } from '../../../global/application/application.selectors';
 import TextField from '../../fields/TextField/TextField';
 
-class LoanForm extends Component {
+export class LoanForm extends Component {
   isIncomplete(formValues) {
     // TODO implement
     return !!formValues;

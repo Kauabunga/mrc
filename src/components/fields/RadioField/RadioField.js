@@ -19,11 +19,8 @@ class RadioField extends Component {
       <BaseField {...this.props}>
         <RadioGroup
           row
-          selectedValue={input.value}
-          onChange={(event, value) => {
-            console.log(event);
-            input.onChange(value);
-          }}
+          selectedValue={input && input.value}
+          onChange={(event, value) => input.onChange(value)}
           {...input}
         >
           {options.map(option =>

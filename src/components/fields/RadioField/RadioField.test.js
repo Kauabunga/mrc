@@ -4,5 +4,6 @@ import RadioField from './RadioField';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<RadioField />, div);
+  const options = [];
+  ReactDOM.render(<RadioField options={options} />, div);
 });

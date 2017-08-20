@@ -17,7 +17,8 @@ import { FORM_NAME } from '../../components/forms/PreliminaryInformationForm/Pre
 import { selectKickOffData } from '../../global/application/application.selectors';
 import { initialize } from 'redux-form';
 
-class KickOff extends Component {
+export class KickOff extends Component {
+
   componentWillReceiveProps(nextProps) {
     this.props.actions.initialize(FORM_NAME, nextProps.initialValues);
   }

@@ -15,7 +15,7 @@ class SelectField extends Component {
       <BaseField {...this.props}>
         <Select
           clearable={false}
-          value={input.value}
+          value={input && input.value}
           onChange={option => input.onChange((option && option.value) || null)}
           options={options}
         />

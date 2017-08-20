@@ -1,8 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PreliminaryInformationForm from './PreliminaryInformationForm';
+import ShallowRenderer from 'react-test-renderer/shallow';
+import { PreliminaryInformationForm } from './PreliminaryInformationForm';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<PreliminaryInformationForm />, div);
+  const renderer = new ShallowRenderer();
+
+  const handleChange = () => {};
+  const formValues = {};
+
+  const employmentStatuses = [];
+  const professions = [];
+  const partyTypes = [];
+  const products = [];
+
+
+
+  renderer.render(
+    <PreliminaryInformationForm
+      onChange={handleChange}
+      formValues={formValues}
+      employmentStatuses={employmentStatuses}
+      professions={professions}
+      partyTypes={partyTypes}
+      products={products}
+    />
+  );
 });

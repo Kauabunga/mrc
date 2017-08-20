@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PersonalForm from './PersonalForm';
+import ShallowRenderer from 'react-test-renderer/shallow';
+import { PersonalForm } from './PersonalForm';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<PersonalForm />, div);
+  const renderer = new ShallowRenderer();
+  const handleOnChange = () => {};
+  renderer.render(<PersonalForm onChange={handleOnChange} />);
+  const result = renderer.getRenderOutput();
 });
