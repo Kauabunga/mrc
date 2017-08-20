@@ -25,15 +25,14 @@ class ApplicationProgress extends Component {
   }
 
   updateDimensions() {
-    let w = window,
-      d = document,
-      documentElement = d.documentElement,
-      body = d.getElementsByTagName('body')[0],
-      width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
-      height = w.innerHeight || documentElement.clientHeight || body.clientHeight;
+    let w = window;
+    let d = document;
+    let documentElement = d.documentElement;
+    let body = d.getElementsByTagName('body')[0];
+    let width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
+    let height = w.innerHeight || documentElement.clientHeight || body.clientHeight;
 
-    this.setState({ width: width, height: height });
-    // if you are using ES2015 I'm pretty sure you can do this: this.setState({width, height});
+    this.setState({width, height});
   }
 
   componentWillMount() {
@@ -59,7 +58,7 @@ class ApplicationProgress extends Component {
         textColor="primary"
         centered
       >
-        {labels.map((label, index) => <Tab key={index} label={label} />)}
+        {labels.map((label, index) => <Tab key={index} label={label}/>)}
       </Tabs>
     );
   }

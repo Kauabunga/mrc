@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
-import { Link } from 'react-router-dom';
-import Button from '../../ui/Button/Button';
+import { reduxForm, formValueSelector } from 'redux-form';
 import SelectField from '../../fields/SelectField/SelectField';
 import RadioField from '../../fields/RadioField/RadioField';
 import { connect } from 'react-redux';
 import { FORM_NAME } from './PreliminaryInformationForm.constants';
 import { YesNoOptions } from '../../fields/RadioField/RadioField.YesNo';
 import { OneTwoOptions } from '../../fields/RadioField/RadioField.OneTwo';
-import { classes } from './PreliminaryInformationForm.styles';
 import { selectKickOffData } from '../../../global/application/application.selectors';
 import EmploymentInfo from './PreliminaryInformationForm.info.employment';
-import { TransitionMotion, spring, presets } from 'react-motion';
+import { createForm } from '../BaseForm/BaseForm';
+
+const Form = createForm(FORM_NAME, selectKickOffData);
 
 export class PreliminaryInformationForm extends Component {
+
   isProfessionHidden(formValues) {
     return !formValues.employment || formValues.employment === 'unemployed';
   }
@@ -29,8 +29,7 @@ export class PreliminaryInformationForm extends Component {
 
   isProductHidden(formValues) {
     return (
-      this.isPartyTypeHidden(formValues) ||
-      !formValues.partyType ||
+      this.isPartyTypeHidden(formValues) || !formValues.partyType ||
       (formValues.partyType === 'company' && formValues.businessUse !== 'no')
     );
   }
@@ -57,8 +56,7 @@ export class PreliminaryInformationForm extends Component {
 
   isIsAustralianHidden(formValues) {
     return (
-      this.isHadBankruptHidden(formValues) ||
-      !formValues.hasBankrupt ||
+      this.isHadBankruptHidden(formValues) || !formValues.hasBankrupt ||
       (formValues.hasBankrupt === 'yes' && formValues.hasBankruptDischarged !== 'yes')
     );
   }
@@ -95,20 +93,6 @@ export class PreliminaryInformationForm extends Component {
     this.props.onChange(nextProps.formValues);
   }
 
-  willEnter() {
-    return {
-      height: 0,
-      opacity: 0,
-    };
-  }
-
-  willLeave() {
-    return {
-      height: spring(0),
-      opacity: spring(0),
-    };
-  }
-
   render() {
     const {
       handleSubmit,
@@ -132,8 +116,7 @@ export class PreliminaryInformationForm extends Component {
         label: 'What is your current profession?',
         isHidden: this.isProfessionHidden(formValues),
         component: SelectField,
-        info:
-          'Choose the option that best describes your profession. If none of the available choices apply, please select other.',
+        info: 'Choose the option that best describes your profession. If none of the available choices apply, please select other.',
         options: professions,
       },
       {
@@ -148,8 +131,7 @@ export class PreliminaryInformationForm extends Component {
         isHidden: this.isBusinessUseHidden(formValues),
         label: 'Is the vehicle wholly or predominantly (more than 50%) for business use?',
         component: RadioField,
-        info:
-          'This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer.',
+        info: 'This loan application is only for personal purposes. If you require finance for business use, please visit your preferred Mercedes-Benz dealer.',
         options: YesNoOptions,
       },
       {
@@ -203,69 +185,18 @@ export class PreliminaryInformationForm extends Component {
       },
     ];
 
-    const defaultStyles = definition.map((field, index) => ({
-      data: field,
-      key: field.name,
-      style: {
-        height: 0,
-        opacity: 0,
-      },
-    }));
-
-    const getStyles = definition.filter((field, index) => !field.isHidden).map((field, index) => ({
-      key: field.name,
-      data: field,
-      style: {
-        height: spring(72),
-        opacity: spring(1),
-      },
-    }));
-
     const isIncomplete = this.isIncomplete(formValues);
 
     const deadEndMessage = this.getDeadEndMessage(formValues);
 
     return (
-      <div className={classes.container}>
-        <form onSubmit={handleSubmit}>
-          <TransitionMotion
-            defaultStyles={defaultStyles}
-            styles={getStyles}
-            willLeave={this.willLeave}
-            willEnter={this.willEnter}
-          >
-            {styles =>
-              <div>
-                {styles.map(({ key, style, data }) => {
-                  return (
-                    <div key={key} style={{ ...style, display: 'flex', background: 'white' }}>
-                      <Field {...data} />
-                    </div>
-                  );
-                })}
-              </div>}
-          </TransitionMotion>
 
-          <h3>
-            {deadEndMessage}
-          </h3>
-
-          {isIncomplete
-            ? null
-            : <div>
-                <h3>You are ready to apply.</h3>
-                <Link
-                  to="/application"
-                  tabIndex="-1"
-                  style={{ textDecoration: 'none', color: 'inherit' }}
-                >
-                  <Button aria-label="Next" raised type="submit">
-                    Next
-                  </Button>
-                </Link>
-              </div>}
-        </form>
-      </div>
+        <Form
+          onSubmit={handleSubmit}
+          definition={definition}
+          isIncomplete={isIncomplete}
+          deadEndMessage={deadEndMessage}
+        />
     );
   }
 }
