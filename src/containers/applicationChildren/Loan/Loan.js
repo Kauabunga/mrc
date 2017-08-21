@@ -16,6 +16,8 @@ export class Loan extends Component {
     this.props.actions.initialize(FORM_NAME, nextProps.initialValues);
   }
 
+  handleSubmit() {}
+
   handleChange(values) {
     this.props.actions.updateLoanData(values);
   }
@@ -30,6 +32,7 @@ export class Loan extends Component {
         <div className="Loan">
           <LoanForm
             onChange={this.handleChange.bind(this)}
+            onSubmit={this.handleSubmit.bind(this)}
             loanTermOptions={loanTermOptions}
             kilometresTraveledOptions={kilometresTraveledOptions}
           />

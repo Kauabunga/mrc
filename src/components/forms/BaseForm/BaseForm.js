@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { classes } from './BaseForm.styles';
-import CaptchaField from '../../fields/CaptchaField/CaptchaField';
 import { connect } from 'react-redux';
 
 export class BaseForm extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
-    const { onSubmit, definition, deadEndMessage, isIncomplete } = this.props;
+    const { onSubmit, definition } = this.props;
 
     const fields = definition.map((definition, index) => <Field key={index} {...definition} />);
 
@@ -15,21 +19,12 @@ export class BaseForm extends Component {
       <div className={classes.container}>
         <form onSubmit={onSubmit}>
           {fields}
-
-          <Field complete={!isIncomplete} name="__captcha__" component={CaptchaField} />
-
-          <h3>
-            {deadEndMessage}
-          </h3>
+          {/*<Field complete={!isIncomplete} name="__captcha__" component={CaptchaField} />*/}
         </form>
       </div>
     );
   }
 }
-
-BaseForm.defaultProps = {
-  definition: [],
-};
 
 BaseForm.propTypes = {
   definition: PropTypes.array.isRequired,
@@ -37,7 +32,6 @@ BaseForm.propTypes = {
 
 export function createForm(formName, selector) {
   return connect(state => ({
-    // TODO no longer need this?
     initialValues: selector(state),
   }))(
     reduxForm({

@@ -4,6 +4,7 @@ import RadioField from '../../fields/RadioField/RadioField';
 import { YesNoOptions } from '../../fields/RadioField/RadioField.YesNo';
 import { OneTwoOptions } from '../../fields/RadioField/RadioField.OneTwo';
 import EmploymentInfo from './PreliminaryInformationForm.info.employment';
+import SubmitField from '../../fields/SubmitField/SubmitField';
 
 /*
  * Hidden
@@ -55,6 +56,10 @@ const isIsAustralianHidden = (value, allValues) => {
     !allValues.hasBankrupt ||
     (allValues.hasBankrupt === 'yes' && allValues.hasBankruptDischarged !== 'yes')
   );
+};
+
+const isNotComplete = (value, allValues) => {
+  return isIsAustralianHidden(null, allValues) || !allValues.isAustralian;
 };
 
 /*
@@ -181,6 +186,11 @@ export function getDefinition(options) {
       warn: [isIsAustralianHidden],
       component: RadioField,
       options: YesNoOptions,
+    },
+    {
+      name: 'complete',
+      warn: [isNotComplete],
+      component: SubmitField,
     },
   ];
 }

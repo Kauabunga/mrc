@@ -8,17 +8,6 @@ import MediaQuery from 'react-responsive';
 import { Motion, spring } from 'react-motion';
 
 class BaseField extends Component {
-  state = {
-    firstRender: true,
-  };
-
-  componentWillReceiveProps() {
-    // TODO debounce or wait for initialise from persist
-    if (this.state.firstRender) {
-      setTimeout(() => this.setState({ firstRender: false }));
-    }
-  }
-
   updateDimensions() {
     let w = window;
     let d = document;
