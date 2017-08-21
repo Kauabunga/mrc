@@ -12,7 +12,10 @@ export class App extends Component {
     const { children } = this.props;
 
     const handlers = {
-      reset: event => window.sessionStorage.clear(),
+      reset: event => {
+        window.sessionStorage.clear();
+        window.location.href = '/';
+      },
     };
 
     const keyMap = {
@@ -40,9 +43,7 @@ App.propTypes = {
   // children: PropTypes.insta
 };
 
-const mapStateToProps = state => ({
-  route: state.router,
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({}, dispatch),

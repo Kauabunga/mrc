@@ -27,7 +27,6 @@ export class KickOff extends Component {
   }
 
   handleChange(values) {
-    console.log('KICK OFF HANDLE CHANGE', values);
     this.props.actions.updateKickOffData(values);
   }
 

@@ -22,10 +22,8 @@ const isFinanceAmountHidden = (value, allValues) => {
  * VALIDATION
  */
 
-const isUnemployed = value => {
-  return value === 'unemployed'
-    ? 'To gain an online approval you must currently be employed, however alternatives options to gain Finance approval are available, please contact us on 1300 730 200 or this link.'
-    : undefined;
+const isValidFinanceAmount = value => {
+  return value > 100000 ? 'We can only finance loans up to $100,000' : undefined;
 };
 
 /*
@@ -57,7 +55,7 @@ export function getDefinition(options) {
       type: 'number',
       component: TextField,
       warn: [isFinanceAmountHidden],
-      validate: [],
+      validate: [isValidFinanceAmount],
     },
   ];
 }

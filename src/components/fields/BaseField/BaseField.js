@@ -31,12 +31,32 @@ class BaseField extends Component {
     window.removeEventListener('resize', this.updateDimensions.bind(this));
   }
 
-  render() {
-    const { isHidden, info, infoContent, label, name, children } = this.props;
-
-    const { meta: { touched, error, warning } } = this.props;
-
+  getMotionStyles(props) {
     const { width } = this.state;
+
+    const { meta: { error } } = props;
+
+    let maxHeight = error ? 140 : 72;
+    if (width < 960) {
+      maxHeight += 72;
+    }
+
+    const isDisplayed = this.isDisplayed(props);
+    return {
+      opacity: spring(isDisplayed ? 1 : 0),
+      height: spring(isDisplayed ? maxHeight : 0),
+    };
+  }
+
+  isDisplayed(props) {
+    const { meta: { warning } } = props;
+    return !warning;
+  }
+
+  render() {
+    const { input, info, infoContent, label, name, children } = this.props;
+
+    const { meta: { initial, touched, error, warning } } = this.props;
 
     const baseFieldInfo = <BaseFieldInfo info={info} infoContent={infoContent} />;
     const baseValidation =
@@ -45,21 +65,17 @@ class BaseField extends Component {
         {error}
       </span>;
 
-    let maxHeight = error ? 140 : 72;
-    if (width < 960) {
-      maxHeight += 72;
-    }
-
-    const isDisplayed = !isHidden && !warning;
-    const motionStyles = {
-      opacity: spring(isDisplayed ? 1 : 0),
-      height: spring(isDisplayed ? maxHeight : 0),
+    const isDisplayed = this.isDisplayed(this.props);
+    const motionStyles = this.getMotionStyles(this.props);
+    const defaultMotionStyles = {
+      opacity: initial ? motionStyles.opacity.val : 0,
+      height: initial ? motionStyles.height.val : 0,
     };
 
     // TODO why is this maxWidth set for responsive mobile?
     // TODO wrap queries into standard UI component
     return (
-      <Motion style={motionStyles}>
+      <Motion style={motionStyles} defaultStyle={defaultMotionStyles}>
         {({ opacity, height }) =>
           <Grid
             container

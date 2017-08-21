@@ -4,16 +4,20 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { classes } from './BaseForm.styles';
 import { connect } from 'react-redux';
+import { selectHasHydrated } from '../../../global/persist/persist.selectors';
 
 export class BaseForm extends Component {
-  shouldComponentUpdate() {
-    return false;
+  shouldComponentUpdate(nextProps, nextState) {
+    // return false;
+    return nextProps.hasHydrated;
   }
 
   render() {
-    const { onSubmit, definition } = this.props;
+    const { onSubmit, hasHydrated, definition } = this.props;
 
-    const fields = definition.map((definition, index) => <Field key={index} {...definition} />);
+    const fields = hasHydrated
+      ? definition.map((definition, index) => <Field key={index} {...definition} />)
+      : [];
 
     return (
       <div className={classes.container}>
@@ -33,6 +37,7 @@ BaseForm.propTypes = {
 export function createForm(formName, selector) {
   return connect(state => ({
     initialValues: selector(state),
+    hasHydrated: selectHasHydrated(state),
   }))(
     reduxForm({
       form: formName,

@@ -5,10 +5,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { selectApplication } from '../../../global/application/application.selectors';
 import Button from '../../../components/ui/Button/Button';
+import LoanForm from '../../../components/forms/LoanForm/LoanForm';
+import { selectKilometresTraveledOptions, selectLoanTermOptions } from '../Loan/Loan.selectors';
 
 export class Summary extends Component {
   render() {
     const { application } = this.props;
+
+    const { kilometresTraveledOptions, loanTermOptions } = this.props;
+
+    // TODO reuse 4 forms with presentation only fields
+    // TODO make read only
     return (
       <div>
         <Helmet>
@@ -19,6 +26,13 @@ export class Summary extends Component {
           <pre style={{ whiteSpace: 'pre-wrap' }}>
             {JSON.stringify(application, null, 2)}
           </pre>
+
+          <LoanForm
+            onSubmit={() => {}}
+            onChange={() => {}}
+            kilometresTraveledOptions={kilometresTraveledOptions}
+            loanTermOptions={loanTermOptions}
+          />
           <Button raised>Complete</Button>
         </div>
       </div>
@@ -26,7 +40,10 @@ export class Summary extends Component {
   }
 }
 
-Summary.defaultProps = {};
+Summary.defaultProps = {
+  kilometresTraveledOptions: [],
+  loanTermOptions: [],
+};
 
 Summary.propTypes = {
   // children: PropTypes.insta
@@ -34,6 +51,9 @@ Summary.propTypes = {
 
 const mapStateToProps = state => ({
   application: selectApplication(state),
+
+  kilometresTraveledOptions: selectKilometresTraveledOptions(state),
+  loanTermOptions: selectLoanTermOptions(state),
 });
 
 const mapDispatchToProps = dispatch => ({
