@@ -23,7 +23,7 @@ const isFinanceAmountHidden = (value, allValues) => {
  */
 
 const isValidFinanceAmount = value => {
-  return value > 100000 ? 'We can only finance loans up to $100,000' : undefined;
+  return value > 200000 ? 'We can only finance loans up to $200,000' : undefined;
 };
 
 /*

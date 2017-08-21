@@ -2,7 +2,7 @@ import jss from 'jss';
 
 const styles = {
   container: {
-    background: 'white',
+    background: '#f7f7f7',
   },
   infoContainer: {
     display: 'inline-block',

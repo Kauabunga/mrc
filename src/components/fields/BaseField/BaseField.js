@@ -61,7 +61,7 @@ class BaseField extends Component {
     const baseFieldInfo = <BaseFieldInfo info={info} infoContent={infoContent} />;
     const baseValidation =
       error &&
-      <span style={{ color: 'red' }}>
+      <span style={{ color: '#D50000' }}>
         {error}
       </span>;
 

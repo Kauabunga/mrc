@@ -50,16 +50,11 @@ const isHasBankruptDischargedHidden = (value, allValues) => {
   return isHadBankruptHidden(null, allValues) || allValues.hasBankrupt !== 'yes';
 };
 
-const isIsAustralianHidden = (value, allValues) => {
-  return (
-    isHadBankruptHidden(null, allValues) ||
-    !allValues.hasBankrupt ||
-    (allValues.hasBankrupt === 'yes' && allValues.hasBankruptDischarged !== 'yes')
-  );
-};
 
 const isNotComplete = (value, allValues) => {
-  return isIsAustralianHidden(null, allValues) || !allValues.isAustralian;
+  return isHadBankruptHidden(null, allValues) ||
+    !allValues.hasBankrupt ||
+    (allValues.hasBankrupt === 'yes' && allValues.hasBankruptDischarged !== 'yes')
 };
 
 /*
@@ -177,13 +172,6 @@ export function getDefinition(options) {
       label: 'Have you been discharged?',
       warn: [isHasBankruptDischargedHidden],
       validate: [isHasBankruptDischarged],
-      component: RadioField,
-      options: YesNoOptions,
-    },
-    {
-      name: 'isAustralian',
-      label: 'Are you an Australian resident or Citizen for tax purposes?',
-      warn: [isIsAustralianHidden],
       component: RadioField,
       options: YesNoOptions,
     },
