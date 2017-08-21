@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://mrcee.herokuapp.com/",
   "dependencies": {
+    "flow-bin": "^0.53.1",
     "jss": "^8.1.0",
     "jss-preset-default": "^3.0.0",
     "material-ui": "^1.0.0-beta.5",
@@ -34,6 +35,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "flow": "flow",
     "prettier": "prettier --single-quote --print-width 100 --trailing-comma all \"src/**/*.js\"",
     "prettier:ci": "npm run prettier -- --list-different",
     "prettier:fix": "npm run prettier -- --write",
