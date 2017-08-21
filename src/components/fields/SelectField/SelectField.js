@@ -3,6 +3,7 @@ import BaseField from '../BaseField/BaseField';
 import Select from 'react-select';
 
 // Be sure to include styles at some point, probably during your bootstrapping
+// Imported in index.html
 import 'react-select/dist/react-select.css';
 
 // TODO create UI Select Input component
@@ -11,10 +12,6 @@ import 'react-select/dist/react-select.css';
 class SelectField extends Component {
   render() {
     const { options, input } = this.props;
-
-    if (input.name === 'employment') {
-      console.log('emplyoment select error', this.props.meta.error);
-    }
 
     return (
       <BaseField {...this.props}>
