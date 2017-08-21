@@ -1,47 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
-import SelectField from '../../fields/SelectField/SelectField';
-import { connect } from 'react-redux';
 import { FORM_NAME } from './LoanForm.constants';
 import { selectLoanData } from '../../../global/application/application.selectors';
-import TextField from '../../fields/TextField/TextField';
+import { createForm } from '../BaseForm/BaseForm';
+import { getDefinition } from './LoanForm.definition';
+
+const BaseForm = createForm(FORM_NAME, selectLoanData);
 
 export class LoanForm extends Component {
-  isIncomplete(formValues) {
-    // TODO implement
-    return !!formValues;
-  }
-
   render() {
-    const { handleSubmit, formValues } = this.props;
-    const { kilometresTraveledOptions, loanTermOptions } = this.props;
+    const { onChange, onSubmit } = this.props;
 
-    const isIncomplete = this.isIncomplete(formValues);
+    const definition = getDefinition(this.props);
 
-    return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <Field
-            name="kilometresTraveled"
-            label="How many kilometres do you typically travel in a year?"
-            component={SelectField}
-            options={kilometresTraveledOptions}
-          />
-
-          <Field
-            name="loanTerm"
-            label="Loan Term"
-            component={SelectField}
-            options={loanTermOptions}
-          />
-
-          <Field name="amount" label="Finance amount" type="number" component={TextField} />
-
-          {isIncomplete ? null : <h3>Complete</h3>}
-        </form>
-      </div>
-    );
+    return <BaseForm onSubmit={onSubmit} onChange={onChange} definition={definition} />;
   }
 }
 
@@ -52,21 +24,10 @@ LoanForm.defaultProps = {
 
 LoanForm.propTypes = {
   onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 
   kilometresTraveledOptions: PropTypes.array.isRequired,
   loanTermOptions: PropTypes.array.isRequired,
 };
 
-const selector = formValueSelector(FORM_NAME);
-
-export default connect(state => ({
-  initialValues: selectLoanData(state),
-  formValues: {
-    kilometresTraveled: selector(state, 'kilometresTraveled'),
-    loanTerm: selector(state, 'loanTerm'),
-  },
-}))(
-  reduxForm({
-    form: FORM_NAME,
-  })(LoanForm),
-);
+export default LoanForm;

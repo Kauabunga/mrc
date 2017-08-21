@@ -11,12 +11,19 @@ import 'react-select/dist/react-select.css';
 class SelectField extends Component {
   render() {
     const { options, input } = this.props;
+
+    if (input.name === 'employment') {
+      console.log('emplyoment select error', this.props.meta.error);
+    }
+
     return (
       <BaseField {...this.props}>
         <Select
           clearable={false}
           value={input && input.value}
           onChange={option => input.onChange((option && option.value) || null)}
+          onBlur={(event, newValue, previousValue) => input.onBlur(newValue)}
+          onFocus={(event, newValue, previousValue) => input.onFocus(event)}
           options={options}
         />
       </BaseField>

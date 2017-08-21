@@ -2,6 +2,7 @@ import jss from 'jss';
 
 const styles = {
   container: {
+    background: 'white',
     height: '72px',
     'margin-bottom': '12px !important',
   },

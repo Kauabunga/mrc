@@ -27,6 +27,7 @@ export class KickOff extends Component {
   }
 
   handleChange(values) {
+    console.log('KICK OFF HANDLE CHANGE', values);
     this.props.actions.updateKickOffData(values);
   }
 
@@ -41,12 +42,12 @@ export class KickOff extends Component {
         <KickOffIntroduction />
 
         <PreliminaryInformationForm
+          onSubmit={this.handleSubmit.bind(this)}
           onChange={this.handleChange.bind(this)}
           professions={professions}
           products={products}
           partyTypes={partyTypes}
           employmentStatuses={employmentStatuses}
-          onSubmit={this.handleSubmit}
         />
       </div>
     );
