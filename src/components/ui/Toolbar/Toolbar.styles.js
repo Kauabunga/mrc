@@ -1,4 +1,3 @@
-
 export const styles = {
   appBar: {
     background: '#111',
@@ -9,5 +8,5 @@ export const styles = {
   },
   toolBar: {
     'justify-content': 'space-between',
-  }
+  },
 };

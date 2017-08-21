@@ -50,11 +50,12 @@ const isHasBankruptDischargedHidden = (value, allValues) => {
   return isHadBankruptHidden(null, allValues) || allValues.hasBankrupt !== 'yes';
 };
 
-
 const isNotComplete = (value, allValues) => {
-  return isHadBankruptHidden(null, allValues) ||
+  return (
+    isHadBankruptHidden(null, allValues) ||
     !allValues.hasBankrupt ||
     (allValues.hasBankrupt === 'yes' && allValues.hasBankruptDischarged !== 'yes')
+  );
 };
 
 /*
