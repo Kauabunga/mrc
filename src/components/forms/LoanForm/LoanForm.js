@@ -9,11 +9,18 @@ const BaseForm = createForm(FORM_NAME, selectLoanData);
 
 export class LoanForm extends Component {
   render() {
-    const { onChange, onSubmit } = this.props;
+    const { onChange, onSubmit, readOnly } = this.props;
 
     const definition = getDefinition(this.props);
 
-    return <BaseForm onSubmit={onSubmit} onChange={onChange} definition={definition} />;
+    return (
+      <BaseForm
+        onSubmit={onSubmit}
+        readOnly={readOnly}
+        onChange={onChange}
+        definition={definition}
+      />
+    );
   }
 }
 

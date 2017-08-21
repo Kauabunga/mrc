@@ -15,6 +15,8 @@ export class Personal extends Component {
     this.props.actions.initialize(FORM_NAME, nextProps.initialValues);
   }
 
+  handleSubmit() {}
+
   handleChange(values) {
     this.props.actions.updatePersonalData(values);
   }
@@ -27,7 +29,11 @@ export class Personal extends Component {
           <title>Personal</title>
         </Helmet>
 
-        <PersonalForm onChange={this.handleChange.bind(this)} titleOptions={titleOptions} />
+        <PersonalForm
+          onChange={this.handleChange.bind(this)}
+          onSubmit={this.handleSubmit.bind(this)}
+          titleOptions={titleOptions}
+        />
       </div>
     );
   }

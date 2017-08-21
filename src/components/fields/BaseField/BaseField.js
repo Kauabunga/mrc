@@ -8,7 +8,7 @@ import MediaQuery from 'react-responsive';
 import { Motion, spring } from 'react-motion';
 
 class BaseField extends Component {
-  updateDimensions() {
+  updateDimensions = () => {
     let w = window;
     let d = document;
     let documentElement = d.documentElement;
@@ -17,18 +17,18 @@ class BaseField extends Component {
     let height = w.innerHeight || documentElement.clientHeight || body.clientHeight;
 
     this.setState({ width, height });
-  }
+  };
 
   componentWillMount() {
     this.updateDimensions();
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions.bind(this));
+    window.addEventListener('resize', this.updateDimensions);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions.bind(this));
+    window.removeEventListener('resize', this.updateDimensions);
   }
 
   getMotionStyles(props) {

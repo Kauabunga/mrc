@@ -5,18 +5,29 @@ import { Field, reduxForm } from 'redux-form';
 import { classes } from './BaseForm.styles';
 import { connect } from 'react-redux';
 import { selectHasHydrated } from '../../../global/persist/persist.selectors';
+import SummaryField from '../../fields/SummaryField/SummaryField';
 
 export class BaseForm extends Component {
   shouldComponentUpdate(nextProps, nextState) {
-    // return false;
     return nextProps.hasHydrated;
   }
 
   render() {
-    const { onSubmit, hasHydrated, definition } = this.props;
+    const { onSubmit, hasHydrated, readOnly, definition } = this.props;
+
+    // When fields are read only set them all to use the SummaryField field
+    const readOnlyFields = definition.map(
+      definition =>
+        readOnly
+          ? Object.assign({}, definition, {
+              component: SummaryField,
+              originalComponent: definition.component,
+            })
+          : definition,
+    );
 
     const fields = hasHydrated
-      ? definition.map((definition, index) => <Field key={index} {...definition} />)
+      ? readOnlyFields.map((definition, index) => <Field key={index} {...definition} />)
       : [];
 
     return (

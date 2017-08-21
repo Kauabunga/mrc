@@ -33,6 +33,7 @@ export class Loan extends Component {
           <LoanForm
             onChange={this.handleChange.bind(this)}
             onSubmit={this.handleSubmit.bind(this)}
+            readOnly={false}
             loanTermOptions={loanTermOptions}
             kilometresTraveledOptions={kilometresTraveledOptions}
           />
@@ -50,6 +51,8 @@ Loan.defaultProps = {
 Loan.propTypes = {
   kilometresTraveledOptions: PropTypes.array.isRequired,
   loanTermOptions: PropTypes.array.isRequired,
+
+  readOnly: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({

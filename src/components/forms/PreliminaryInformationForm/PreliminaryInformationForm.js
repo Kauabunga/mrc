@@ -24,6 +24,7 @@ PreliminaryInformationForm.defaultProps = {
   products: [],
 };
 
+// TODO pull common form interface into shared proptypes
 PreliminaryInformationForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,

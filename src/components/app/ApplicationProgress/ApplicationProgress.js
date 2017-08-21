@@ -24,7 +24,7 @@ class ApplicationProgress extends Component {
     return width > 500 ? ['Loan', 'Personal', 'Financial', 'Summary'] : ['1', '2', '3', '4'];
   }
 
-  updateDimensions() {
+  updateDimensions = () => {
     let w = window;
     let d = document;
     let documentElement = d.documentElement;
@@ -33,23 +33,23 @@ class ApplicationProgress extends Component {
     let height = w.innerHeight || documentElement.clientHeight || body.clientHeight;
 
     this.setState({ width, height });
-  }
+  };
 
   componentWillMount() {
     this.updateDimensions();
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions.bind(this));
+    window.addEventListener('resize', this.updateDimensions);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions.bind(this));
+    window.removeEventListener('resize', this.updateDimensions);
   }
 
   render() {
-    const tabValue = this.getTabValue(this.props.router.location.pathname);
-    const labels = this.getTabLabels(this.state.width) || [];
+    const tabValue = this.getTabValue(this.props.pathname);
+    const labels = this.getTabLabels(this.state && this.state.width) || [];
     return (
       <Tabs
         value={tabValue}
@@ -65,8 +65,7 @@ class ApplicationProgress extends Component {
 }
 
 const mapStateToProps = state => ({
-  // TODO should select route path
-  router: state.router,
+  pathname: state.router.location.pathname,
 });
 
 const mapDispatchToProps = dispatch => ({
