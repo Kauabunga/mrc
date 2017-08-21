@@ -20,6 +20,7 @@ class SelectField extends Component {
       <BaseField {...this.props}>
         <Select
           clearable={false}
+          searchable={false}
           value={input && input.value}
           onChange={option => input.onChange((option && option.value) || null)}
           onBlur={(event, newValue, previousValue) => input.onBlur(newValue)}
