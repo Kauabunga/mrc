@@ -41,6 +41,7 @@
     "prettier:fix": "npm run prettier -- \"src/**/*.js\" --write",
     "snapshot": "react-snapshot",
     "server": "cross-env NODE_ENV=production node server/index.js",
+    "server:dev": "cross-env NODE_ENV=production nodemon server/index.js",
     "test": "react-scripts test --env=jsdom",
     "testcafe": "testcafe chrome e2e/",
     "eject": "react-scripts eject"
@@ -63,7 +64,7 @@
     "react-scripts": "1.0.11",
     "react-test-renderer": "^15.6.1",
     "testcafe": "^0.17.1",
-    "testcafe-react-selectors": "^0.0.6"
+    "testcafe-react-selectors": "^0.0.7"
   },
   "lint-staged": {
     "src/**/*.{js,json,css}": [
