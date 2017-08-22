@@ -4,11 +4,12 @@ import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ApplicationProgress from '../../components/app/ApplicationProgress/ApplicationProgress';
-import { classes } from './Application.styles';
+import injectSheet from 'react-jss';
+import { styles } from './Application.styles';
 
 export class Application extends Component {
   render() {
-    const { children } = this.props;
+    const { classes, children } = this.props;
     return (
       <div>
         <Helmet>
@@ -37,4 +38,6 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({}, dispatch),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Application));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Application)),
+);

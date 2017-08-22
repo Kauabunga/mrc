@@ -4,9 +4,6 @@
   "private": true,
   "homepage": "https://mrcee.herokuapp.com/",
   "dependencies": {
-    "flow-bin": "^0.53.1",
-    "jss": "^8.1.0",
-    "jss-preset-default": "^3.0.0",
     "material-ui": "^1.0.0-beta.5",
     "material-ui-icons": "^1.0.0-beta.5",
     "prop-types": "^15.5.10",
@@ -41,16 +38,31 @@
     "prettier:ci": "npm run prettier -- \"src/**/*.js\" --list-different",
     "prettier:fix": "npm run prettier -- \"src/**/*.js\" --write",
     "snapshot": "react-snapshot",
+    "server": "cross-env NODE_ENV=production node server/index.js",
     "test": "react-scripts test --env=jsdom",
     "testcafe": "testcafe chrome e2e/",
     "eject": "react-scripts eject"
   },
+  "optionalDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "body-parser": "^1.17.2",
+    "compression": "^1.7.0",
+    "cross-env": "^5.0.5",
+    "express": "^4.15.4",
+    "ignore-styles": "^5.0.1",
+    "morgan": "^1.8.2"
+  },
   "devDependencies": {
+    "flow-bin": "^0.53.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.3",
     "prettier": "^1.5.3",
     "react-scripts": "1.0.11",
     "react-test-renderer": "^15.6.1",
     "testcafe": "^0.17.1",
-    "testcafe-react-selectors": "^0.0.6"
+    "testcafe-react-selectors": "^0.0.6",
+    "window-or-global": "^1.0.1"
   },
   "lint-staged": {
     "src/**/*.{js,json,css}": [

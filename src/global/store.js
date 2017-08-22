@@ -6,7 +6,7 @@ import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
 import createGlobalReducer from './reducer';
 import globalSagas from './sagas';
-import * as Immutable from 'seamless-immutable';
+import Immutable from 'seamless-immutable';
 
 export const history = createHistory();
 const sagaMiddleware = createSagaMiddleware();

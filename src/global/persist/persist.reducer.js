@@ -1,8 +1,9 @@
-import * as Immutable from 'seamless-immutable';
+import Immutable from 'seamless-immutable';
 import { REHYDRATE } from 'redux-persist/constants';
+import root from 'window-or-global';
 
 const initialState = Immutable({
-  hasHydrated: false,
+  hasHydrated: !root.document,
 });
 
 export const persistReducer = (state = initialState, action) => {

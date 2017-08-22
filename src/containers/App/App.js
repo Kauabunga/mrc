@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import Toolbar from '../../components/ui/Toolbar/Toolbar';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Switch, Redirect, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { classes } from './App.styles';
 import { HotKeys } from 'react-hotkeys';
+import root from 'window-or-global';
+import NotFound from '../NotFound/NotFound';
+import KickOff from '../KickOff/KickOff';
+import Loan from '../applicationChildren/Loan/Loan';
+import Personal from '../applicationChildren/Personal/Personal';
+import Financial from '../applicationChildren/Financial/Financial';
+import Summary from '../applicationChildren/Summary/Summary';
+import Application from '../Application/Application';
+import injectSheet from 'react-jss';
+import { styles } from './App.styles';
 
 export class App extends Component {
   render() {
-    const { children } = this.props;
+    const { classes, children } = this.props;
 
     const handlers = {
       reset: event => {
@@ -27,11 +36,28 @@ export class App extends Component {
         <Helmet>
           <title>App</title>
         </Helmet>
-        <HotKeys focused={true} keyMap={keyMap} attach={window} handlers={handlers} />
+        <HotKeys focused={true} keyMap={keyMap} attach={root} handlers={handlers} />
         <Toolbar />
         <div className={classes.root}>
           <div className={classes.container}>
-            {children}
+            <Switch>
+              <Route exact path="/404" component={NotFound} />
+              <Route exact path="/" component={KickOff} />
+
+              <Route path="/application">
+                <Application>
+                  <Switch>
+                    <Route exact path="/application/loan" component={Loan} />
+                    <Route exact path="/application/personal" component={Personal} />
+                    <Route exact path="/application/financial" component={Financial} />
+                    <Route exact path="/application/summary" component={Summary} />
+                    <Redirect from="/application" to="/application/loan" />
+                  </Switch>
+                </Application>
+              </Route>
+
+              <Redirect from="*" to="/404" />
+            </Switch>
           </div>
         </div>
       </div>
@@ -51,4 +77,4 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({}, dispatch),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(App)));

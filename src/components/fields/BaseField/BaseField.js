@@ -2,12 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import { FormLabel } from 'material-ui/Form';
-import { classes } from './BaseField.styles';
 import BaseFieldInfo from './BaseFieldInfo';
 import MediaQuery from 'react-responsive';
 import { Motion, spring } from 'react-motion';
+import injectSheet from 'react-jss';
+import { styles } from './BaseField.styles';
+import root from 'window-or-global';
 
 class BaseField extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: Math.POSITIVE_INFINITY,
+      height: Math.POSITIVE_INFINITY,
+    };
+  }
+
   updateDimensions = () => {
     let w = window;
     let d = document;
@@ -20,7 +30,9 @@ class BaseField extends Component {
   };
 
   componentWillMount() {
-    this.updateDimensions();
+    if (root.document) {
+      this.updateDimensions();
+    }
   }
 
   componentDidMount() {
@@ -54,7 +66,7 @@ class BaseField extends Component {
   }
 
   render() {
-    const { input, info, infoContent, label, name, children } = this.props;
+    const { classes, input, info, infoContent, label, name, children } = this.props;
 
     const { meta: { initial, touched, error, warning } } = this.props;
 
@@ -116,4 +128,4 @@ BaseField.propTypes = {
   infoContent: PropTypes.any,
 };
 
-export default BaseField;
+export default injectSheet(styles)(BaseField);

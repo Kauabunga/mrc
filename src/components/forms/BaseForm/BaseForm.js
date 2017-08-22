@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
-import { classes } from './BaseForm.styles';
 import { connect } from 'react-redux';
 import { selectHasHydrated } from '../../../global/persist/persist.selectors';
 import SummaryField from '../../fields/SummaryField/SummaryField';
+import injectSheet from 'react-jss';
+import { styles } from './BaseForm.styles';
 
 export class BaseForm extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     return nextProps.hasHydrated;
   }
 
   render() {
-    const { onSubmit, hasHydrated, readOnly, definition } = this.props;
+    const { classes, onSubmit, hasHydrated, readOnly, definition } = this.props;
 
     // When fields are read only set them all to use the SummaryField field
     const readOnlyFields = definition.map(
@@ -52,6 +52,6 @@ export function createForm(formName, selector) {
   }))(
     reduxForm({
       form: formName,
-    })(BaseForm),
+    })(injectSheet(styles)(BaseForm)),
   );
 }

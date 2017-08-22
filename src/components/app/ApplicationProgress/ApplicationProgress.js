@@ -3,8 +3,17 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import { routerActions } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import root from 'window-or-global';
 
-class ApplicationProgress extends Component {
+export class ApplicationProgress extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: Math.POSITIVE_INFINITY,
+      height: Math.POSITIVE_INFINITY,
+    };
+  }
+
   applicationRoutes = [
     '/application/loan',
     '/application/personal',
@@ -25,8 +34,8 @@ class ApplicationProgress extends Component {
   }
 
   updateDimensions = () => {
-    let w = window;
-    let d = document;
+    let w = root;
+    let d = root.document;
     let documentElement = d.documentElement;
     let body = d.getElementsByTagName('body')[0];
     let width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
@@ -36,20 +45,22 @@ class ApplicationProgress extends Component {
   };
 
   componentWillMount() {
-    this.updateDimensions();
+    if (root.document) {
+      this.updateDimensions();
+    }
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions);
+    root.addEventListener('resize', this.updateDimensions);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions);
+    root.removeEventListener('resize', this.updateDimensions);
   }
 
   render() {
     const tabValue = this.getTabValue(this.props.pathname);
-    const labels = this.getTabLabels(this.state && this.state.width) || [];
+    const labels = this.getTabLabels(this.state.width);
     return (
       <Tabs
         value={tabValue}
@@ -65,7 +76,7 @@ class ApplicationProgress extends Component {
 }
 
 const mapStateToProps = state => ({
-  pathname: state.router.location.pathname,
+  pathname: state.router.location && state.router.location.pathname,
 });
 
 const mapDispatchToProps = dispatch => ({

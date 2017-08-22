@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import InfoIcon from 'material-ui-icons/Info';
 import ToolTip from 'react-portal-tooltip';
-import { classes } from './BaseField.styles';
+import injectSheet from 'react-jss';
+import { styles } from './BaseField.styles';
 
 let iconCount = 0;
 
@@ -25,7 +26,7 @@ class BaseField extends Component {
   baseFieldInfoGroup = 'baseFieldInfoGroup';
 
   render() {
-    const { info, infoContent } = this.props;
+    const { classes, info, infoContent } = this.props;
 
     // TODO why is this maxWidth set for responsive mobile?
     return !info && !infoContent
@@ -65,4 +66,4 @@ BaseField.propTypes = {
   infoContent: PropTypes.any,
 };
 
-export default BaseField;
+export default injectSheet(styles)(BaseField);

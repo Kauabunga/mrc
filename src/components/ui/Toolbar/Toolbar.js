@@ -11,7 +11,6 @@ const toolbarImg = getToolbarImg();
 class Toolbar extends Component {
   render() {
     const { classes } = this.props;
-    // {/* TODO remove inline styling */}
     return (
       <AppBar position="static" className={classes.appBar}>
         <MaterialToolbar className={classes.toolBar}>

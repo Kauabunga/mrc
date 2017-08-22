@@ -1,6 +1,4 @@
-import jss from 'jss';
-
-const styles = {
+export const styles = {
   container: {
     background: '#f7f7f7',
   },
@@ -8,5 +6,3 @@ const styles = {
     display: 'inline-block',
   },
 };
-
-export const { classes } = jss.createStyleSheet(styles).attach();
