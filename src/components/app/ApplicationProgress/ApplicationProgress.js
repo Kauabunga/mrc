@@ -4,6 +4,8 @@ import { routerActions } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import canUseDOM from 'can-use-dom';
+import injectSheet from 'react-jss';
+import { styles } from './ApplicationProgress.styles';
 
 export class ApplicationProgress extends Component {
   constructor(props) {
@@ -59,10 +61,11 @@ export class ApplicationProgress extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const tabValue = this.getTabValue(this.props.pathname);
     const labels = this.getTabLabels(this.state.width);
     return (
-      <div style={{ minHeight: 48 }}>
+      <div className={classes.progressRoot}>
         <Tabs
           value={tabValue}
           onChange={this.handleChange.bind(this)}
@@ -90,4 +93,6 @@ const mapDispatchToProps = dispatch => ({
   ),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ApplicationProgress);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  injectSheet(styles)(ApplicationProgress),
+);

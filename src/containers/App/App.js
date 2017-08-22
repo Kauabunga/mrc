@@ -42,8 +42,8 @@ export class App extends Component {
           : null}
 
         <Toolbar />
-        <div className={classes.root}>
-          <div className={classes.container}>
+        <div className={classes.appRoot}>
+          <div className={classes.appContainer}>
             <Switch>
               <Route exact path="/404" component={NotFound} />
               <Route exact path="/" component={KickOff} />

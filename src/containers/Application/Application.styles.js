@@ -1,5 +1,5 @@
 export const styles = {
-  container: {
+  applicationContainer: {
     margin: '100px 0',
   },
 };

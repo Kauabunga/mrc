@@ -18,7 +18,7 @@ export class Application extends Component {
 
         <ApplicationProgress />
 
-        <div className={classes.container}>
+        <div className={classes.applicationContainer}>
           {children}
         </div>
       </div>
