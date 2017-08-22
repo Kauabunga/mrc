@@ -36,6 +36,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "flow": "flow",
+    "precommit": "lint-staged",
     "prettier": "prettier --single-quote --print-width 100 --trailing-comma all \"src/**/*.js\"",
     "prettier:ci": "npm run prettier -- --list-different",
     "prettier:fix": "npm run prettier -- --write",
@@ -50,5 +51,11 @@
     "react-test-renderer": "^15.6.1",
     "testcafe": "^0.17.1",
     "testcafe-react-selectors": "^0.0.6"
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,css}": [
+      "yarn run prettier:fix",
+      "git add"
+    ]
   }
 }
