@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import SelectField from '../../fields/SelectField/SelectField';
 import RadioField from '../../fields/RadioField/RadioField';
 import { YesNoOptions } from '../../fields/RadioField/RadioField.YesNo';

@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import SelectField from '../../fields/SelectField/SelectField';
 import TextField from '../../fields/TextField/TextField';
 

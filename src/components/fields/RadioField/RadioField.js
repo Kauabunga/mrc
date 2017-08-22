@@ -9,8 +9,7 @@ const styles = theme => ({
   root: {},
 });
 
-// TODO create UI Select Input component
-// TODO create UI Label component
+// TODO create UI Radio Input component
 
 class RadioField extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Toolbar from '../../components/ui/Toolbar/Toolbar';
-import { withRouter, Switch, Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ import { styles } from './App.styles';
 
 export class App extends Component {
   render() {
-    const { classes, children } = this.props;
+    const { classes } = this.props;
 
     const handlers = {
       reset: event => {

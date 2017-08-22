@@ -66,9 +66,9 @@ class BaseField extends Component {
   }
 
   render() {
-    const { classes, input, info, infoContent, label, name, children } = this.props;
+    const { classes, info, infoContent, label, name, children } = this.props;
 
-    const { meta: { initial, touched, error, warning } } = this.props;
+    const { meta: { initial, error } } = this.props;
 
     const baseFieldInfo = <BaseFieldInfo info={info} infoContent={infoContent} />;
     const baseValidation =

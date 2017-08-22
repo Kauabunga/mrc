@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { selectHasHydrated } from '../../../global/persist/persist.selectors';
 import SummaryField from '../../fields/SummaryField/SummaryField';
 import injectSheet from 'react-jss';
 import { styles } from './BaseForm.styles';

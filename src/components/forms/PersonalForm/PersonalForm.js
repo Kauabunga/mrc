@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
 import SelectField from '../../fields/SelectField/SelectField';
-import { connect } from 'react-redux';
 import { FORM_NAME } from './PersonalForm.constants';
 import { selectPersonalData } from '../../../global/application/application.selectors';
 import { createForm } from '../BaseForm/BaseForm';

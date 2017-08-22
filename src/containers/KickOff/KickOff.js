@@ -8,9 +8,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
   selectEmploymentStatuses,
-  selectProfessions,
   selectPartyTypes,
   selectProducts,
+  selectProfessions,
 } from './KickOff.selectors';
 import { updateKickOffData } from '../../global/application/application.actions';
 import { FORM_NAME } from '../../components/forms/PreliminaryInformationForm/PreliminaryInformationForm.constants';

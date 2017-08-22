@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import BaseField from '../BaseField/BaseField';
 import SelectField from '../SelectField/SelectField';
 import RadioField from '../RadioField/RadioField';

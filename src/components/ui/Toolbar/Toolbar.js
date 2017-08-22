@@ -15,7 +15,7 @@ class Toolbar extends Component {
       <AppBar position="static" className={classes.appBar}>
         <MaterialToolbar className={classes.toolBar}>
           <Link to="/">
-            <img src={toolbarImg} />
+            <img alt="Logo" src={toolbarImg} />
           </Link>
           <Typography type="title" color="inherit">
             DEMO
