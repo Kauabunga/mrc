@@ -37,10 +37,9 @@
     "build": "react-scripts build",
     "flow": "flow",
     "precommit": "lint-staged",
-    "prettier": "prettier --single-quote --print-width 100 --trailing-comma all \"src/**/*.js\"",
-    "prettier:ci": "npm run prettier -- --list-different",
-    "prettier:fix": "npm run prettier -- --write",
-    "prettier:hook": "prettier --single-quote --print-width 100 --trailing-comma all",
+    "prettier": "prettier --single-quote --print-width 100 --trailing-comma all",
+    "prettier:ci": "npm run prettier -- \"src/**/*.js\" --list-different",
+    "prettier:fix": "npm run prettier -- \"src/**/*.js\" --write",
     "snapshot": "react-snapshot",
     "test": "react-scripts test --env=jsdom",
     "testcafe": "testcafe chrome e2e/",
@@ -55,7 +54,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,json,css}": [
-      "yarn run prettier:hook",
+      "yarn run prettier -- --write",
       "git add"
     ]
   }
