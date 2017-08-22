@@ -23,10 +23,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 // Setup logger
 app.use(morgan('combined'))
 
-app.use('/', index)
+app.use('/', index);
 
 // Serve static assets
-const oneDay = 86400000; // in milliseconds
+const oneDay = 86400000 * 365; // in milliseconds
 
 app.use(express.static(
   path.resolve(__dirname, '..', 'build'), { maxage: oneDay }
