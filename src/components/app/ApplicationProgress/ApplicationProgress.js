@@ -62,15 +62,17 @@ export class ApplicationProgress extends Component {
     const tabValue = this.getTabValue(this.props.pathname);
     const labels = this.getTabLabels(this.state.width);
     return (
-      <Tabs
-        value={tabValue}
-        onChange={this.handleChange.bind(this)}
-        indicatorColor="primary"
-        textColor="primary"
-        centered
-      >
-        {labels.map((label, index) => <Tab key={index} label={label} />)}
-      </Tabs>
+      <div style={{ minHeight: 48 }}>
+        <Tabs
+          value={tabValue}
+          onChange={this.handleChange.bind(this)}
+          indicatorColor="primary"
+          textColor="primary"
+          centered
+        >
+          {labels.map((label, index) => <Tab key={index} label={label} />)}
+        </Tabs>
+      </div>
     );
   }
 }
