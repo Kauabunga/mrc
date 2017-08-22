@@ -11,6 +11,7 @@
     "react": "^15.6.1",
     "react-async-script": "^0.9.1",
     "react-dom": "^15.6.1",
+    "react-fastclick": "^3.0.2",
     "react-ga": "^2.2.0",
     "react-google-recaptcha": "^0.9.7",
     "react-helmet": "^5.1.3",

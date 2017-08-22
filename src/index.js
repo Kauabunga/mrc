@@ -8,6 +8,9 @@ import ReactGA from 'react-ga';
 
 // Note we need this to copy files to build dir.
 import 'typeface-roboto';
+import initReactFastclick from 'react-fastclick';
+
+initReactFastclick();
 
 ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_CODE, { debug: false });
 
