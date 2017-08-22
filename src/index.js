@@ -5,10 +5,8 @@ import jss from 'jss';
 import preset from 'jss-preset-default';
 import store from './global/store';
 import routes from './global/routes';
-import registerServiceWorker from './registerServiceWorker';
+import { unregister } from './registerServiceWorker';
 import ReactGA from 'react-ga';
-
-// Load all the roboto fonts - Also done on index.html for faster load
 import 'typeface-roboto';
 
 // TODO use react jss library
@@ -25,4 +23,6 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-registerServiceWorker();
+// Service Worker registration
+// registerServiceWorker();
+unregister();
