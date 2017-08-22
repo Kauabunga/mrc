@@ -30,6 +30,10 @@ export class BaseForm extends Component {
       ? readOnlyFields.map((definition, index) => <Field key={index} {...definition} />)
       : [];
 
+
+
+
+
     return (
       <div className={classes.container}>
         <form onSubmit={onSubmit}>
