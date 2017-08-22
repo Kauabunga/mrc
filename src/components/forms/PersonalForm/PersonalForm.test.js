@@ -4,7 +4,7 @@ import { PersonalForm } from './PersonalForm';
 
 it('renders without crashing', () => {
   const renderer = new ShallowRenderer();
-  const handleOnChange = () => {};
-  renderer.render(<PersonalForm onChange={handleOnChange} />);
-  const result = renderer.getRenderOutput();
+  const handleChange = () => {};
+  const handleSubmit = () => {};
+  renderer.render(<PersonalForm onChange={handleChange} onSubmit={handleSubmit} />);
 });

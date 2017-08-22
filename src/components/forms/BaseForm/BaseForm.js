@@ -37,6 +37,8 @@ export class BaseForm extends Component {
 
 BaseForm.propTypes = {
   definition: PropTypes.array.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export function createForm(formName, selector) {

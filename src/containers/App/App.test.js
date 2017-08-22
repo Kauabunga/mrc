@@ -1,8 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import { App } from './App';
+import { StaticRouter } from 'react-router-dom';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  const renderer = new ShallowRenderer();
+  renderer.render(
+    <StaticRouter>
+      <App classes={{}} />
+    </StaticRouter>,
+  );
 });

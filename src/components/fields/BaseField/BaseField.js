@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import { FormLabel } from 'material-ui/Form';
 import BaseFieldInfo from './BaseFieldInfo';
@@ -8,6 +7,7 @@ import { Motion, spring } from 'react-motion';
 import injectSheet from 'react-jss';
 import { styles } from './BaseField.styles';
 import canUseDOM from 'can-use-dom';
+import BaseFieldProps from './BaseField.props';
 
 class BaseField extends Component {
   constructor(props) {
@@ -85,7 +85,7 @@ class BaseField extends Component {
     };
 
     // TODO why is this maxWidth set for responsive mobile?
-    // TODO wrap queries into standard UI component
+    // TODO wrap media queries into standard UI component
     return (
       <Motion style={motionStyles} defaultStyle={defaultMotionStyles}>
         {({ opacity, height }) =>
@@ -123,9 +123,10 @@ class BaseField extends Component {
   }
 }
 
-BaseField.propTypes = {
-  info: PropTypes.string,
-  infoContent: PropTypes.any,
+BaseField.defaultProps = {
+  meta: {},
 };
+
+BaseField.propTypes = BaseFieldProps;
 
 export default injectSheet(styles)(BaseField);

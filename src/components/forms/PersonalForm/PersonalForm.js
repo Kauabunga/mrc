@@ -24,8 +24,11 @@ export class PersonalForm extends Component {
     return (
       <BaseForm
         onSubmit={onSubmit}
+        onChange={event => {
+          console.log('asdkjfhakjsdhf', event);
+          onChange(event);
+        }}
         readOnly={readOnly}
-        onChange={onChange}
         definition={definition}
       />
     );
