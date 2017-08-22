@@ -10,7 +10,7 @@ class SummaryField extends Component {
     switch (originalComponent) {
       case RadioField:
       case SelectField:
-        let option = options.find(option => option.value === input && input.value);
+        let option = options.find(option => option.value === (input && input.value));
         return option && option.label;
       default:
         return input && input.value;
