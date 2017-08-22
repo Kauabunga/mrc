@@ -7,7 +7,7 @@ import MediaQuery from 'react-responsive';
 import { Motion, spring } from 'react-motion';
 import injectSheet from 'react-jss';
 import { styles } from './BaseField.styles';
-import root from 'window-or-global';
+import canUseDOM from 'can-use-dom';
 
 class BaseField extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class BaseField extends Component {
   };
 
   componentWillMount() {
-    if (root.document) {
+    if (canUseDOM) {
       this.updateDimensions();
     }
   }

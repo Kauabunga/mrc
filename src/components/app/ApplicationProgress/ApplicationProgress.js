@@ -3,7 +3,7 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import { routerActions } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import root from 'window-or-global';
+import canUseDOM from 'can-use-dom';
 
 export class ApplicationProgress extends Component {
   constructor(props) {
@@ -34,8 +34,8 @@ export class ApplicationProgress extends Component {
   }
 
   updateDimensions = () => {
-    let w = root;
-    let d = root.document;
+    let w = window;
+    let d = window.document;
     let documentElement = d.documentElement;
     let body = d.getElementsByTagName('body')[0];
     let width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
@@ -45,17 +45,17 @@ export class ApplicationProgress extends Component {
   };
 
   componentWillMount() {
-    if (root.document) {
+    if (canUseDOM) {
       this.updateDimensions();
     }
   }
 
   componentDidMount() {
-    root.addEventListener('resize', this.updateDimensions);
+    window.addEventListener('resize', this.updateDimensions);
   }
 
   componentWillUnmount() {
-    root.removeEventListener('resize', this.updateDimensions);
+    window.removeEventListener('resize', this.updateDimensions);
   }
 
   render() {

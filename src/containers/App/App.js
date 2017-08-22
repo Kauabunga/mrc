@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { HotKeys } from 'react-hotkeys';
-import root from 'window-or-global';
+import canUseDOM from 'can-use-dom';
 import NotFound from '../NotFound/NotFound';
 import KickOff from '../KickOff/KickOff';
 import Loan from '../applicationChildren/Loan/Loan';
@@ -36,7 +36,11 @@ export class App extends Component {
         <Helmet>
           <title>App</title>
         </Helmet>
-        <HotKeys focused={true} keyMap={keyMap} attach={root} handlers={handlers} />
+
+        {canUseDOM
+          ? <HotKeys focused={true} keyMap={keyMap} attach={window} handlers={handlers} />
+          : null}
+
         <Toolbar />
         <div className={classes.root}>
           <div className={classes.container}>
