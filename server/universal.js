@@ -12,34 +12,35 @@ const {default: routes} = require('../src/global/routes');
 const {default: createGlobalReducer} = require('../src/global/reducer');
 const {default: App} = require('../src/containers/App/App');
 
+const sheets = new SheetsRegistry();
+
 module.exports = function universalLoader(req, res) {
   const filePath = path.resolve(__dirname, '..', 'build', 'index.html');
 
   fs.readFile(filePath, 'utf8', (err, htmlData) => {
     if (err) {
-      console.error('read err', err)
-      return res.status(404).end()
+      console.error('read err', err);
+      return res.status(404).end();
     }
     const context = {};
     const store = createStore(createGlobalReducer());
-    const sheets = new SheetsRegistry();
 
     const markup = renderToString(
-      <Provider store={store}>
-        <StaticRouter
-          location={{pathname: req.url}}
-          context={context}
-        >
-          <JssProvider registry={sheets}>
+      <JssProvider registry={sheets}>
+        <Provider store={store}>
+          <StaticRouter
+            location={{pathname: req.url}}
+            context={context}
+          >
             {routes}
-          </JssProvider>
-        </StaticRouter>
-      </Provider>
+          </StaticRouter>
+        </Provider>
+      </JssProvider>
     );
 
     if (context.url) {
       // Somewhere a `<Redirect>` was rendered
-      redirect(301, context.url)
+      res.redirect(301, context.url)
     } else {
       // we're good, send the response
 
@@ -49,4 +50,4 @@ module.exports = function universalLoader(req, res) {
       res.send(RenderedApp);
     }
   })
-}
+};
