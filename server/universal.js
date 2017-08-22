@@ -10,7 +10,6 @@ const {JssProvider, SheetsRegistry} = require('react-jss');
 const {createStore} = require('redux');
 const {default: routes} = require('../src/global/routes');
 const {default: createGlobalReducer} = require('../src/global/reducer');
-const {default: App} = require('../src/containers/App/App');
 
 const sheets = new SheetsRegistry();
 
