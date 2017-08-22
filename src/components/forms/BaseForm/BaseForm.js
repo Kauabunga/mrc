@@ -6,14 +6,11 @@ import { selectHasHydrated } from '../../../global/persist/persist.selectors';
 import SummaryField from '../../fields/SummaryField/SummaryField';
 import injectSheet from 'react-jss';
 import { styles } from './BaseForm.styles';
+import { compose } from 'redux';
 
 export class BaseForm extends Component {
-  shouldComponentUpdate(nextProps) {
-    return nextProps.hasHydrated;
-  }
-
   render() {
-    const { classes, onSubmit, hasHydrated, readOnly, definition } = this.props;
+    const { classes, onSubmit, readOnly, definition } = this.props;
 
     // When fields are read only set them all to use the SummaryField field
     const readOnlyFields = definition.map(
@@ -26,9 +23,7 @@ export class BaseForm extends Component {
           : definition,
     );
 
-    const fields = hasHydrated
-      ? readOnlyFields.map((definition, index) => <Field key={index} {...definition} />)
-      : [];
+    const fields = readOnlyFields.map((definition, index) => <Field key={index} {...definition} />);
 
     return (
       <div className={classes.container}>
@@ -46,12 +41,11 @@ BaseForm.propTypes = {
 };
 
 export function createForm(formName, selector) {
-  return connect(state => ({
-    initialValues: selector(state),
-    hasHydrated: selectHasHydrated(state),
-  }))(
-    reduxForm({
-      form: formName,
-    })(injectSheet(styles)(BaseForm)),
-  );
+  return compose(
+    connect(state => ({
+      initialValues: selector(state),
+    })),
+    reduxForm({ form: formName }),
+    injectSheet(styles),
+  )(BaseForm);
 }

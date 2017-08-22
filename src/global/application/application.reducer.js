@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable';
-
+import canUseDOM from 'can-use-dom';
 import {
   UPDATE_FINANCIAL_DATA,
   UPDATE_KICK_OFF_DATA,
@@ -7,12 +7,18 @@ import {
   UPDATE_PERSONAL_DATA,
 } from './application.constants';
 
-const initialState = Immutable({
+const PERSIST_KEY = 'reduxPersist:application';
+
+const defaultState = {
   kickOff: {},
   loan: {},
   personal: {},
   financial: {},
-});
+};
+
+const initialState = Immutable(
+  canUseDOM ? JSON.parse(sessionStorage.getItem(PERSIST_KEY)) || defaultState : defaultState,
+);
 
 export const applicationReducer = (state = initialState, action) => {
   switch (action.type) {

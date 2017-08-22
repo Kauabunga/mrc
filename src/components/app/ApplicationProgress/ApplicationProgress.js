@@ -30,7 +30,7 @@ export class ApplicationProgress extends Component {
   }
 
   getTabLabels(width) {
-    return width > 500 ? ['Loan', 'Personal', 'Financial', 'Summary'] : ['1', '2', '3', '4'];
+    return width > 440 ? ['Loan', 'Personal', 'Financial', 'Summary'] : ['1', '2', '3', '4'];
   }
 
   updateDimensions = () => {
