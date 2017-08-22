@@ -39,14 +39,16 @@ module.exports = function universalLoader(req, res) {
     );
 
     if (context.url) {
-      // Somewhere a `<Redirect>` was rendered
       res.redirect(301, context.url)
     } else {
-      // we're good, send the response
-
       const RenderedApp = htmlData
         .replace('<div id="root"></div>', `<div id="root">${markup}</div>`)
-        .replace('</head>', `<style>${sheets.toString()}</style></head>`);
+        .replace('</head>', `<style>${sheets.toString()}</style></head>`)
+        .replace(/<link href="\/static\/css\/main\..*\.css" rel="stylesheet">/g, '')
+        .replace(
+          /<script type="text\/javascript" src="\/static\/js\//g,
+          '<script async type="text/javascript" src="/static/js/'
+        );
       res.send(RenderedApp);
     }
   })

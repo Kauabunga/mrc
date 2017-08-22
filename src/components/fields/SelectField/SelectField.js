@@ -4,7 +4,7 @@ import Select from 'react-select';
 
 // Be sure to include styles at some point, probably during your bootstrapping
 // Imported in index.html
-import 'react-select/dist/react-select.css';
+// import 'react-select/dist/react-select.css';
 
 // TODO create UI Select Input component
 // TODO create UI Label component
