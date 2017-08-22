@@ -18,7 +18,7 @@ app.use(compression())
 
 // Support post requests with body data (doesn't support multipart, use multer)
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({extended: false}))
 
 // Setup logger
 app.use(morgan('combined'))
@@ -26,7 +26,12 @@ app.use(morgan('combined'))
 app.use('/', index)
 
 // Serve static assets
-app.use(express.static(path.resolve(__dirname, '..', 'build')))
+const oneDay = 86400000; // in milliseconds
+
+app.use(express.static(
+  path.resolve(__dirname, '..', 'build'), { maxage: oneDay }
+  )
+);
 
 app.use('/api', api)
 
