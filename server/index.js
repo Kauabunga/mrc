@@ -15,6 +15,8 @@ app.listen(PORT, ()=>{
 
 app.on('error', onError);
 
+exports = module.exports = app;
+
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
