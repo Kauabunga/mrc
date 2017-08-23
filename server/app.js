@@ -8,9 +8,9 @@ const helmet = require('helmet');
 const enforce = require('express-sslify');
 
 // routes
-const index = require('./routes/index')
-const api = require('./routes/api')
-const universalLoader = require('./universal')
+const index = require('./routes/index');
+const api = require('./routes/api');
+const universalLoader = require('./universal');
 
 
 const app = express();
@@ -32,7 +32,11 @@ app.use(helmet.contentSecurityPolicy({
         "'sha256-ovdkvTFmnmqLAqYtUMvpOMWZhNQHMHw3FkLBfmp48xM='",
       ],
       styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", 'data:'],
+      imgSrc: [
+        "'self'",
+        "www.google-analytics.com",
+        'data:',
+      ],
       objectSrc: ["'none'"],
       reportUri: '/report-violation',
     }
@@ -68,9 +72,9 @@ app.post('/report-violation', function (req, res) {
   res.status(204).end();
 });
 
-app.use('/api', api)
+app.use('/api', api);
 
 // Always return the main index.html, so react-router render the route in the client
-app.use('/', universalLoader)
+app.use('/', universalLoader);
 
-module.exports = app
+module.exports = app;
