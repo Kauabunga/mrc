@@ -5,7 +5,7 @@ import store from './global/store';
 import router from './global/router';
 import { unregister } from './registerServiceWorker';
 import ReactGA from 'react-ga';
-// Note we need this to copy files to build dir.
+import './polyfill';
 import 'typeface-roboto';
 import initReactFastclick from 'react-fastclick';
 

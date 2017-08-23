@@ -5,7 +5,7 @@ import BaseField from '../BaseField/BaseField';
 
 class TextField extends Component {
   render() {
-    const { input, label, name, meta, children, ...custom } = this.props;
+    const { input, index, label, name, meta, children, ...custom } = this.props;
 
     return (
       <BaseField {...this.props}>
