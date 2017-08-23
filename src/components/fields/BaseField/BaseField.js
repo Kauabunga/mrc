@@ -73,9 +73,11 @@ class BaseField extends Component {
     const baseFieldInfo = <BaseFieldInfo info={info} infoContent={infoContent} />;
     const baseValidation =
       error &&
-      <span style={{ color: '#D50000' }}>
-        {error}
-      </span>;
+      <Grid item xs={12}>
+        <span style={{ color: '#D50000' }}>
+          {error}
+        </span>
+      </Grid>;
 
     const isDisplayed = this.isDisplayed(this.props);
     const motionStyles = this.getMotionStyles(this.props);
@@ -114,9 +116,7 @@ class BaseField extends Component {
               </Grid>
             </MediaQuery>
 
-            <Grid item xs={12}>
-              {baseValidation}
-            </Grid>
+            {baseValidation}
           </Grid>}
       </Motion>
     );
