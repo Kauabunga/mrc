@@ -12,8 +12,15 @@ const styles = theme => ({
 // TODO create UI Radio Input component
 
 class RadioField extends Component {
+  isDisplayed(props) {
+    const { meta: { warning } } = props;
+    return !warning;
+  }
+
   render() {
     const { options, input } = this.props;
+    const isDisplayed = this.isDisplayed(this.props);
+
     return (
       <BaseField {...this.props}>
         <RadioGroup
@@ -26,7 +33,7 @@ class RadioField extends Component {
             <FormControlLabel
               key={option.value}
               value={option.value}
-              control={<Radio />}
+              control={<Radio tabIndex={isDisplayed ? '0' : '-1'} />}
               label={option.label}
             />,
           )}

@@ -26,7 +26,7 @@ class SubmitField extends Component {
       <BaseField {...this.props}>
         <h3>You are ready to apply.</h3>
         <Link to="/application" tabIndex="-1" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Button aria-label="Next" raised type="submit">
+          <Button tabIndex={isDisplayed ? '0' : '-1'} aria-label="Next" raised type="submit">
             Next
           </Button>
         </Link>
