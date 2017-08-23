@@ -67,10 +67,16 @@ class BaseField extends Component {
 
   render() {
     const { classes, index, info, infoContent, label, name, children } = this.props;
-
+    const { width } = this.state;
     const { meta: { initial, error } } = this.props;
 
-    const baseFieldInfo = <BaseFieldInfo info={info} infoContent={infoContent} />;
+    const baseFieldInfo = (
+      <BaseFieldInfo
+        position={width < 960 ? 'bottom' : 'right'}
+        info={info}
+        infoContent={infoContent}
+      />
+    );
     const baseValidation =
       error &&
       <Grid item xs={12}>
@@ -103,12 +109,18 @@ class BaseField extends Component {
             className={classes.baseFieldContainer}
           >
             <Grid item xs={12} md={5} style={{ maxWidth: '100%' }}>
-              <FormLabel htmlFor={name}>
-                {label}
-              </FormLabel>
-              <MediaQuery query="(max-width: 959px)">
-                {baseFieldInfo}
-              </MediaQuery>
+              <Grid container>
+                <Grid item xs={10} md={12}>
+                  <FormLabel htmlFor={name}>
+                    {label}
+                  </FormLabel>
+                </Grid>
+                <MediaQuery query="(max-width: 959px)">
+                  <Grid item xs={2}>
+                    {baseFieldInfo}
+                  </Grid>
+                </MediaQuery>
+              </Grid>
             </Grid>
 
             <Grid item xs={12} md={4}>

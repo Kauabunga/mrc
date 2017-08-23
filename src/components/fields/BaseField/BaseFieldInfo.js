@@ -26,7 +26,17 @@ class BaseField extends Component {
   baseFieldInfoGroup = 'baseFieldInfoGroup';
 
   render() {
-    const { classes, info, infoContent } = this.props;
+    const { classes, position, info, infoContent } = this.props;
+
+    const tooltipStyles = {
+      style: {
+        width: 320,
+        maxWidth: 'calc(100% - 70px)',
+        padding: 20,
+        'margin-right': 20,
+      },
+      arrowStyle: {},
+    };
 
     // TODO why is this maxWidth set for responsive mobile?
     return (
@@ -47,7 +57,8 @@ class BaseField extends Component {
                 <InfoIcon />
               </IconButton>
               <ToolTip
-                style={{ style: { padding: 20, 'margin-right': 20 }, arrowStyle: {} }}
+                style={tooltipStyles}
+                position={position}
                 group={this.baseFieldInfoGroup}
                 active={this.state.isTooltipActive}
                 parent={`#${this.iconUuid}`}
@@ -65,9 +76,14 @@ class BaseField extends Component {
   }
 }
 
+BaseField.defaultProps = {
+  position: 'right',
+};
+
 BaseField.propTypes = {
   info: PropTypes.string,
   infoContent: PropTypes.any,
+  position: PropTypes.string,
 };
 
 export default injectSheet(styles)(BaseField);
