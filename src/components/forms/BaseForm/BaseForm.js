@@ -22,7 +22,9 @@ export class BaseForm extends Component {
           : definition,
     );
 
-    const fields = readOnlyFields.map((definition, index) => <Field key={index} {...definition} />);
+    const fields = readOnlyFields.map((definition, index) =>
+      <Field key={index} index={index} {...definition} />,
+    );
 
     return (
       <div className={classes.container}>

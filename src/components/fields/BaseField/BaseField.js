@@ -66,7 +66,7 @@ class BaseField extends Component {
   }
 
   render() {
-    const { classes, info, infoContent, label, name, children } = this.props;
+    const { classes, index, info, infoContent, label, name, children } = this.props;
 
     const { meta: { initial, error } } = this.props;
 
@@ -80,8 +80,8 @@ class BaseField extends Component {
     const isDisplayed = this.isDisplayed(this.props);
     const motionStyles = this.getMotionStyles(this.props);
     const defaultMotionStyles = {
-      opacity: initial ? motionStyles.opacity.val : 0,
-      height: initial ? motionStyles.height.val : 0,
+      opacity: initial || index === 0 ? motionStyles.opacity.val : 0,
+      height: initial || index === 0 ? motionStyles.height.val : 0,
     };
 
     // TODO why is this maxWidth set for responsive mobile?
