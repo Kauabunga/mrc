@@ -27,7 +27,7 @@ export class BaseForm extends Component {
     );
 
     return (
-      <div className={classes.container}>
+      <div className={classes.baseFormContainer}>
         <form onSubmit={onSubmit}>
           {fields}
           {/*<Field complete={!isIncomplete} name="__captcha__" component={CaptchaField} />*/}

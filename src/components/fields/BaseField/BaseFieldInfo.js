@@ -29,35 +29,39 @@ class BaseField extends Component {
     const { classes, info, infoContent } = this.props;
 
     // TODO why is this maxWidth set for responsive mobile?
-    return !info && !infoContent
-      ? null
-      : <div className={classes.infoContainer}>
-          <IconButton
-            id={this.iconUuid}
-            aria-label="Info"
-            tabIndex="-1"
-            onFocus={this.showTooltip.bind(this)}
-            onBlur={this.hideTooltip.bind(this)}
-            onMouseMove={this.showTooltip.bind(this)}
-            onMouseEnter={this.showTooltip.bind(this)}
-            onMouseLeave={this.hideTooltip.bind(this)}
-          >
-            <InfoIcon />
-          </IconButton>
-          <ToolTip
-            style={{ style: { padding: 20, 'margin-right': 20 }, arrowStyle: {} }}
-            group={this.baseFieldInfoGroup}
-            active={this.state.isTooltipActive}
-            parent={`#${this.iconUuid}`}
-          >
-            <div>
-              {(infoContent && infoContent()) ||
-                <p>
-                  {info}
-                </p>}
-            </div>
-          </ToolTip>
-        </div>;
+    return (
+      <div className={classes.infoContainer}>
+        {!info && !infoContent
+          ? null
+          : <div>
+              <IconButton
+                id={this.iconUuid}
+                aria-label="Info"
+                tabIndex="-1"
+                onFocus={this.showTooltip.bind(this)}
+                onBlur={this.hideTooltip.bind(this)}
+                onMouseMove={this.showTooltip.bind(this)}
+                onMouseEnter={this.showTooltip.bind(this)}
+                onMouseLeave={this.hideTooltip.bind(this)}
+              >
+                <InfoIcon />
+              </IconButton>
+              <ToolTip
+                style={{ style: { padding: 20, 'margin-right': 20 }, arrowStyle: {} }}
+                group={this.baseFieldInfoGroup}
+                active={this.state.isTooltipActive}
+                parent={`#${this.iconUuid}`}
+              >
+                <div>
+                  {(infoContent && infoContent()) ||
+                    <p>
+                      {info}
+                    </p>}
+                </div>
+              </ToolTip>
+            </div>}
+      </div>
+    );
   }
 }
 

@@ -1,8 +1,9 @@
 export const styles = {
-  container: {
+  baseFieldContainer: {
     background: '#f7f7f7',
   },
   infoContainer: {
-    display: 'inline-block',
+    display: 'block',
+    height: 48,
   },
 };

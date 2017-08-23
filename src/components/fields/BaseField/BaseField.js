@@ -93,7 +93,7 @@ class BaseField extends Component {
             container
             align="center"
             style={{ opacity, height, overflow: isDisplayed ? 'inherit' : 'hidden' }}
-            className={classes.container}
+            className={classes.baseFieldContainer}
           >
             <Grid item xs={12} md={5} style={{ maxWidth: '100%' }}>
               <FormLabel htmlFor={name}>
