@@ -1,9 +1,10 @@
-const bodyParser = require('body-parser')
-const compression = require('compression')
-const express = require('express')
-const morgan = require('morgan')
-const path = require('path')
-const fs = require('fs')
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const express = require('express');
+const morgan = require('morgan');
+const path = require('path');
+const fs = require('fs');
+const helmet = require('helmet');
 
 // routes
 const index = require('./routes/index')
@@ -11,17 +12,20 @@ const api = require('./routes/api')
 const universalLoader = require('./universal')
 
 
-const app = express()
+const app = express();
+
+// Enable default helmet security
+app.use(helmet());
 
 // Support Gzip
-app.use(compression())
+app.use(compression());
 
 // Support post requests with body data (doesn't support multipart, use multer)
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 // Setup logger
-app.use(morgan('combined'))
+app.use(morgan('combined'));
 
 app.use('/', index);
 

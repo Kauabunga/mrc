@@ -53,6 +53,7 @@
     "compression": "^1.7.0",
     "cross-env": "^5.0.5",
     "express": "^4.15.4",
+    "helmet": "^3.8.1",
     "ignore-styles": "^5.0.1",
     "morgan": "^1.8.2"
   },
