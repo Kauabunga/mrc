@@ -15,10 +15,29 @@ const universalLoader = require('./universal')
 
 const app = express();
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }))
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 // Enable default helmet security
 app.use(helmet());
+
+// Helmet CSP configuration
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: [
+        "'self'",
+        "www.google-analytics.com",
+        // Inline scripts for pace.js
+        "'sha256-XRde9ySV7fsYkf9zoIYqSuGJqpsFTWLgm0kFGIiarjw='",
+        "'sha256-ovdkvTFmnmqLAqYtUMvpOMWZhNQHMHw3FkLBfmp48xM='",
+      ],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", 'data:'],
+      objectSrc: ["'none'"],
+      reportUri: '/report-violation',
+    }
+  })
+);
 
 // Support Gzip
 app.use(compression());
@@ -36,9 +55,18 @@ app.use('/', index);
 const oneDay = 86400000 * 365; // in milliseconds
 
 app.use(express.static(
-  path.resolve(__dirname, '..', 'build'), { maxage: oneDay }
+  path.resolve(__dirname, '..', 'build'), {maxage: oneDay}
   )
 );
+
+app.post('/report-violation', function (req, res) {
+  if (req.body) {
+    console.log('CSP Violation: ', req.body)
+  } else {
+    console.log('CSP Violation: No data received!')
+  }
+  res.status(204).end();
+});
 
 app.use('/api', api)
 
