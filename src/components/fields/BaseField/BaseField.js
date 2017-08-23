@@ -86,6 +86,11 @@ class BaseField extends Component {
       height: initial || index === 0 ? motionStyles.height.val : 0,
     };
 
+    const animationStyles = {
+      overflow: isDisplayed ? 'inherit' : 'hidden',
+      pointerEvents: isDisplayed ? 'inherit' : 'none',
+    };
+
     // TODO why is this maxWidth set for responsive mobile?
     // TODO wrap media queries into standard UI component
     return (
@@ -94,7 +99,7 @@ class BaseField extends Component {
           <Grid
             container
             align="center"
-            style={{ opacity, height, overflow: isDisplayed ? 'inherit' : 'hidden' }}
+            style={{ opacity, height, ...animationStyles }}
             className={classes.baseFieldContainer}
           >
             <Grid item xs={12} md={5} style={{ maxWidth: '100%' }}>
