@@ -7,6 +7,7 @@ class KickOffIntroduction extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.introductionRoot}>
+        <h1>DEMO APPLICATION</h1>
         <p>
           On average it takes 15 minutes of less to complete the Application. You can expect a
           response on your application within one business day.
