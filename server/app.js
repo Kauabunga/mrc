@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const path = require('path');
 const fs = require('fs');
 const helmet = require('helmet');
+const enforce = require('express-sslify');
 
 // routes
 const index = require('./routes/index')
@@ -13,6 +14,8 @@ const universalLoader = require('./universal')
 
 
 const app = express();
+
+app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
 // Enable default helmet security
 app.use(helmet());
