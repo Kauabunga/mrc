@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-// TODO create UI Text Input component
 import { default as MaterialTextField } from 'material-ui/TextField';
 import BaseField from '../BaseField/BaseField';
 
+// TODO create UI Text Input component
 class TextField extends Component {
   render() {
-    const { input, index, label, name, meta, children, ...custom } = this.props;
+    const { input, size, index, label, name, meta, children, ...custom } = this.props;
+    const styles = size ? { width: size } : {};
 
     return (
       <BaseField {...this.props}>
-        <MaterialTextField fullWidth={true} {...input} {...custom} />
+        <MaterialTextField
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          style={styles}
+          fullWidth={true}
+          {...input}
+          {...custom}
+        />
       </BaseField>
     );
   }
