@@ -21,7 +21,7 @@ app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(helmet());
 
 // No referrer
-app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
+app.use(helmet.referrerPolicy({ policy: 'no-referrer, strict-origin-when-cross-origin' }));
 
 // Helmet CSP configuration
 app.use(helmet.contentSecurityPolicy({
