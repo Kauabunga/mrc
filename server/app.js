@@ -20,6 +20,9 @@ app.use(enforce.HTTPS({ trustProtoHeader: true }));
 // Enable default helmet security
 app.use(helmet());
 
+// No referrer
+app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
+
 // Helmet CSP configuration
 app.use(helmet.contentSecurityPolicy({
     directives: {
