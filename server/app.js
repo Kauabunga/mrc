@@ -15,7 +15,9 @@ const universalLoader = require('./universal');
 
 const app = express();
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+if(process.env.SERVER_ENV !== 'development') {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+}
 
 // Enable default helmet security
 app.use(helmet());

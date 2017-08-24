@@ -11,9 +11,9 @@ const {createStore} = require('redux');
 const {default: routes} = require('../src/global/routes');
 const {default: createGlobalReducer} = require('../src/global/reducer');
 
-const sheets = new SheetsRegistry();
 
 const filePath = path.resolve(__dirname, '..', 'build', 'index.html');
+const sheets = new SheetsRegistry();
 
 let index$ = getIndex(filePath);
 let cache = {};

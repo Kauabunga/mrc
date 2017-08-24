@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import App from '../containers/App/App';
+import App from '../containers/Root/Root';
 import Application from '../containers/Application/Application';
 import KickOff from '../containers/KickOff/KickOff';
 import NotFound from '../containers/NotFound/NotFound';

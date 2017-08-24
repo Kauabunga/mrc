@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 const props = {
+  canHide: PropTypes.bool.isRequired,
   info: PropTypes.string,
   infoContent: PropTypes.any,
   index: PropTypes.number.isRequired,

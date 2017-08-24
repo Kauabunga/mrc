@@ -46,9 +46,9 @@ class BaseField extends Component {
   getMotionStyles(props) {
     const { width } = this.state;
 
-    const { meta: { error } } = props;
+    const isError = this.isError(this.props);
 
-    let maxHeight = error ? 140 : 72;
+    let maxHeight = isError ? 140 : 72;
     if (width < 960) {
       maxHeight += 72;
     }
@@ -60,13 +60,18 @@ class BaseField extends Component {
     };
   }
 
+  isError(props) {
+    const { meta: { touched, initial, error } } = props;
+    return (touched || initial) && error;
+  }
+
   isDisplayed(props) {
-    const { meta: { warning } } = props;
-    return !warning;
+    const { canHide, meta: { warning } } = props;
+    return !canHide || !warning;
   }
 
   render() {
-    const { classes, index, info, infoContent, label, name, children } = this.props;
+    const { canHide, classes, index, info, infoContent, label, name, children } = this.props;
     const { width } = this.state;
     const { meta: { initial, error } } = this.props;
 
@@ -77,8 +82,11 @@ class BaseField extends Component {
         infoContent={infoContent}
       />
     );
+
+    const isError = this.isError(this.props);
+
     const baseValidation =
-      error &&
+      isError &&
       <Grid item xs={12}>
         <span style={{ color: '#D50000' }}>
           {error}
@@ -88,8 +96,8 @@ class BaseField extends Component {
     const isDisplayed = this.isDisplayed(this.props);
     const motionStyles = this.getMotionStyles(this.props);
     const defaultMotionStyles = {
-      opacity: initial || index === 0 ? motionStyles.opacity.val : 0,
-      height: initial || index === 0 ? motionStyles.height.val : 0,
+      opacity: !canHide || initial || index === 0 ? motionStyles.opacity.val : 0,
+      height: !canHide || initial || index === 0 ? motionStyles.height.val : 0,
     };
 
     const animationStyles = {

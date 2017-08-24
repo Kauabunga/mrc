@@ -14,10 +14,10 @@ import Financial from '../applicationChildren/Financial/Financial';
 import Summary from '../applicationChildren/Summary/Summary';
 import Application from '../Application/Application';
 import injectSheet from 'react-jss';
-import { styles } from './App.styles';
+import { styles } from './Root.styles';
 
 // TODO rename Root
-export class App extends Component {
+export class Root extends Component {
   render() {
     const { classes } = this.props;
 
@@ -43,6 +43,7 @@ export class App extends Component {
           : null}
 
         <Toolbar />
+
         <div className={classes.appRoot}>
           <div className={classes.appContainer}>
             <Switch>
@@ -70,9 +71,9 @@ export class App extends Component {
   }
 }
 
-App.defaultProps = {};
+Root.defaultProps = {};
 
-App.propTypes = {
+Root.propTypes = {
   // children: PropTypes.insta
 };
 
@@ -82,4 +83,4 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({}, dispatch),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(App)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Root)));

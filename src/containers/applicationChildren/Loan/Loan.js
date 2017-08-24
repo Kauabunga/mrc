@@ -7,15 +7,8 @@ import { connect } from 'react-redux';
 import LoanForm from '../../../components/forms/LoanForm/LoanForm';
 import { selectKilometresTraveledOptions, selectLoanTermOptions } from './Loan.selectors';
 import { updateLoanData } from '../../../global/application/application.actions';
-import { initialize } from 'redux-form';
-import { FORM_NAME } from '../../../components/forms/LoanForm/LoanForm.constants';
-import { selectLoanData } from '../../../global/application/application.selectors';
 
 export class Loan extends Component {
-  componentWillReceiveProps(nextProps) {
-    this.props.actions.initialize(FORM_NAME, nextProps.initialValues);
-  }
-
   handleSubmit() {}
 
   handleChange(values) {
@@ -56,13 +49,12 @@ Loan.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  initialValues: selectLoanData(state),
   kilometresTraveledOptions: selectKilometresTraveledOptions(state),
   loanTermOptions: selectLoanTermOptions(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ updateLoanData, initialize }, dispatch),
+  actions: bindActionCreators({ updateLoanData }, dispatch),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Loan));
