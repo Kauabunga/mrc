@@ -107,7 +107,7 @@ export function getDefinition(options) {
     {
       name: 'profession',
       label: 'What is your current profession?',
-      warn: [isProfessionHidden],
+      hidden: [isProfessionHidden],
       component: SelectField,
       info:
         'Choose the option that best describes your profession. If none of the available choices apply, please select other.',
@@ -116,14 +116,14 @@ export function getDefinition(options) {
     {
       name: 'partyType',
       label: 'Are you applying as an Individual or a Company?',
-      warn: [isPartyTypeHidden],
+      hidden: [isPartyTypeHidden],
       component: RadioField,
       options: partyTypes,
     },
     {
       name: 'businessUse',
       label: 'Is the vehicle wholly or predominantly (more than 50%) for business use?',
-      warn: [isBusinessUseHidden],
+      hidden: [isBusinessUseHidden],
       validate: [isBusinessVehicle],
       component: RadioField,
       info:
@@ -133,21 +133,21 @@ export function getDefinition(options) {
     {
       name: 'product',
       label: 'Finance Product',
-      warn: [isProductHidden],
+      hidden: [isProductHidden],
       component: SelectField,
       options: products,
     },
     {
       name: 'customerCount',
       label: 'How many people are applying for this loan?',
-      warn: [isCustomerCountHidden],
+      hidden: [isCustomerCountHidden],
       component: RadioField,
       options: OneTwoOptions,
     },
     {
       name: 'ofAge',
       label: 'Are you over 18 years old?',
-      warn: [isOfAgeHidden],
+      hidden: [isOfAgeHidden],
       validate: [isNotOfAge],
       component: RadioField,
       options: YesNoOptions,
@@ -155,7 +155,7 @@ export function getDefinition(options) {
     {
       name: 'hasDefaulted',
       label: 'Have you defaulted on a loan in the last 3 years?',
-      warn: [isHasDefaultedHidden],
+      hidden: [isHasDefaultedHidden],
       validate: [isHasDefaulted],
       component: RadioField,
       options: YesNoOptions,
@@ -163,21 +163,21 @@ export function getDefinition(options) {
     {
       name: 'hasBankrupt',
       label: 'Have you declared bankruptcy in the last 7 years?',
-      warn: [isHadBankruptHidden],
+      hidden: [isHadBankruptHidden],
       component: RadioField,
       options: YesNoOptions,
     },
     {
       name: 'hasBankruptDischarged',
       label: 'Have you been discharged?',
-      warn: [isHasBankruptDischargedHidden],
+      hidden: [isHasBankruptDischargedHidden],
       validate: [isHasBankruptDischarged],
       component: RadioField,
       options: YesNoOptions,
     },
     {
       name: 'complete',
-      warn: [isNotComplete],
+      hidden: [isNotComplete],
       component: SubmitField,
     },
   ];

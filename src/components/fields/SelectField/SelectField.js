@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BaseField from '../BaseField/BaseField';
 import Select from 'react-select';
+import canUseDOM from 'can-use-dom';
 
 // Be sure to include styles at some point, probably during your bootstrapping
 // Imported in index.html
@@ -13,11 +14,18 @@ class SelectField extends Component {
   render() {
     const { options, input } = this.props;
 
+    const ssrProps = {
+      arrowRenderer: canUseDOM ? undefined : () => null,
+      placeholder: canUseDOM ? 'Select...' : null,
+      style: canUseDOM ? null : { background: '#ccc' },
+    };
+
     return (
       <BaseField {...this.props}>
         <Select
           clearable={false}
           searchable={false}
+          {...ssrProps}
           value={input && input.value}
           onChange={option => input.onChange((option && option.value) || null)}
           onBlur={(event, newValue, previousValue) => input.onBlur(newValue)}

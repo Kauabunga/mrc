@@ -24,7 +24,10 @@ export class BaseForm extends Component {
 
     // TODO decorate warning functions by returning standard const warning IS_HIDDEN string
     const decoratedFields = readOnlyFields.map((definition, index) =>
-      Object.assign({}, definition, { canHide: !!definition.warn && definition.warn.length > 0 }),
+      Object.assign({}, definition, {
+        canHide: !!definition.hidden && definition.hidden.length > 0,
+        warn: [...(definition.warn || []), ...(definition.hidden || [])],
+      }),
     );
 
     const fields = decoratedFields.map((definition, index) =>
