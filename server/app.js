@@ -15,7 +15,7 @@ const universalLoader = require('./universal');
 
 const app = express();
 
-if(process.env.SERVER_ENV !== 'development') {
+if(process.env.NODE_ENV !== 'development') {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
 }
 

@@ -17,7 +17,6 @@ class SelectField extends Component {
     const ssrProps = {
       arrowRenderer: canUseDOM ? undefined : () => null,
       placeholder: canUseDOM ? 'Select...' : null,
-      style: canUseDOM ? null : { background: '#ccc' },
     };
 
     return (
