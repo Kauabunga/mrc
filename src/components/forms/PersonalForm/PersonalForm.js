@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SelectField from '../../fields/SelectField/SelectField';
 import { FORM_NAME } from './PersonalForm.constants';
 import { selectPersonalData } from '../../../global/application/application.selectors';
 import { createForm } from '../BaseForm/BaseForm';
-import AutocompleteField from '../../fields/AutocompleteField/AutocompleteField';
 import { getDefinition } from './PersonalForm.definition';
 
 const BaseForm = createForm(FORM_NAME, selectPersonalData);
