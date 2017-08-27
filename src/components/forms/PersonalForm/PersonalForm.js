@@ -4,30 +4,21 @@ import SelectField from '../../fields/SelectField/SelectField';
 import { FORM_NAME } from './PersonalForm.constants';
 import { selectPersonalData } from '../../../global/application/application.selectors';
 import { createForm } from '../BaseForm/BaseForm';
+import AutocompleteField from '../../fields/AutocompleteField/AutocompleteField';
+import { getDefinition } from './PersonalForm.definition';
 
 const BaseForm = createForm(FORM_NAME, selectPersonalData);
 
 export class PersonalForm extends Component {
   render() {
     const { onChange, onSubmit, readOnly } = this.props;
-    const { titleOptions } = this.props;
 
-    const definition = [
-      {
-        name: 'title',
-        label: 'Title',
-        component: SelectField,
-        options: titleOptions,
-      },
-    ];
+    const definition = getDefinition(this.props);
 
     return (
       <BaseForm
         onSubmit={onSubmit}
-        onChange={event => {
-          console.log('asdkjfhakjsdhf', event);
-          onChange(event);
-        }}
+        onChange={onChange}
         readOnly={readOnly}
         definition={definition}
       />

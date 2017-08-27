@@ -131,7 +131,7 @@ class BaseField extends Component {
               </Grid>
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={5}>
               {children}
             </Grid>
 
