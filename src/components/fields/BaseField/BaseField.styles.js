@@ -1,7 +1,11 @@
 export const styles = {
   baseFieldContainer: {
     background: '#f7f7f7',
-    minHeight: 72,
+    minHeight: 80,
+    margin: '40px 0',
+    '@media(min-width: 960px)': {
+      margin: 0,
+    },
   },
   infoContainer: {
     display: 'block',

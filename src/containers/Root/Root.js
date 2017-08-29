@@ -16,7 +16,6 @@ import Application from '../Application/Application';
 import injectSheet from 'react-jss';
 import { styles } from './Root.styles';
 
-// TODO rename Root
 export class Root extends Component {
   render() {
     const { classes } = this.props;

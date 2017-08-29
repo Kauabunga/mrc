@@ -46,9 +46,9 @@ class BaseField extends Component {
   getMotionStyles(props) {
     const { width } = this.state;
 
-    let maxHeight = 72;
+    let maxHeight = 80;
     if (width < 960) {
-      maxHeight += 72;
+      maxHeight += 60;
     }
 
     const isDisplayed = this.isDisplayed(props);
