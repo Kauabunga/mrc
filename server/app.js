@@ -26,6 +26,10 @@ app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
+      connectSrc: [
+        "'self'",
+        "api.addressfinder.io"
+      ],
       scriptSrc: [
         "'self'",
         "www.google-analytics.com",
