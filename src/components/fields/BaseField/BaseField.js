@@ -46,9 +46,7 @@ class BaseField extends Component {
   getMotionStyles(props) {
     const { width } = this.state;
 
-    const isError = this.isError(this.props);
-
-    let maxHeight = isError ? 140 : 72;
+    let maxHeight = 72;
     if (width < 960) {
       maxHeight += 72;
     }
@@ -84,6 +82,7 @@ class BaseField extends Component {
     );
 
     const isError = this.isError(this.props);
+    const isDisplayed = this.isDisplayed(this.props);
 
     const baseValidation =
       isError &&
@@ -92,8 +91,11 @@ class BaseField extends Component {
           {error}
         </span>
       </Grid>;
+    const baseValidationStyles = {
+      opacity: spring(isError && isDisplayed ? 1 : 0),
+      height: spring(isError && isDisplayed ? 40 : 0),
+    };
 
-    const isDisplayed = this.isDisplayed(this.props);
     const motionStyles = this.getMotionStyles(this.props);
     const defaultMotionStyles = {
       opacity: !canHide || initial || index === 0 ? motionStyles.opacity.val : 0,
@@ -108,42 +110,51 @@ class BaseField extends Component {
     // TODO why is this maxWidth set for responsive mobile?
     // TODO wrap media queries into standard UI component
     return (
-      <Motion style={motionStyles} defaultStyle={defaultMotionStyles}>
-        {({ opacity, height }) =>
-          <Grid
-            container
-            align="center"
-            style={{ opacity, height, ...animationStyles }}
-            className={classes.baseFieldContainer}
-          >
-            <Grid item xs={12} md={5} style={{ maxWidth: '100%' }}>
-              <Grid container>
-                <Grid item xs={10} md={12}>
-                  <FormLabel htmlFor={name}>
-                    {label}
-                  </FormLabel>
-                </Grid>
-                <MediaQuery query="(max-width: 959px)">
-                  <Grid item xs={2}>
-                    {baseFieldInfo}
+      <div>
+        <Motion style={motionStyles} defaultStyle={defaultMotionStyles}>
+          {({ opacity, height }) =>
+            <Grid
+              container
+              align="center"
+              style={{ opacity, height, ...animationStyles }}
+              className={classes.baseFieldContainer}
+            >
+              <Grid item xs={12} md={5} style={{ maxWidth: '100%' }}>
+                <Grid container>
+                  <Grid item xs={10} md={12}>
+                    <FormLabel htmlFor={name}>
+                      {label}
+                    </FormLabel>
                   </Grid>
-                </MediaQuery>
+                  <MediaQuery query="(max-width: 959px)">
+                    <Grid item xs={2}>
+                      {baseFieldInfo}
+                    </Grid>
+                  </MediaQuery>
+                </Grid>
               </Grid>
-            </Grid>
 
-            <Grid item xs={12} md={5}>
-              {children}
-            </Grid>
-
-            <MediaQuery query="(min-width: 960px)">
-              <Grid item md={1}>
-                {baseFieldInfo}
+              <Grid item xs={12} md={5}>
+                {children}
               </Grid>
-            </MediaQuery>
 
-            {baseValidation}
-          </Grid>}
-      </Motion>
+              <MediaQuery query="(min-width: 960px)">
+                <Grid item md={1}>
+                  {baseFieldInfo}
+                </Grid>
+              </MediaQuery>
+            </Grid>}
+        </Motion>
+
+        <Motion style={baseValidationStyles} defaultStyle={{ height: 0, opacity: 0 }}>
+          {({ opacity, height }) =>
+            <Grid container align="center" style={{ opacity, height, ...animationStyles }}>
+              <Grid item xs={12} style={{ maxWidth: '100%' }}>
+                {baseValidation}
+              </Grid>
+            </Grid>}
+        </Motion>
+      </div>
     );
   }
 }
