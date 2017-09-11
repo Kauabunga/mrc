@@ -46,7 +46,7 @@ class BaseField extends Component {
   getMotionStyles(props) {
     const { width } = this.state;
 
-    let maxHeight = 80;
+    let maxHeight = 90;
     if (width < 960) {
       maxHeight += 60;
     }
@@ -84,13 +84,11 @@ class BaseField extends Component {
     const isError = this.isError(this.props);
     const isDisplayed = this.isDisplayed(this.props);
 
-    const baseValidation =
-      isError &&
+    const baseValidation = isError && (
       <Grid item xs={12}>
-        <span style={{ color: '#D50000' }}>
-          {error}
-        </span>
-      </Grid>;
+        <span style={{ color: '#D50000' }}>{error}</span>
+      </Grid>
+    );
     const baseValidationStyles = {
       opacity: spring(isError && isDisplayed ? 1 : 0),
       height: spring(isError && isDisplayed ? 40 : 0),
@@ -112,7 +110,7 @@ class BaseField extends Component {
     return (
       <div>
         <Motion style={motionStyles} defaultStyle={defaultMotionStyles}>
-          {({ opacity, height }) =>
+          {({ opacity, height }) => (
             <Grid
               container
               align="center"
@@ -122,9 +120,7 @@ class BaseField extends Component {
               <Grid item xs={12} md={5} style={{ maxWidth: '100%' }}>
                 <Grid container>
                   <Grid item xs={10} md={12}>
-                    <FormLabel htmlFor={name}>
-                      {label}
-                    </FormLabel>
+                    <FormLabel htmlFor={name}>{label}</FormLabel>
                   </Grid>
                   <MediaQuery query="(max-width: 959px)">
                     <Grid item xs={2}>
@@ -143,16 +139,18 @@ class BaseField extends Component {
                   {baseFieldInfo}
                 </Grid>
               </MediaQuery>
-            </Grid>}
+            </Grid>
+          )}
         </Motion>
 
         <Motion style={baseValidationStyles} defaultStyle={{ height: 0, opacity: 0 }}>
-          {({ opacity, height }) =>
+          {({ opacity, height }) => (
             <Grid container align="center" style={{ opacity, height, ...animationStyles }}>
               <Grid item xs={12} style={{ maxWidth: '100%' }}>
                 {baseValidation}
               </Grid>
-            </Grid>}
+            </Grid>
+          )}
         </Motion>
       </div>
     );
