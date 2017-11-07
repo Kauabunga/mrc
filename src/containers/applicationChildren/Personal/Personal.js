@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import PersonalForm from '../../../components/forms/PersonalForm/PersonalForm';
 import { selectTitleOptions } from './Personal.selectors';
@@ -36,9 +36,7 @@ export class Personal extends Component {
 
 Personal.defaultProps = {};
 
-Personal.propTypes = {
-  // children: PropTypes.insta
-};
+Personal.propTypes = {};
 
 const mapStateToProps = state => ({
   titleOptions: selectTitleOptions(state),
@@ -48,4 +46,4 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ updatePersonalData }, dispatch),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Personal));
+export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(Personal);
